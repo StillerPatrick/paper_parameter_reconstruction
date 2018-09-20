@@ -1,0 +1,104 @@
+\documentclass[hyperref,german,beleg]{cgvpub}
+%weitere Optionen zum Ergänzen (in eckigen Klammern):
+% 
+% female	weibliche Titelbezeichnung bei Diplom
+% bibnum	numerische Literaturschlüssel
+% final 	für Abgabe	
+% lof			Abbildungsverzeichis
+% lot			Tabellenverzeichnis
+% noproblem	keine Aufgabenstellung
+% notoc			kein Inhaltsverzeichnis
+% twoside		zweiseitig
+\author{Patrick Stiller}
+\title{Parameter Reconstruction for Small Angle X-Ray Scattering with Deep Learning}
+\birthday{8. Januar 1994}
+\placeofbirth{Dresden}
+\matno{3951290}
+\betreuer{Dr. Dmitrij Schlesinger, Dr. Heide Meissner, Dr. Michael Bussmann}
+\bibfiles{literatur}
+\problem{Text der Aufgabenstellung...}
+\copyrighterklaerung{Hier soll jeder Autor die von ihm eingeholten
+Zustimmungen der Copyright-Besitzer angeben bzw. die in Web Press
+Rooms angegebenen generellen Konditionen seiner Text- und
+Bild"ubernahmen zitieren.}
+\acknowledgments{Die Danksagung...}
+\begin{document}
+
+\chapter{Einleitung}
+
+\chapter{Grundlagen}
+\section{Small Angle X-Ray Scattering with free electron laser pulses}
+
+
+
+\subsection{Motivation}
+Das Small Angle X-Ray Scattering(SAXS) ist eine universelle Technik zur Untersuchung von Fest \- stoffen. Dabei liefert SAXS Informationen über die kristalline Struktur, chemische Komposition und die physikalische Eigenschaften des untersuchten Feststoffes \cite{THEORYSAXS}. Die Untersuchung von Feststoffen unter Einfluss von Kurzpulslasern ist eine wichtige Aufgabe der heutigen Physik. Wissen über das verhalten von Feststoffen unter  Einfluss von Kurzpulslasern kann offene Fragen in der Krebsforschung und in der Astrophysik beantworten\cite{SAXS18}. In diesem Beleg wurde SAXS für die Untersuchung von Plasma eingesetzt. 
+
+\subsection{Experimentbeschreibung}
+
+Das Experiment besteht aus vier Hauptkomponenten (siehe Abbildung \ref{fig:saxssetup}). Dem Target, dem Hochintensitätslaser (UHI), dem Röntgen-Freie-Elektronen-Laser(XFEL) und dem Detektor.  Während des Experiments wird das Target durch den Hochintensitätslaser in einem Winkel von 90° beschossen. Dadurch kommt es zu einem sehr hohen Temperaturanstieg im Target und somit zu einem Schmelzprozess, sodass Plasma entsteht. Bei Plasma handelt es sich um ein Gemisch aus freien Elektronen, positiven Ionen und neutralen Teilchen, welche unter ständiger Wechselwirkung untereinander und mit Photonen stehen. Dadurch kann es zu unterschiedlichen Energie- bzw. Anregungszuständen kommen. Der Plasmazustand eines Stoffes wird auch als vierter Aggregatzustand bezeichnet \cite{PLASMADEF}. Wurde Plasma erzeugt, soll es auf seine Struktur und Elektrodynamik untersucht werden. Dafür wird leicht zeitversetzt ein zweiter Laser benutzt. Dabei handelt es sich um einen Röntgen-Freie-Elektronen-Laser, welcher in einem Winkel von 45° mit einer Pulsdauer von 40 Femtosekunden auf das Target schießt. Dabei wird das Resultat, wie man es bei einer klassischen Röntgenaufnahme kennt, durch einen Detektor, welcher hinter dem Target platziert ist, aufgenommen \cite{SAXS18}. In den nächsten drei Unterkapiteln werden die Hauptkomponenten detaillierter untersucht und dessen Beitrag zum Experiment genauer beschrieben. 
+
+\begin{figure}[ht]
+	\centering
+		\includegraphics [scale=0.6]{images/saxs_setup.png}
+	\caption{Schematischer Aufbau des Experimentaufbaus. Die vier Hauptkomponenten sind durch die vorher eingeführten Abkürzungen notiert. Im 
+	rechten Teil der Abbildung sind Detektorbilder in Abhängigkeit des Einsetzten des Röntgenlaserpulses dargestellt. Der dargestellte Effekt wird im  		übernächsten Kapitel genauer erklärt. Bildquelle: \cite{SAXS18}}
+	\label{fig:saxssetup}
+\end{figure}
+
+
+\subsubsection{Target}
+Um das Target analytisch beschreiben zu können und das Experiment Resultat zu vereinfachen und somit besser verstehen zu können, wurden die Targets als regelmäßiges Gitter (Grating) designed. Dafür wurde das Target mit einer 2 $\mu$m breiten Siliziumschicht überzogen und das Grating in diese Schicht eingraviert. Der Effekt des gewählten Targetdesigns ist, dass das Grating einen eindimensionalen Informationsgehalt hat und somit auch durch eine eindimensionale Funktion in Abhängigkeit von drei Parametern beschrieben werden kann (siehe Abbildung \ref{fig:grating_structure}). Die drei Paramter sind Wellenlänge, Erhöhungsbreite und Aufweichungsbreite. Dabei beschreiben Wellenlänge, Erhöhungsbreite die Struktur des Gratings und die Aufweichungsbreite den Aufweichungseffekt des Hochenergielasers, auf den aber in einem späteren Kapitel eingegangen wirds.
+
+\begin{figure}[ht]
+	\centering
+		\includegraphics [scale=0.5]{images/grating_structure.png}
+	\caption{Analytische Beschreibung des Querschnittes des Targets. Dabei ist das Grating zu erkennen und dass es durch drei Parameter: Wellenlänge, Erhöhungsbreite und Aufweichungsbreite beschrieben werden kann. Bildquelle: \cite{ZACH17}}
+	\label{fig:grating_structure}
+\end{figure}
+
+Der vorher erwähnte funktionale Zusammenhang wird im späteren Simulationskapitel genauer erläutert. Weiterhin müssen noch Begrifflichkeiten bezüglich des Targets geklärt werden. Die Erhöhungen des Gratings werden auch Features genannt und in diesem Kontext wird die Erhöhungsbreite auch Featuresize oder fsize genannt. Das Gitter wird in den meisten Fällen als Welle betrachtet, daher auch die Wahl des Parameternamen Wellenlänge. Weiterhin wird die Wellenlänge auch als Pitch bezeichnet. Eine letzter wichtiger Begriff ist die Elektronendichteverteilung $\eta $. Dabei ist das Grating ein Synonym für die Elektronendichteverteilung, dabei werden Features auch als  Bereiche mit hoher Energiedichte bezeichnet. 
+
+
+\subsubsection{Small Angle X-Ray Scattering}
+Um das Plasma auf seine Struktur zu untersuchen wird der Ansatz des Small Angle X-Ray Scatterings mit hilfe eines X-ray Free Electron Lasers(XFEL) verwendet. 
+
+%TODO : Funktions Variablen erklären 
+
+\subsubsection{Hochintensitätslaser}
+
+
+
+\subsection{Problemidentifikation}
+
+\section{Fouriertransformation}
+
+
+\section{Neuronale Netze}
+\subsection{Aufbau}
+\subsection{Training}
+
+\chapter{Simulation}
+\section{Motivation}
+\section{Simulationsbeschreibung}
+\subsection{Gitterbeschreibung}
+\subsection{Simulation des Detektorinputs}
+\subsection{Simulation der Detektoreigenschaften}
+
+\chapter{Datenbasis}
+\section{Generator}
+	\subsection{Aufbau}
+	\subsection{Wahl der Eingangsparameter}
+\section{Training-, Validation- und Testdatensatz}
+
+\chapter{Neuronales Netz}
+\section{Architektur}
+\section{Lossfunction}
+\section{Optimizer}
+
+\chapter{Ergebnisse und Diskussion}
+	\section{Lernprozess}
+	\section{Ergebnisse und statistische Auswertung}
+	\section{Fazit}
+	
+\end{document}
