@@ -36,7 +36,7 @@ Das Small Angle X-Ray Scattering(SAXS) ist eine universelle Technik zur Untersuc
 
 \subsection{Experimentbeschreibung}
 
-Das Experiment besteht aus vier Hauptkomponenten (siehe Abbildung \ref{fig:saxssetup}). Dem Target, dem Hochintensitätslaser (UHI), dem Röntgen-Freie-Elektronen-Laser(XFEL) und dem Detektor.  Während des Experiments wird das Target durch den Hochintensitätslaser in einem Winkel von 90° beschossen. Dadurch kommt es zu einem sehr hohen Temperaturanstieg im Target und somit zu einem Schmelzprozess, sodass Plasma entsteht. Bei Plasma handelt es sich um ein Gemisch aus freien Elektronen, positiven Ionen und neutralen Teilchen, welche unter ständiger Wechselwirkung untereinander und mit Photonen stehen. Dadurch kann es zu unterschiedlichen Energie- bzw. Anregungszuständen kommen. Der Plasmazustand eines Stoffes wird auch als vierter Aggregatzustand bezeichnet \cite{PLASMADEF}. Wurde Plasma erzeugt, soll es auf seine Struktur und Elektrodynamik untersucht werden. Dafür wird leicht zeitversetzt ein zweiter Laser benutzt. Dabei handelt es sich um einen Röntgen-Freie-Elektronen-Laser, welcher in einem Winkel von 45° mit einer Pulsdauer von 40 Femtosekunden auf das Target schießt. Dabei wird das Resultat, wie man es bei einer klassischen Röntgenaufnahme kennt, durch einen Detektor, welcher hinter dem Target platziert ist, aufgenommen \cite{SAXS18}. In den nächsten drei Unterkapiteln werden die Hauptkomponenten detaillierter untersucht und dessen Beitrag zum Experiment genauer beschrieben. 
+Das Experiment besteht aus vier Hauptkomponenten (siehe Abbildung \ref{fig:saxssetup}). Dem Target, dem Hochintensitätslaser (UHI), dem Röntgen-Freie-Elektronen-Laser(XFEL) und dem Detektor.  Während des Experiments wird das Target durch den Hochintensitätslaser in einem Winkel von 90° beschossen. Augrund des Elektrischen Feldes des Lasers entsteht Plasma. Bei Plasma handelt es sich um ein Gemisch aus freien Elektronen, positiven Ionen und neutralen Teilchen, welche unter ständiger Wechselwirkung untereinander und mit Photonen stehen. Dadurch kann es zu unterschiedlichen Energie- bzw. Anregungszuständen kommen. Der Plasmazustand eines Stoffes wird auch als vierter Aggregatzustand bezeichnet \cite{PLASMADEF}. Wurde Plasma erzeugt, soll es auf seine Struktur und Elektrodynamik untersucht werden. Dafür wird leicht zeitversetzt ein zweiter Laser benutzt. Dabei handelt es sich um einen Röntgen-Freie-Elektronen-Laser, welcher in einem Winkel von 45° mit einer Pulsdauer von 40 Femtosekunden auf das Target schießt. Dabei wird das Resultat, wie man es bei einer klassischen Röntgenaufnahme kennt, durch einen Detektor, welcher hinter dem Target platziert ist, aufgenommen \cite{SAXS18}. In den nächsten drei Unterkapiteln werden die Hauptkomponenten detaillierter untersucht und dessen Beitrag zum Experiment genauer beschrieben. 
 
 \begin{figure}[ht]
 	\centering
@@ -57,15 +57,41 @@ Um das Target analytisch beschreiben zu können und das Experiment Resultat zu ve
 	\label{fig:grating_structure}
 \end{figure}
 
-Der vorher erwähnte funktionale Zusammenhang wird im späteren Simulationskapitel genauer erläutert. Weiterhin müssen noch Begrifflichkeiten bezüglich des Targets geklärt werden. Die Erhöhungen des Gratings werden auch Features genannt und in diesem Kontext wird die Erhöhungsbreite auch Featuresize oder fsize genannt. Das Gitter wird in den meisten Fällen als Welle betrachtet, daher auch die Wahl des Parameternamen Wellenlänge. Weiterhin wird die Wellenlänge auch als Pitch bezeichnet. Eine letzter wichtiger Begriff ist die Elektronendichteverteilung $\eta $. Dabei ist das Grating ein Synonym für die Elektronendichteverteilung, dabei werden Features auch als  Bereiche mit hoher Energiedichte bezeichnet. 
+Der vorher erwähnte funktionale Zusammenhang wird im späteren Simulationskapitel genauer erläutert. Weiterhin müssen noch Begrifflichkeiten bezüglich des Targets geklärt werden. Die Erhöhungen des Gratings werden auch Features genannt und in diesem Kontext wird die Erhöhungsbreite auch Featuresize oder fsize genannt. Das Gitter wird in den meisten Fällen als Welle betrachtet, daher auch die Wahl des Parameternamen Wellenlänge. Weiterhin wird die Wellenlänge auch als Pitch bezeichnet. Ein letzter wichtiger Begriff ist die Elektronendichteverteilung $\eta $. Dabei ist das Grating ein Synonym für die Elektronendichteverteilung, dabei werden Features auch als Bereiche mit hoher Energiedichte bezeichnet. 
 
 
 \subsubsection{Small Angle X-Ray Scattering}
-Um das Plasma auf seine Struktur zu untersuchen wird der Ansatz des Small Angle X-Ray Scatterings mit hilfe eines X-ray Free Electron Lasers(XFEL) verwendet. 
+Um das Plasma auf seine Struktur zu untersuchen wird der Ansatz des Small Angle X-Ray Scatterings mit Hilfe eines X-ray Free Electron Lasers (XFEL) verwendet. Bei diesem  Small Angle X-Ray Scattering Ansatz wird ein Frei Elektronen Röntgenlaser in einem kleinen Winkel von 45° auf das Target geschossen (Abbildung \ref{fig:saxssetup}). Bei diesem Vorgang kommt es zu einem Streuvorgang des Lichts des Röntgenlasers an den Elektronen des Targets. Die Intensitäten des gestreuten Röntgenlasers werden durch einen Detektor, welches hinter dem Target platziert ist, gemessen.(Abbildung \ref{fig:saxssetup}). Beim Detektor handelt es sich um ein Raster von Lichtdetektoren, welche die ankommenden Lichtintensitäten messen. Dabei ist der Lichtdetektor zeitintgrierend, dass heißt, das ankommende Lichtintensitäten über die Zeit summiert werden. Diesen Effekt kann man in der Abbildung \ref{fig:electron_scattering} erkennen, welche den Steuprozess an zwei Elektronen zeigt. 
 
-%TODO : Funktions Variablen erklären 
+\begin{figure}[hh]
+	\centering
+		\includegraphics [scale=0.35 ]{images/electron_scattering.png}
+	\caption{Beispielhafte Darstellung einer Streuung an zwei Elektronen. Die Röngenlaserpulse treffen geradlinig auf die Elektronen und werden dann bei den Elektronen gestreut. Der Detektor dahinter misst die ankommenden Intensitäten der kreiförmigen Wellen und summiert diese über die Zeit.  Bildquelle: \cite{ZACH17}}
+	\label{fig:electron_scattering}
+\end{figure}
+
+Durch die Zeitintegrität des Detektors, gehen die zeitlichen Abstände der Wellen verloren (Phase) zusätzlich kann es dazu kommen, dass ankommende Wellen mehrere Detektorzellen gleichzeitig treffen, dabei kommt es zu einem Verschmierungseffekt im Detektorbild. Der funktionale Zusammenhang für den Streuvorgang ist in Gleichung \ref{eq:xrayscattering} definiert.
+
+
+\begin{equation}\label{eq:xrayscattering}
+\Phi = \phi _{0} \cdot \Delta \Omega  \cdot  T \cdot  \epsilon  \cdot | r _{0} \cdot \int \eta _{e}(\vec r) \cdot e^{i\vec q \vec r} d \vec r|^2
+\end{equation}
+
+Der wichtigste Aspekt ist der hintere Teil der Gleichung. Denn in diesem Teil werden die Intensitäten des Detektorbildes $\Phi $, welches äquivalent zum Betragsquadrat der Fouriertransformation der Elektronendichte $ \eta $ ist. 
+
 
 \subsubsection{Hochintensitätslaser}
+
+Die letzte wichtige Komponente ist der Hochintensitätslaser, welcher zur Generierung von Plasma aus den Targets zuständig ist. Der Hochintensitätslaser hat Einfluss sowohl auf das Target sowie auf das Detektorbild, welcher in diesem Kapitel untersucht wird. Der Hochintensitätslaser (UHI) ,welcher im 90° Winkel auf das Target schießt(Abbildung \ref{fig:saxssetup}, reißt mit seinem elektrischen Feld die Elektronen aus den Atomkernen des Targets. Dabei entsteht in einem Sekundenbruchteil Plasma. Zeitgleich kommt es zu einen Temperaturanstieg, welcher zu einem Schmelzprozess des Targets und somit zu einer Veränderung der Elektronendichteverteilung $\eta $  führt \cite{SAXS18}. Diesen Schmelzprozess ist in Abbildung \ref{fig:melting_grating} erkennbar. 
+
+\begin{figure}[hh]
+\centering
+\includegraphics [scale=0.95]{images/melting_grating.png}
+\caption{Veränderung der Elektronendichteverteilung nach einer Bestrahlungsdauer von 60 Femtosekunden Bildquelle: \cite{SAXS18}}
+\label{fig:melting_grating}
+\end{figure}
+
+Ein Nebeneffekt des Schmelzvorgangs ist der Informationsverlust der ursprünglichen Kantenstruktur, welcher sich auch im Detektorbild bemerkbar macht. Im rechen Teil der Abbildung \ref{fig:saxssetup} ist erkennbar, dass mit späterem Einsätzen des Röntgenlasers, was äquivalent zu längeren Bestrahlungsdauer des Hochintensitätslaser ist, Informationspunkte am Rand des Detektorbildes verloren gehen. 
 
 
 
