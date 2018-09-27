@@ -95,9 +95,45 @@ Ein Nebeneffekt des Schmelzvorgangs ist der Informationsverlust der ursprünglich
 Beim beschriebenen Experiment ist das größte Problem die Zeitintegrität des Detektors. Diese Detektoreigenschaft ruft den Verlust der Phase hervor, sodass eine Rekonstruktion der Elektronendichteverteilung $ \eta $ mit Hilfe einer inversen Fouriertransformation (IFT) nicht möglich ist. Um dieses Problem zu lösen werden iterative Algorithmen, sogenannte Phaseretrieval-Algorithmen verwendet. Beispiele für solche Algorithmen sind : Error-Reduction Algorithm, Gradient Search Methods und der Input Output Algorithmus. Probleme bei diesen Algorithmen ist, dass erstens bei allen Algorithmen keine Konvergenz garantiert ist und zweitens sehr viele Iterationen notwendig sind um eine Optimierung der errechneten Phase zu erzeugen  \cite{Fienup:82}. Diese Algorithmeneigenschaften führen dazu, dass eine hohe Bildraten im Megahertz im Experiment verweht bleibt. Deswegen soll Versucht werden mit Hilfe von Deep Learning die Phase bzw. die Eigenschaften (drei Parameter zur Beschreibung der Welle) der Elektronendichteverteilung $ \eta $ rekonstruiert werden. Der gewählte Deep Learning Ansatz ist ein neuronales Netz. Ein neuronales Netz hat den Vorteil, dass es über mehrere GPUs parallelisierbar ist und dass es die Phaseninformation bzw. die Parameter der Elektronendichte nicht-iterativ bestimmt. 
 
 \chapter{Grundlagen}
+
 \section{Fouriertransformation}
+Die Fouriertransformation (benannt nach Jean Baptiste Joseph Fourier) ist eine Transformation, welche zeitbezogene Welle im Ortsraum in ihre freuqenzmä\ss igen Spektralanteile zerlegt. Bei der Fouriertransformation wird die Welle in Teilwellen zerlegt. Diese Teilwellen ergeben summiert wieder die ursprüngliche Welle (Gleichung \eqref{eq:fourier-series}) \cite{FOURIERDEF}. So ergibt sich die Fouriertransformation einer stückweise stetig differenzierbaren und T- periodischen Funktion $ f_{T}: \mathbb{R} \longrightarrow \mathbb{R}$ durch folgenden Funktionalen zusammenhang : 
+
+\begin{equation}\label{eq:fourier-series}
+f _ { T } ( t ) = \sum _ { k = - \infty } ^ { \infty } \gamma _ { k } e ^ { i k \omega t }  \textrm{ mit } \omega = \frac { 2 \pi } { T } 
+\end{equation}
+
+die Fourier-Koeffizienten $\gamma_{k}$  werden wie bei einem Basiswechsel durch ein Integral bestimmt( Gleichung \eqref{eq:fourier_coefficients}). Dabei ist das Ergebnis des Integrals die Länge der Projektion in Richtung der Basis des Frequenzraumes. 
+
+\begin{equation}\label{eq:fourier_coefficients}
+\gamma _ { \mathrm { k } } = \frac { 1 } { T } \int _ { 0 } ^ { \top } f _ { \mathrm { T } } ( \tau ) e ^ { - i k \omega \tau } \mathrm { d } \tau
+\end{equation}
+
+Somit ergibt sich als Resultat der Fouriertransformation eine Folge von Komplexenzahlen $u$ mit zugehörigen Koeffizienten $ \gamma_{k}$. Jede Komplexe Zahl kodiert eine Welle, welche über die Euler Identität $e ^ { i k x } = \cos ( k x ) + i \cdot \sin ( k x )$ errechnet werden kann. Zusätzlich kann noch das Amplituden- und das Phasenspektrum bestimmt werden.  Dabei bestimmt das Amplitude die Maxima und Minima der zugehörigen Welle und das Phase die Verschiebung der Welle. Das Amplitudenspektrum $| F ( u ) | $ und das Phasenspektrum $\phi ( u )$ ergeben sich durch die folgende Gleichungen \cite{FOURIER2}.
+
+\begin{equation}
+| F ( u ) | = \sqrt { R ^ { 2 } ( u ) + I ^ { 2 } ( u ) }
+\end{equation}
+
+\begin{equation}
+\phi ( u ) = \tan ^ { - 1 } \frac { I ( u ) } { R ( u ) }
+\end{equation}
+
+\begin{figure}[hh]
+	\centering
+		\includegraphics [scale=0.5]{images/example_fourier.png}
+	\caption{Überlagerung mehrerer Wellen um eine Rechteckfunktion zu approximieren. Bildquelle: \cite{Gallagher2008AnIT}}
+	\label{fig:fourier_example}
+\end{figure}
+
+
+
+
+
  
 \section{Filter}
+\subsection{Definition}
+\subsection{Gauss-Filter}
 
 \section{Neuronale Netze}
 \subsection{Aufbau}
