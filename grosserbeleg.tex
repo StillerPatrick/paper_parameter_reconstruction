@@ -127,17 +127,25 @@ Somit ergibt sich als Resultat der Fouriertransformation eine Folge von Komplexe
 \end{figure}
 
 
-
-
-
- 
 \section{Filter}
-\subsection{Definition}
-\subsection{Gauss-Filter}
+
+Ein Filter ist eine Operation, welche auf einem Signal verwendet wird um Signale zu glätten, Signalstörungen zu vermeiden oder um Rauschen zu verhindern. In den meisten Fällen wird die Filteroperation mit Hilfe von Faltung realisiert. Dabei wird die Faltung zweier Funktionen (f * g) durch folgenden funktionalen Zusammenhang in Formel \eqref{eq:convolution} beschrieben. Dabei ist f die Funktion, welche das Signal beschreibt und g die Funktion, welche den Filter beschreibt. Im diskreten Fall wird das Integral durch eine Summe bis zur entsprechenden Filtergröße ersetzt. 
+
+\begin{equation}\label{eq:convolution}
+( f * g ) ( x ) : = \int _ { \mathbb { R } ^ { n } } f ( \tau ) g ( x - \tau ) \mathrm { d } \tau
+\end{equation}
+
+
 
 \section{Neuronale Netze}
 \subsection{Aufbau}
+Neuronale Netze sind eine mathematische Adaption des realen menschlichen Gehirns. Ein neuronales Netz besteht aus vielen kleinen Komponenten, Neuronen, welche durch gerichtete und gewichtete Verbindungen verbunden sind.  Mathematisch definiert ist ein neuronales Netz ein Tripel (N,V,w) mit den Beiden Mengen N und V und der Funktion w.  N ist die Menge aller Neuronen und V = $\{ (i,j) | i, j \epsilon \mathbb{N}\}$  die Menge der  Verbindungen zwischen Neuron i und Neuron j . Die Funktion $w : V \longrightarrow \mathbb{R} $  beschreibt die Gewichte des Neuronalen Netzes. Wobei w(i,j) das Gewicht zwischen dem Neuron i und Neuron j beschreibt. Im Allgemeinen wird anstatt der Funktionsnotation die Notation $w_{i,j}$ für die Gewichte zwischen zwei Neuronen verwendet.  \cite{Kriesel2007NeuralNetworks} Die nächste wichtige Komponente ist die Propagierungsfunktion $net_{j}$  eines Neurons, welche einen wichtigen Teil des Informationsflusses in einem Neuronalen Netz definiert. Dabei wird der Input des Neurons j durch dessen Propagierungsfunktion $net_{j}$ bestimmt. Die Propagierungsfunktion $net_{j}$ nimmt den Output aller Neuronen welche eine ausgehende Verbindung zum Neuron j besitzen als Input.  So wird die Propagierungsfunktion $net_{j}$ durch folgenden funktionalen Zusammenhang beschrieben : 
+
+\begin{equation}\label{eq:propagation_function}
+\text { net } _ { j } = \sum _ { i \in I_{j}} ( o _ { i }\cdot w _ { i , j }) \textrm{ mit } I_{j} = \{ i \epsilon N | (i,j) \epsilon V \}
+\end{equation}
 \subsection{Training}
+\subsection{Feed-Forward Networks}
 
 
 
