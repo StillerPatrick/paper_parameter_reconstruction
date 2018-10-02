@@ -177,8 +177,17 @@ f(x)= max(0,x)
 
 Jeder der genannten Aktivierungsfunktion hat auf Hinsicht seiner Berechnungsdauer, Wertebereich und Ableitung Vor- und Nachteile. Die Sigmoid und die Tangens Hyperbolicus  Aktivierungsfunktion haben einen eingeschränkten Wertebereich, dadurch kann es mit diesen Aktivierungsfunktionen zu keinen zu hohen Werten im Neuronalen Netz kommen und negative Werte werden im Gegensatz zu ReLu noch berücksichtigt. Jedoch sind beide langsamer zu berechnen als die Rectified Linear Units und bieten für den Lernprozess kleinere Gradienten. Rectified Linear Units(ReLu) ist im Vergleich zu Sigmoid und Tangens Hyperbolicus schneller zu berechnen und bietet größere Gradienten. Jedoch können Neuronen, welche einen negativen Input bekommen nur noch 0 Ausgeben. Man spricht in diesem Zusammenhang von einem totem Neuron. Ein weiterer Nachteil von ReLu ist der Wertebereich,denn dieser ist nicht eingeschränkt. Somit können im Neuronalen Netz sehr große Werte entstehen, welche den Wertebereich von Zahlenstandards wie zum Beispiel 32 Bit Float überschreiten und somit kein valider Datenfluss im Neuronalen Netz gegeben ist. 
 
-\subsection{Feed-Forward Networks}
-Für ein Neuronales Netzwerk werden verschiedene Netzwerktopologien verwendet. Ein Beispiel dafür ist das Feed Forward Neuronal Network. Bei einem Feed Forward Neuronal Network werden die Neuronen als Schichten angeordnet. Dabei ist die Erste Schicht, welche die Input Daten bekommt, wird als Input-Layer bezeichnet. Und die letzte Schicht, welche die Netzberechnung ausgibt, als Output-Layer bezeichnet. Schichten, welche sich zwischen Input- und Output-Layer befinden und somit keinen Kontakt nach Außen haben, werden als Hidden Layer bezeichnet. 
+\subsection{Feed-Forward-Neuronal  Networks}
+Für ein Neuronales Netzwerk werden verschiedene Netzwerktopologien verwendet. Ein Beispiel dafür ist das Feed Forward Neuronal Network. Bei einem Feed Forward Neuronal Network werden die Neuronen als Schichten angeordnet. Diese Schichten sind miteinander verbunden. Dabei ist die Erste Schicht, welche die Input Daten bekommt, wird als Input-Layer bezeichnet. Und die letzte Schicht, welche die Netzberechnung ausgibt, als Output-Layer bezeichnet. Schichten, welche sich zwischen Input- und Output-Layer befinden und somit keinen Kontakt nach Außen haben, werden als Hidden Layer bezeichnet. Ein wichtiges Merkmal von Feed Forward Networks ist, dass der Datenfluss geradlinig ohne Rückkopplung von Input-Layer über die Hiddenlayer bishin zum Output-Layer verläuft. 
+
+\begin{figure}[hh]
+\centering
+\includegraphics [scale=0.4]{images/feed_forward_neuronal_network.png}
+\caption{Beispielhafte Darstellung für ein Feed-Forward-Neuronal-Network. Bildquelle: \cite{COMPMETHODS}}
+\label{fig:ffnn}
+\end{figure}
+
+
 
 \subsection{Lernprozess}
 
