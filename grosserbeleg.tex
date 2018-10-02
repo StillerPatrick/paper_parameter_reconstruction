@@ -1,4 +1,5 @@
 \documentclass[hyperref,german,beleg]{cgvpub}
+\usepackage{subfigure}
 %weitere Optionen zum Ergänzen (in eckigen Klammern):
 % 
 % female	weibliche Titelbezeichnung bei Diplom
@@ -97,7 +98,7 @@ Beim beschriebenen Experiment ist das größte Problem die Zeitintegrität des Dete
 \chapter{Grundlagen}
 
 \section{Fouriertransformation}
-Die Fouriertransformation (benannt nach Jean Baptiste Joseph Fourier) ist eine Transformation, welche zeitbezogene Welle im Ortsraum in ihre freuqenzmä\ss igen Spektralanteile zerlegt. Bei der Fouriertransformation wird die Welle in Teilwellen zerlegt. Diese Teilwellen ergeben summiert wieder die ursprüngliche Welle (Gleichung \eqref{eq:fourier-series}) \cite{FOURIERDEF}. So ergibt sich die Fouriertransformation einer stückweise stetig differenzierbaren und T- periodischen Funktion $ f_{T}: \mathbb{R} \longrightarrow \mathbb{R}$ durch folgenden Funktionalen zusammenhang : 
+Die Fouriertransformation (benannt nach Jean Baptiste Joseph Fourier) ist eine Transformation, welche zeitbezogene Welle im Ortsraum in ihre freuqenzmä\ss igen Spektralanteile zerlegt. Bei der Fouriertransformation wird die Welle in Teilwellen zerlegt (Abbildung \ref{fig:fourier_example}). Diese Teilwellen ergeben summiert wieder die ursprüngliche Welle (Gleichung \eqref{eq:fourier-series}) \cite{FOURIERDEF}. So ergibt sich die Fouriertransformation einer stückweise stetig differenzierbaren und T- periodischen Funktion $ f_{T}: \mathbb{R} \longrightarrow \mathbb{R}$ durch folgenden Funktionalen Zusammenhang : 
 
 \begin{equation}\label{eq:fourier-series}
 f _ { T } ( t ) = \sum _ { k = - \infty } ^ { \infty } \gamma _ { k } e ^ { i k \omega t }  \textrm{ mit } \omega = \frac { 2 \pi } { T } 
@@ -142,11 +143,44 @@ Ein Filter ist eine Operation, welche auf einem Signal verwendet wird um Signale
 Neuronale Netze sind eine mathematische Adaption des realen menschlichen Gehirns. Ein neuronales Netz besteht aus vielen kleinen Komponenten, Neuronen, welche durch gerichtete und gewichtete Verbindungen verbunden sind.  Mathematisch definiert ist ein neuronales Netz ein Tripel (N,V,w) mit den Beiden Mengen N und V und der Funktion w.  N ist die Menge aller Neuronen und V = $\{ (i,j) | i, j \epsilon \mathbb{N}\}$  die Menge der  Verbindungen zwischen Neuron i und Neuron j . Die Funktion $w : V \longrightarrow \mathbb{R} $  beschreibt die Gewichte des Neuronalen Netzes. Wobei w(i,j) das Gewicht zwischen dem Neuron i und Neuron j beschreibt. Im Allgemeinen wird anstatt der Funktionsnotation die Notation $w_{i,j}$ für die Gewichte zwischen zwei Neuronen verwendet.  \cite{Kriesel2007NeuralNetworks} Die nächste wichtige Komponente ist die Propagierungsfunktion $net_{j}$  eines Neurons, welche einen wichtigen Teil des Informationsflusses in einem Neuronalen Netz definiert. Dabei wird der Input des Neurons j durch dessen Propagierungsfunktion $net_{j}$ bestimmt. Die Propagierungsfunktion $net_{j}$ nimmt den Output aller Neuronen welche eine ausgehende Verbindung zum Neuron j besitzen als Input.  So wird die Propagierungsfunktion $net_{j}$ durch folgenden funktionalen Zusammenhang beschrieben : 
 
 \begin{equation}\label{eq:propagation_function}
-\text { net } _ { j } = \sum _ { i \in I_{j}} ( o _ { i }\cdot w _ { i , j }) \textrm{ mit } I_{j} = \{ i \epsilon N | (i,j) \epsilon V \}
+ net_ { j } = \sum _ { i \in I_{j}} ( o _ { i }\cdot w _ { i , j }) \textrm{ mit } I_{j} = \{ i \epsilon N | (i,j) \epsilon V \}
 \end{equation}
-\subsection{Training}
-\subsection{Feed-Forward Networks}
 
+Der Output  $o_{j} $ eines Neuronen j wird mit Hilfe der Aktivierungsfunktion $a_{j}$ und der der Propagierungsfunktion berechnet. Dazu wird noch der Schwellwert $ \theta_{j} $ zur Hemmung des Aktivierungszustand des Neurons zur Hilfe genommen. Somit ergibt sich für den Output des Neurons folgender funktionaler Zusammenhang : 
+
+\begin{equation}
+o_{j} = a_{j}(net_{j} - \theta_{j}) = f(x)
+\end{equation}
+
+Die Wahl der Aktivierungsfunktion ist von Anwendungsfall von Anwendungsfall unterschiedlich. In den meisten Fällen werden differenzierbare Aktivierungsfunktionen benutzt, da sie den Lernprozess, des neuronalen Netzes erleichtern. Das erste Beispiel für eine Aktivierungsfunktion ist die Heaviside-Funktion(Step-Funktion), welche auf 0 oder 1 abbildet(Abbildung \ref{fig:activations}a). Diese Funktion ist an der Stelle 0 nicht differenzierbar und im generellen für moderne Optimierungsansätze für neuronale Netze nicht geeignet, da die Ableitung der Step-Funktion an allen Stellen 0 ist. Beispiel für gängige und differenzierbare Funktionen sind die Sigmoid-(Abbildung \ref{fig:activations}b, Formel \eqref{eq:sigmoid}), Tangens Hyperbolicus-(Abbildung \ref{fig:activations}c, Formel \eqref{eq:tanh}) und die Rectified Linear Units- Aktivierungsfunktion(Abbildung \ref{fig:activations}d, Formel \eqref{eq:relu})
+
+\begin{equation}\label{eq:sigmoid}
+f(x)= \frac { 1 } { 1 + e ^ { - x } }
+\end{equation}
+
+\begin{equation}\label{eq:tanh}
+f(x)= tanh(x) = 1 - \frac { 2 } { \mathrm { e } ^ { 2 x } + 1 }
+\end{equation}
+
+\begin{equation}\label{eq:relu}
+f(x)= max(0,x)
+\end{equation}
+
+\begin{figure}[hh]
+	\subfigure[Heavisidefunction]{\includegraphics[width=0.5\textwidth]{images/step.png}}
+    \subfigure[Sigmoid]{\includegraphics[width=0.5\textwidth]{images/sigmoid.png}} 
+     \subfigure[Tanh]{\includegraphics[width=0.5\textwidth]{images/tanh.png}} 
+    \subfigure[Relu]{\includegraphics[width=0.5\textwidth]{images/relu.png}} 
+    \caption{Übersicht Aktivierungsfunktionen, Bildquelle:  \cite{Kriesel2007NeuralNetworks}}
+\label{fig:activations}
+\end{figure} 
+
+Jeder der genannten Aktivierungsfunktion hat auf Hinsicht seiner Berechnungsdauer, Wertebereich und Ableitung Vor- und Nachteile. Die Sigmoid und die Tangens Hyperbolicus  Aktivierungsfunktion haben einen eingeschränkten Wertebereich, dadurch kann es mit diesen Aktivierungsfunktionen zu keinen zu hohen Werten im Neuronalen Netz kommen und negative Werte werden im Gegensatz zu ReLu noch berücksichtigt. Jedoch sind beide langsamer zu berechnen als die Rectified Linear Units und bieten für den Lernprozess kleinere Gradienten. Rectified Linear Units(ReLu) ist im Vergleich zu Sigmoid und Tangens Hyperbolicus schneller zu berechnen und bietet größere Gradienten. Jedoch können Neuronen, welche einen negativen Input bekommen nur noch 0 Ausgeben. Man spricht in diesem Zusammenhang von einem totem Neuron. Ein weiterer Nachteil von ReLu ist der Wertebereich,denn dieser ist nicht eingeschränkt. Somit können im Neuronalen Netz sehr große Werte entstehen, welche den Wertebereich von Zahlenstandards wie zum Beispiel 32 Bit Float überschreiten und somit kein valider Datenfluss im Neuronalen Netz gegeben ist. 
+
+\subsection{Feed-Forward Networks}
+Für ein Neuronales Netzwerk werden verschiedene Netzwerktopologien verwendet. Ein Beispiel dafür ist das Feed Forward Neuronal Network. Bei einem Feed Forward Neuronal Network werden die Neuronen als Schichten angeordnet. Dabei ist die Erste Schicht, welche die Input Daten bekommt, wird als Input-Layer bezeichnet. Und die letzte Schicht, welche die Netzberechnung ausgibt, als Output-Layer bezeichnet. Schichten, welche sich zwischen Input- und Output-Layer befinden und somit keinen Kontakt nach Außen haben, werden als Hidden Layer bezeichnet. 
+
+\subsection{Lernprozess}
 
 
 \chapter{Simulation}
