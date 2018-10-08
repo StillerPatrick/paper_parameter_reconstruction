@@ -27,13 +27,14 @@ Bild"ubernahmen zitieren.}
 
 \chapter{Einleitung}
 
+\chapter{Grundlagen}
 
-\chapter{Small Angle X-Ray Scattering with free electron laser pulses}
+\section{Small Angle X-Ray Scattering with free electron laser pulses}
 
-\section{Motivation}
+\subsection{Motivation}
 Das Small Angle X-Ray Scattering(SAXS) ist eine universelle Technik zur Untersuchung von Fest \- stoffen. Dabei liefert SAXS Informationen über die kristalline Struktur, chemische Komposition und die physikalische Eigenschaften des untersuchten Feststoffes \cite{THEORYSAXS}. Die Untersuchung von Feststoffen unter Einfluss von Kurzpulslasern ist eine wichtige Aufgabe der heutigen Physik. Wissen über das verhalten von Feststoffen unter  Einfluss von Kurzpulslasern kann offene Fragen in der Krebsforschung und in der Astrophysik beantworten\cite{SAXS18}. In diesem Beleg wurde SAXS für die Untersuchung von Plasma eingesetzt. 
 
-\section{Experimentbeschreibung}
+\subsection{Experimentbeschreibung}
 
 Das Experiment besteht aus vier Hauptkomponenten (siehe Abbildung \ref{fig:saxssetup}). Dem Target, dem Hochintensitätslaser (UHI), dem Röntgen-Freie-Elektronen-Laser(XFEL) und dem Detektor.  Während des Experiments wird das Target durch den Hochintensitätslaser in einem Winkel von 90° beschossen. Augrund des Elektrischen Feldes des Lasers entsteht Plasma. Bei Plasma handelt es sich um ein Gemisch aus freien Elektronen, positiven Ionen und neutralen Teilchen, welche unter ständiger Wechselwirkung untereinander und mit Photonen stehen. Dadurch kann es zu unterschiedlichen Energie- bzw. Anregungszuständen kommen. Der Plasmazustand eines Stoffes wird auch als vierter Aggregatzustand bezeichnet \cite{PLASMADEF}. Wurde Plasma erzeugt, soll es auf seine Struktur und Elektrodynamik untersucht werden. Dafür wird leicht zeitversetzt ein zweiter Laser benutzt. Dabei handelt es sich um einen Röntgen-Freie-Elektronen-Laser, welcher in einem Winkel von 45° mit einer Pulsdauer von 40 Femtosekunden auf das Target schießt. Dabei wird das Resultat, wie bei einer klassischen Röntgenaufnahme kennt, durch einen Detektor, welcher hinter dem Target platziert ist, aufgenommen \cite{SAXS18}. In den nächsten drei Unterkapiteln werden die Hauptkomponenten detaillierter untersucht und dessen Beitrag zum Experiment genauer beschrieben. 
 
@@ -46,7 +47,7 @@ Das Experiment besteht aus vier Hauptkomponenten (siehe Abbildung \ref{fig:saxss
 \end{figure}
 
 
-\subsection{Target}
+\paragraph{Target}
 Um das Target analytisch beschreiben zu können und das Experiment Resultat zu vereinfachen und somit besser verstehen zu können, wurden die Targets als regelmäßiges Gitter (Grating) designed. Dafür wurde das Target mit einer 2 $\mu$m breiten Siliziumschicht überzogen und das Grating in diese Schicht eingraviert. Der Effekt des gewählten Targetdesigns ist, dass das Grating einen eindimensionalen Informationsgehalt hat und somit auch durch eine eindimensionale Funktion in Abhängigkeit von drei Parametern beschrieben werden kann (siehe Abbildung \ref{fig:grating_structure}). Die drei Paramter sind Wellenlänge, Erhöhungsbreite und Aufweichungsbreite. Dabei beschreiben Wellenlänge, Erhöhungsbreite die Struktur des Gratings und die Aufweichungsbreite den Aufweichungseffekt des Hochenergielasers, auf den aber in einem späteren Kapitel eingegangen wirds.
 
 \begin{figure}[ht]
@@ -59,7 +60,7 @@ Um das Target analytisch beschreiben zu können und das Experiment Resultat zu ve
 Der vorher erwähnte funktionale Zusammenhang wird im späteren Simulationskapitel genauer erläutert. Weiterhin müssen noch Begrifflichkeiten bezüglich des Targets geklärt werden. Die Erhöhungen des Gratings werden auch Features genannt und in diesem Kontext wird die Erhöhungsbreite auch Featuresize oder fsize genannt. Das Gitter wird in den meisten Fällen als Welle betrachtet, daher auch die Wahl des Parameternamen Wellenlänge. Weiterhin wird die Wellenlänge auch als Pitch bezeichnet. Ein letzter wichtiger Begriff ist die Elektronendichteverteilung $\eta $. Dabei ist das Grating ein Synonym für die Elektronendichteverteilung, dabei werden Features auch als Bereiche mit hoher Energiedichte bezeichnet. 
 
 
-\subsection{Small Angle X-Ray Scattering}
+\paragraph{Small Angle X-Ray Scattering}
 Um das Plasma auf seine Struktur zu untersuchen wird der Ansatz des Small Angle X-Ray Scatterings mit Hilfe eines X-ray Free Electron Lasers (XFEL) verwendet. Bei diesem  Small Angle X-Ray Scattering Ansatz wird ein Frei Elektronen Röntgenlaser in einem kleinen Winkel von 45° auf das Target geschossen (Abbildung \ref{fig:saxssetup}). Bei diesem Vorgang kommt es zu einem Streuvorgang des Lichts des Röntgenlasers an den Elektronen des Targets. Die Intensitäten des gestreuten Röntgenlasers werden durch einen Detektor, welches hinter dem Target platziert ist, gemessen.(Abbildung \ref{fig:saxssetup}). Beim Detektor handelt es sich um ein Raster von Lichtdetektoren, welche die ankommenden Lichtintensitäten messen. Dabei ist der Lichtdetektor zeitintgrierend, dass heißt, das ankommende Lichtintensitäten über die Zeit summiert werden. Diesen Effekt ist in der Abbildung \ref{fig:electron_scattering} zu erkennen, welche den Steuprozess an zwei Elektronen zeigt. 
 
 \begin{figure}[hh]
@@ -79,7 +80,7 @@ Durch die Zeitintegrität des Detektors, gehen die zeitlichen Abstände der Wellen
 Der wichtigste Aspekt ist der hintere Teil der Gleichung. Denn in diesem Teil werden die Intensitäten des Detektorbildes $\Phi $, welches äquivalent zum Betragsquadrat der Fouriertransformation der Elektronendichte $ \eta $ ist. 
 
 
-\subsection{Hochintensitätslaser}
+\paragraph{Hochintensitätslaser}
 
 Die letzte wichtige Komponente ist der Hochintensitätslaser, welcher zur Generierung von Plasma aus den Targets zuständig ist. Der Hochintensitätslaser hat Einfluss sowohl auf das Target sowie auf das Detektorbild, welcher in diesem Kapitel untersucht wird. Der Hochintensitätslaser (UHI) ,welcher im 90° Winkel auf das Target schießt(Abbildung \ref{fig:saxssetup}, reißt mit seinem elektrischen Feld die Elektronen aus den Atomkernen des Targets. Dabei entsteht in einem Sekundenbruchteil Plasma. Zeitgleich kommt es zu einen Temperaturanstieg, welcher zu einem Schmelzprozess des Targets und somit zu einer Veränderung der Elektronendichteverteilung $\eta $  führt \cite{SAXS18}. Diesen Schmelzprozess ist in Abbildung \ref{fig:melting_grating} erkennbar. 
 
@@ -95,7 +96,7 @@ Ein Nebeneffekt des Schmelzvorgangs ist der Informationsverlust der ursprünglich
 \section{Problemidentifikation}
 Beim beschriebenen Experiment ist das größte Problem die Zeitintegrität des Detektors. Diese Detektoreigenschaft ruft den Verlust der Phase hervor, sodass eine Rekonstruktion der Elektronendichteverteilung $ \eta $ mit Hilfe einer inversen Fouriertransformation (IFT) nicht möglich ist. Um dieses Problem zu lösen werden iterative Algorithmen, sogenannte Phaseretrieval-Algorithmen verwendet. Beispiele für solche Algorithmen sind : Error-Reduction Algorithm, Gradient Search Methods und der Input Output Algorithmus. Probleme bei diesen Algorithmen ist, dass erstens bei allen Algorithmen keine Konvergenz garantiert ist und zweitens sehr viele Iterationen notwendig sind um eine Optimierung der errechneten Phase zu erzeugen  \cite{Fienup:82}. Diese Algorithmeneigenschaften führen dazu, dass eine hohe Bildraten im Megahertz im Experiment verweht bleibt. Deswegen soll Versucht werden mit Hilfe von Deep Learning die Phase bzw. die Eigenschaften (drei Parameter zur Beschreibung der Welle) der Elektronendichteverteilung $ \eta $ rekonstruiert werden. Der gewählte Deep Learning Ansatz ist ein neuronales Netz. Ein neuronales Netz hat den Vorteil, dass es über mehrere GPUs parallelisierbar ist und dass es die Phaseninformation bzw. die Parameter der Elektronendichte nicht-iterativ bestimmt. 
 
-\chapter{Grundlagen}
+
 
 \section{Fouriertransformation}
 Die Fouriertransformation (benannt nach Jean Baptiste Joseph Fourier) ist eine Transformation, welche zeitbezogene Welle im Ortsraum in ihre freuqenzmä\ss igen Spektralanteile zerlegt. Bei der Fouriertransformation wird die Welle in Teilwellen zerlegt (Abbildung \ref{fig:fourier_example}). Diese Teilwellen ergeben summiert wieder die ursprüngliche Welle (Gleichung \eqref{eq:fourier-series}) \cite{FOURIERDEF}. So ergibt sich die Fouriertransformation einer stückweise stetig differenzierbaren und T- periodischen Funktion $ f_{T}: \mathbb{R} \longrightarrow \mathbb{R}$ durch folgenden Funktionalen Zusammenhang : 
@@ -219,17 +220,18 @@ Der Backpropagation wird iterativ solange angewandt, bis eine bestimmte Anzahl v
 
 \chapter{Simulation}
 \section{Motivation}
-Um Verlauf des SAXS-Experimentes bestmöglich zu dokumentieren und in seinen Teilschritten zu verstehen, wurde im Rahmen der Master Arbeit von Malte Zacharias mit dem Titel: \grqq Model-Driven Parameter Reconstruction from Small Angle X-Ray Scattering Images \grqq eine Simulation entwickelt. Die Simulation beinhaltet das Design der Gitterstruktur (Elektronendichteverteilung), die Simulation des Hochenergielasereinflusses, die Berechnung des Streuvorgangs und die Simulation des Detektorbildes. \cite{Zach17}.
+Um das Ergebniss des SAXS-Experimentes bestmöglich zu verstehen und aufgrund mangelnder Anzahl von Experimentdaten, wurde im Rahmen der Master Arbeit von Malte Zacharias mit dem Titel: \grqq Model-Driven Parameter Reconstruction from Small Angle X-Ray Scattering Images \grqq eine Simulation entwickelt. Die Simulation beinhaltet das Design der Gitterstruktur (Elektronendichteverteilung), die Simulation des Hochenergielasereinflusses, die Simulation des Streuvorgangs und die Simulation des Detektorbildes. \cite{Zach17}.
 
 \section{Simulationsbeschreibung}
 \subsection{Design der Gitterstruktur und Simulation des Hochenergielasereinflusses}
-Die Targets des SAXS-Experiments sind als Gitter strukturiert, um eine analytische Beschreibung des Targets zu ermöglichen. Der erste Simulationsschritt ist die Bestimmung der Gitterstruktur, welche die zweidimensionalen Elektronendichteverteilung $\eta$ repräsentiert. Dazu wird zunächst die eindimensionale Kanteninformation \eqref{eq:edge} des Targets mit Hilfe der Errorfunktion \eqref{eq:erf} beschrieben. 
-Dazu wird die Verwandschaft der Errorfunktion mit der Normalverteilung ausgenutzt, um wie in \eqref{eq:edge} die Kante als Normalverteilung mit entsprechender Standardabweichung \( \sigma\) zu konstruieren.  
-
+Wie in Kapitel 2 beschrieben sind die Targets des SAXS-Experiments sind als Gitter strukturiert, um eine analytische Beschreibung des Targets zu ermöglichen. Der erste Simulationsschritt ist die Bestimmung der Gitterstruktur. Dazu wird eine feste Targetbreite N in Pixeln festgelegt. Und es werden zum Start der Simulation die drei Startparameter Pitch, Feature-size und Sigma festgelegt, welche die Eleketronendichteverteilung beschreiben.  In der Simulation wird die Gitterstruktur mithilfe der Errorfunktion \eqref{eq:erf} erstellt. 
 
 \begin{equation}\label{eq:erf}
 \text{erf(x)} = \frac{2}{\sqrt{\pi}} \int_{0}^{x} e^{-\xi^{2}}d\xi
 \end{equation}
+
+Im speziellen wird die Verwandschaft der Errorfunkton zur Normalverteilung ausgenutzt. So wird die Elektronendichteverteilung durch partiell definierte Normalverteilungen in Abhängigkeit der drei Startparameter Sigma (\( \sigma\)), Pitch(p) und Feature-Size(f) konstruiert. 
+
 
 
 \begin{equation}\label{eq:edge}
