@@ -1,0 +1,54 @@
+\documentclass{article}
+\usepackage[landscape]{geometry}
+\usepackage{forest}
+\usetikzlibrary{angles}
+
+\begin{document}
+\null
+\vfill
+\centering
+\begin{forest}%
+for tree={parent anchor=south,
+         child anchor=north,
+         l+=1cm,
+         fill=blue!30,
+         delay={content={\strut #1}},
+         },
+blackcircle/.style={tikz={\node[fill=black!60,inner sep=3pt,circle]at(.north){};}},
+whitecircle/.style={tikz={\node[draw,fill=white,inner sep=3pt,circle]at(.north){};}},
+%
+[Emergency Response System,fill=blue!10
+  [User interface,blackcircle]
+  [Inform emergency,blackcircle
+     [Inform Earthquake]
+     [Inform flood]
+  ]
+  [Display neighborhood,blackcircle
+     [Map
+        [Display danger zone] 
+        [Display safe zone]
+        [Display path to safe zone]
+     ]
+     [Textual direction]
+  ]
+  [Shortcut calls,whitecircle
+     [Cops]
+     [Ambulance]
+     [Fireman]  
+  ]
+]
+% fill angles 
+\foreach \i/\j/\k in {!21/!2/!22,!31/!3/!32,!41/!4/!43,!311/!31/!313}
+{
+\coordinate (A)at (\i.north);
+\coordinate (O)at (\j.south);
+\coordinate (B)at (\k.north);
+\path  (A)--(O)--(B)
+pic [fill=black!60, angle radius=4mm] {angle = A--O--B};
+}
+\end{forest}
+\par
+\vfill
+
+\end{document}
+ 
