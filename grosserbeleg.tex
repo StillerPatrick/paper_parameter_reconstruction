@@ -17,7 +17,7 @@
 \matno{3951290}
 \betreuer{Dr. Dmitrij Schlesinger, Dr. Heide Meissner, Dr. Michael Bussmann}
 \bibfiles{literatur}
-\problem{Text der Aufgabenstellung...}
+\problem{aufgabenstellung}
 \copyrighterklaerung{Hier soll jeder Autor die von ihm eingeholten
 Zustimmungen der Copyright-Besitzer angeben bzw. die in Web Press
 Rooms angegebenen generellen Konditionen seiner Text- und
@@ -52,7 +52,7 @@ Um das Target analytisch beschreiben zu können und das Experiment Resultat zu ve
 \begin{figure}[ht]
 	\centering
 		\includegraphics [scale=0.5]{images/grating_structure.png}
-	\caption{Analytische Beschreibung des Querschnittes des Targets. Dabei ist das Grating zu erkennen und dass es durch drei Parameter: Wellenlänge, Erhöhungsbreite und Aufweichungsbreite beschrieben werden kann. Bildquelle: \cite{ZACH17}}
+	\caption{Analytische Beschreibung des Querschnittes des Targets. Dabei ist das Grating zu erkennen und dass es durch drei Parameter: Wellenlänge, Erhöhungsbreite und Aufweichungsbreite beschrieben werden kann. Bildquelle: \cite{Zach17}}
 	\label{fig:grating_structure}
 \end{figure}
 
@@ -65,7 +65,7 @@ Um das Plasma auf seine Struktur zu untersuchen wird der Ansatz des Small Angle 
 \begin{figure}[hh]
 	\centering
 		\includegraphics [scale=0.4 ]{images/electron_scattering.png}
-	\caption{Beispielhafte Darstellung einer Streuung an zwei Elektronen. Die Röngenlaserpulse treffen geradlinig auf die Elektronen und werden dann bei den Elektronen gestreut. Der Detektor dahinter misst die ankommenden Intensitäten der kreiförmigen Wellen und summiert diese über die Zeit.  Bildquelle: \cite{ZACH17}}
+	\caption{Beispielhafte Darstellung einer Streuung an zwei Elektronen. Die Röngenlaserpulse treffen geradlinig auf die Elektronen und werden dann bei den Elektronen gestreut. Der Detektor dahinter misst die ankommenden Intensitäten der kreiförmigen Wellen und summiert diese über die Zeit.  Bildquelle: \cite{Zach17}}
 	\label{fig:electron_scattering}
 \end{figure}
 
@@ -93,7 +93,7 @@ Die letzte wichtige Komponente ist der Hochintensitätslaser, welcher zur Generie
 Ein Nebeneffekt des Schmelzvorgangs ist der Informationsverlust der ursprünglichen Kantenstruktur, welcher sich auch im Detektorbild bemerkbar macht. Im rechen Teil der Abbildung \ref{fig:saxssetup} ist erkennbar, dass mit späterem Einsätzen des Röntgenlasers, was äquivalent zu längeren Bestrahlungsdauer des Hochintensitätslaser ist, Informationspunkte am Rand des Detektorbildes verloren gehen. 
 
 \section{Problemidentifikation}
-Beim beschriebenen Experiment ist das größte Problem die Zeitintegrität des Detektors. Diese Detektoreigenschaft ruft den Verlust der Phase hervor, sodass eine Rekonstruktion der Elektronendichteverteilung $ \eta $ mit Hilfe einer inversen Fouriertransformation (IFT) nicht möglich ist. Um dieses Problem zu lösen werden iterative Algorithmen, sogenannte Phaseretrieval-Algorithmen verwendet. Beispiele für solche Algorithmen sind : Error-Reduction Algorithm, Gradient Search Methods und der Input Output Algorithmus. Probleme bei diesen Algorithmen ist, dass erstens bei allen Algorithmen keine Konvergenz garantiert ist und zweitens sehr viele Iterationen notwendig sind um eine Optimierung der errechneten Phase zu erzeugen  \cite{Fienup:82}. Diese Algorithmeneigenschaften führen dazu, dass eine hohe Bildraten im Megahertz im Experiment verweht bleibt. Deswegen soll Versucht werden mit Hilfe von Deep Learning die Phase bzw. die Eigenschaften (drei Parameter zur Beschreibung der Welle) der Elektronendichteverteilung $ \eta $ rekonstruiert werden. Der gewählte Deep Learning Ansatz ist ein neuronales Netz. Ein neuronales Netz hat den Vorteil, dass es über mehrere GPUs parallelisierbar ist und dass es die Phaseninformation bzw. die Parameter der Elektronendichte nicht-iterativ bestimmt. 
+Beim beschriebenen Experiment ist das größte Problem die Zeitintegrität des Detektors. Diese Detektoreigenschaft ruft den Verlust der Phase hervor, sodass eine Rekonstruktion der Elektronendichteverteilung $ \eta $ mit Hilfe einer inversen Fouriertransformation (IFT) nicht möglich ist. Um dieses Problem zu lösen werden iterative Algorithmen, sogenannte Phaseretrieval-Algorithmen verwendet. Beispiele für solche Algorithmen sind : Error-Reduction Algorithm, Gradient Search Methods und der Input Output Algorithmus. Probleme bei diesen Algorithmen ist, dass erstens bei allen Algorithmen keine Konvergenz garantiert ist und zweitens sehr viele Iterationen notwendig sind um eine Optimierung der errechneten Phase zu erzeugen  \cite{Fienup:82}. Diese Algorithmeneigenschaften führen dazu, dass eine hohe Bildraten im Megahertz im Experiment verweht bleibt. Deswegen soll mit Hilfe von Deep Learning die Phase bzw. die Eigenschaften (drei Parameter zur Beschreibung der Welle) der Elektronendichteverteilung $ \eta $ rekonstruiert werden. Der gewählte Deep Learning Ansatz ist ein neuronales Netz. Ein neuronales Netz hat den Vorteil, dass es über  GPUs parallelisierbar ist und dass es die Phaseninformation bzw. die Parameter der Elektronendichte nicht-iterativ bestimmt. 
 
 
 
@@ -223,19 +223,20 @@ Um das Ergebniss des SAXS-Experimentes bestmöglich zu verstehen und aufgrund man
 
 \section{Simulationsbeschreibung}
 \subsection{Design der Gitterstruktur und Simulation des Hochenergielasereinflusses}
-Wie in Kapitel 2 beschrieben sind die Targets des SAXS-Experiments als Gitter strukturiert, um eine analytische Beschreibung des Targets zu ermöglichen. Der erste Simulationsschritt ist die Bestimmung der Gitterstruktur. Dazu wird eine feste Targetbreite N in Pixeln festgelegt. Und es werden zum Start der Simulation die drei Startparameter Pitch, Feature-size und Sigma festgelegt, welche die Eleketronendichteverteilung beschreiben. In der Simulation wird zunächst die Struktur einer Kante bestimmt. Dazu wird die Deltafunktion (\( 1_{[0,\text{fsize}]} \)),welche die Breite eines Features bestimmt, mit einer Gaussverteilung (\(\exp \left( - x ^ { 2 } / 2 \sigma ^ { 2 } \right) \)) gefaltet, um den Hochenergielasereinfluss zu simulieren. Das Ergebnis der Faltung wird zur Vereinfachung mit der Errorfunktion \eqref{eq:erf} substituiert \cite{SAXS18}. 
+Wie in Kapitel 2 beschrieben sind die Targets des SAXS-Experiments als Gitter strukturiert, um eine analytische Beschreibung des Targets zu ermöglichen. Der erste Simulationsschritt ist die Bestimmung der Gitterstruktur. Die Breite des Gratings ist auf N Pixel beschränkt. Und die Struktur des Gratings ist über die drei Starparameter Pitch, Fsize und Sigma definiert. Zunächst wird anhand der Parameter Fsize und Sigma die Struktur eines Features bestimmt. Dazu wird eine Rechteckfunktion (\( 1_{[0,\text{fsize}]} \)),welche die Breite eines Features bestimmt, mit einer Gaussverteilung (\(\exp \left( - x ^ { 2 } / 2 \sigma ^ { 2 } \right) \)) gefaltet, um den Hochenergielasereinfluss zu simulieren. Das Ergebnis der Faltung wird zur Vereinfachung mit der Errorfunktion \eqref{eq:erf} substituiert \cite{SAXS18}. 
 
 \begin{equation}\label{eq:erf}
 \text{erf(x)} = \frac{2}{\sqrt{\pi}} \int_{0}^{x} e^{-\xi^{2}}d\xi
 \end{equation}
 
-Somit ergibt sich für ein Feature folgender funktioneller Zusammenhang:
+Das Ergebnis der Faltung des Rechteckimpulses und der Gauss-Verteilung ist die Modellierung eines Features \eqref{eq:feature} , welches durch eine weitere Faltung mit mehreren um Pitch verschobene Dirac-Impulsen \cite{beucher_2011} periodisch forgesetzt wird, um die Grating-Struktur zu komplettieren \cite{Zach17}. Aufgrund der begrenzten Targetbreite N Befinden sich \( \frac{N}{Pitch}\) Features in der Grating Struktur \cite{Zach17}. 
 
 \begin{equation}\label{eq:feature}
-	\tilde{\eta} = \frac{\sqrt{\pi}\sigma}{2}(\text{erf}(\frac{x}{\sqrt{2}\sigma} - \text{erf}(\frac{x - \text{fsize}}{\sqrt{2}\sigma}))
+	\tilde{\eta} = \frac{\sqrt{\pi}\sigma}{2}(\text{erf}(\frac{x}{\sqrt{2}\sigma}) - \text{erf}(\frac{x - \text{fsize}}{\sqrt{2}\sigma}))
 \end{equation}
 
-Essentiell dabei sind die drei Startparameter Sigma (\( \sigma\)), Pitch(p) und Feature-Size(f), welche für die Beschreibung der Kantenstrukur benötigt werden.  Die Variable \textit{x} dient als Positionsvariable und ist durch den Parameter \textit{nx} beschränkt. Der Parameter \textit{nx}bestimmt die Breite der Elektronendichte-Matrix \( \eta\). Sigma ist der Parameter, welcher den Einfluss des Hochenergielasers auf ein Feature beschreibt. Desto höher Sigma gewählt wird, desto mehr wird die Kantenstruktur des Targets aufgeweicht. In Abbildung \ref{img:edge_sigma} ist dieser Effekt dargestellt. Es ist erkennbar, dass die maximalen Elektronendichten sich verkleinern und auch die Features schmaler werden. 
+
+Essentiell dabei sind die drei Startparameter Sigma (\( \sigma\)), Pitch(p) und Feature-Size(f), welche für die Beschreibung der Kantenstrukur benötigt werden.  Die Variable \textit{x} dient als Positionsvariable und ist durch den Parameter \textit{N} beschränkt. Der Parameter \textit{nx}bestimmt die Breite der Elektronendichte-Matrix \( \eta\). Sigma ist der Parameter, welcher den Einfluss des Hochenergielasers auf ein Feature beschreibt. Desto höher Sigma gewählt wird, desto mehr wird die Kantenstruktur des Targets aufgeweicht. In Abbildung \ref{img:edge_sigma} ist dieser Effekt dargestellt. Es ist erkennbar, dass die maximalen Elektronendichten sich verkleinern und auch die Features schmaler werden. 
 
 \begin{figure}[hh]
 \centering
