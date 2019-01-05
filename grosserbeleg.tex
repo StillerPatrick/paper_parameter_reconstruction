@@ -235,12 +235,13 @@ Das Ergebnis der Faltung des Rechteckimpulses und der Gauss-Verteilung ist die M
 	\tilde{\eta} = \frac{\sqrt{\pi}\sigma}{2}(\text{erf}(\frac{x}{\sqrt{2}\sigma}) - \text{erf}(\frac{x - \text{fsize}}{\sqrt{2}\sigma}))
 \end{equation}
 
+\subsection{Effekt der Startparameter auf die Gitterstruktur}
 
-Essentiell dabei sind die drei Startparameter Sigma (\( \sigma\)), Pitch(p) und Feature-Size(f), welche für die Beschreibung der Kantenstrukur benötigt werden.  Die Variable \textit{x} dient als Positionsvariable und ist durch den Parameter \textit{N} beschränkt. Der Parameter \textit{nx}bestimmt die Breite der Elektronendichte-Matrix \( \eta\). Sigma ist der Parameter, welcher den Einfluss des Hochenergielasers auf ein Feature beschreibt. Desto höher Sigma gewählt wird, desto mehr wird die Kantenstruktur des Targets aufgeweicht. In Abbildung \ref{img:edge_sigma} ist dieser Effekt dargestellt. Es ist erkennbar, dass die maximalen Elektronendichten sich verkleinern und auch die Features schmaler werden. 
+Die drei Startparameter Sigma (\( \sigma\)), Pitch  und Feature-Size(fsize), welche die Struktur des Gratings beschreiben, haben unterschiedliche Effekte auf die Gratingstruktur. Sigma ist der Parameter, welcher, wie bereits beschrieben, den Einfluss des Hochenergielasers auf ein Feature modelliert. Desto höher Sigma gewählt wird, desto mehr wird die Kantenstruktur des Targets aufgeweicht. In Abbildung \ref{img:edge_sigma} ist dieser Effekt dargestellt. 
 
 \begin{figure}[hh]
 \centering
-\includegraphics[scale=0.55]{images/edge_sigma.png} 
+\includegraphics[scale=0.3]{images/edge_sigma.png} 
 \caption{Vergleich der Kantenstruktur unter variierenden Sigma-Werten bei gleichbleibenden Pitch- und Feature-Size- Werten}
 \label{img:edge_sigma}
 \end{figure}
@@ -254,12 +255,7 @@ Der Parameter Pitch(p) bestimmt die Wellenlänge der Kantenstruktur und bestimmt 
 	\label{img:edge_pitch_fsize}
 \end{figure} 
 
-Der dritte Startparamter Feature-Size(f) bestimmt die Größe der Gitterstäbe (Features). Dabei kann die Feature-Size nicht größer als Pitch gewählt werden, da sonst keine Kantenstruktur mehr erkennbar wäre. Der Effekt der Feature Size wird in Abbildung \ref{img:edge_pitch_fsize} in der rechten Spalte dargestellt. Die Kanteninformation, welche durch die drei Startparamter generiert wurde, ist eindimensional. Um eine zweidimensionale Elektronendichteverteilung \( \eta \)  zu generieren, wird die eindimensionale Kanteninformation \textit{ny}-fach dupliziert. Dabei bestimmt der Parameter \textit{ny} die Höhe der Elektronendichte-Matrix. Somit ergibt sich die  zweidimensionale Elektronendichte \( \eta\) :
-
-\begin{equation}\label{eq:eta}
-\eta _{i,j} = edge_{\sigma,f,p}(j) , 0 \leq i \leq ny , 0 \leq j \leq nx
-\end{equation}
-
+Der dritte Startparamter Feature-Size(f) bestimmt die Größe der Gitterstäbe (Features). Dabei kann die Feature-Size nicht größer als Pitch gewählt werden, da sonst keine Kantenstruktur mehr erkennbar wäre. Der Effekt der Feature Size wird in Abbildung \ref{img:edge_pitch_fsize} in der rechten Spalte dargestellt.
 \subsection{Simulation des Detektorinputs}
 
 Wie im Kapitel zur Experimentbeschreibung beschrieben, ist das aufgenommene Detektorbild äquivalent zum Betragsquadrat der  Fouriertransformation der Elektronendichte $\eta $.  Im Fall der Simulation ist die Elektronendichte eine diskrete zwei dimensionale Elektronendichteverteilung. Deswegen wird zur Bildung des Detektorbildes eine zweidimensionale diskrekte Fouriertransformation verwendet \cite{WIKI_DFT}. Dabei ist es meistens der Fall, dass das Fourierbild die gleiche Höhe und Breite aufweist,wie die Elektronendichteverteilung. 
