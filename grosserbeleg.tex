@@ -11,7 +11,7 @@
 % notoc			kein Inhaltsverzeichnis
 % twoside		zweiseitig
 \author{Patrick Stiller}
-\title{Parameter Reconstruction for Small Angle X-Ray Scattering with Deep Learning}
+\title{Parameterrekonstrukton für Röntgen-Kleinwinkelstreuung mit Deep Learning}
 \birthday{8. Januar 1994}
 \placeofbirth{Dresden}
 \matno{3951290}
@@ -69,14 +69,14 @@ Um das Plasma auf seine Struktur zu untersuchen wird der Ansatz des Small Angle 
 	\label{fig:electron_scattering}
 \end{figure}
 
-Durch die Zeitintegrität des Detektors, gehen die zeitlichen Abstände der Wellen verloren (Phase) zusätzlich kann es dazu kommen, dass ankommende Wellen mehrere Detektorzellen gleichzeitig treffen, dabei kommt es zu einem Verschmierungseffekt im Detektorbild. Der funktionale Zusammenhang für den Streuvorgang ist in Gleichung \ref{eq:xrayscattering} definiert.
+Durch die Zeitintegrität des Detektors, gehen die zeitlichen Abstände der Wellen verloren (Phase) zusätzlich kann es dazu kommen, dass ankommende Wellen mehrere Detektorzellen gleichzeitig treffen, dabei kommt es zu einem Verschmierungseffekt im Detektorbild. 
 
 
 \begin{equation}\label{eq:xrayscattering}
-\Phi = \phi _{0} \cdot \Delta \Omega  \cdot  T \cdot  \epsilon  \cdot | r _{0} \cdot \int \eta _{e}(\vec r) \cdot e^{i\vec q \vec r} d \vec r|^2
+\Phi \simeq | r _{0} \cdot \int \eta (\vec r) \cdot e^{i\vec q \vec r} d \vec r|^2
 \end{equation}
 
-Der wichtigste Aspekt ist der hintere Teil der Gleichung. Denn in diesem Teil werden die Intensitäten des Detektorbildes $\Phi $, welches äquivalent zum Betragsquadrat der Fouriertransformation der Elektronendichte $ \eta $ ist. 
+Der für diese Arbeit interessante Aspekt der Kleinwinkelstreuung ist, dass das Detektorbild $\Phi $ äquivalent zum Betragsquadrat der Fouriertransformation der Elektonendichte $\eta $ ist. 
 
 
 \paragraph{Hochintensitätslaser}
@@ -92,13 +92,13 @@ Die letzte wichtige Komponente ist der Hochintensitätslaser, welcher zur Generie
 
 Ein Nebeneffekt des Schmelzvorgangs ist der Informationsverlust der ursprünglichen Kantenstruktur, welcher sich auch im Detektorbild bemerkbar macht. Im rechen Teil der Abbildung \ref{fig:saxssetup} ist erkennbar, dass mit späterem Einsätzen des Röntgenlasers, was äquivalent zu längeren Bestrahlungsdauer des Hochintensitätslaser ist, Informationspunkte am Rand des Detektorbildes verloren gehen. 
 
-\section{Problemidentifikation}
-Beim beschriebenen Experiment ist das größte Problem die Zeitintegrität des Detektors. Diese Detektoreigenschaft ruft den Verlust der Phase hervor, sodass eine Rekonstruktion der Elektronendichteverteilung $ \eta $ mit Hilfe einer inversen Fouriertransformation (IFT) nicht möglich ist. Um dieses Problem zu lösen werden iterative Algorithmen, sogenannte Phaseretrieval-Algorithmen verwendet. Beispiele für solche Algorithmen sind : Error-Reduction Algorithm, Gradient Search Methods und der Input Output Algorithmus. Probleme bei diesen Algorithmen ist, dass erstens bei allen Algorithmen keine Konvergenz garantiert ist und zweitens sehr viele Iterationen notwendig sind um eine Optimierung der errechneten Phase zu erzeugen  \cite{Fienup:82}. Diese Algorithmeneigenschaften führen dazu, dass eine hohe Bildraten im Megahertz im Experiment verweht bleibt. Deswegen soll mit Hilfe von Deep Learning die Phase bzw. die Eigenschaften (drei Parameter zur Beschreibung der Welle) der Elektronendichteverteilung $ \eta $ rekonstruiert werden. Der gewählte Deep Learning Ansatz ist ein neuronales Netz. Ein neuronales Netz hat den Vorteil, dass es über  GPUs parallelisierbar ist und dass es die Phaseninformation bzw. die Parameter der Elektronendichte nicht-iterativ bestimmt. 
+\section{Problemidentifikation / vielleicht Einleitung }
+Beim beschriebenen Experiment ist das größte Problem die Zeitintegrität des Detektors. Diese Detektoreigenschaft ruft den Verlust der Phase hervor, sodass eine Rekonstruktion der Elektronendichteverteilung $ \eta $ mit Hilfe einer inversen Fouriertransformation (IFT) nicht möglich ist. Um dieses Problem zu lösen werden iterative Algorithmen, sogenannte Phaseretrieval-Algorithmen verwendet. Beispiele für solche Algorithmen sind : Error-Reduction Algorithm, Gradient Search Methods und der Input Output Algorithmus. Probleme bei diesen Algorithmen ist, dass erstens bei allen Algorithmen keine Konvergenz garantiert ist und zweitens sehr viele Iterationen notwendig sind um eine Optimierung der errechneten Phase zu erzeugen  \cite{Fienup:82}. Diese Algorithmeneigenschaften führen dazu, dass eine hohe Bildraten im Megahertz im Experiment verweht bleibt. Deswegen soll mit Hilfe von Deep Learning die Phase bzw. die Eigenschaften (drei Parameter zur Beschreibung der Welle) der Elektronendichteverteilung $ \eta $ rekonstruiert werden. Der gewählte Deep Learning Ansatz ist ein neuronales Netz. Ein neuronales Netz hat den Vorteil, dass es durch  GPU parallelisierbar ist und dass es die Phaseninformation bzw. die Parameter der Elektronendichte nicht-iterativ bestimmt. 
 
 
 
 \section{Fouriertransformation}
-Die Fouriertransformation (benannt nach Jean Baptiste Joseph Fourier) ist eine Transformation, welche zeitbezogene Welle im Ortsraum in ihre freuqenzmä\ss igen Spektralanteile zerlegt. Bei der Fouriertransformation wird die Welle in Teilwellen zerlegt (Abbildung \ref{fig:fourier_example}). Diese Teilwellen ergeben summiert wieder die ursprüngliche Welle (Gleichung \eqref{eq:fourier-series}) \cite{FOURIERDEF}. So ergibt sich die Fouriertransformation einer stückweise stetig differenzierbaren und T- periodischen Funktion $ f_{T}: \mathbb{R} \longrightarrow \mathbb{R}$ durch folgenden Funktionalen Zusammenhang : 
+Die Fouriertransformation (benannt nach Jean Baptiste Joseph Fourier) ist eine Transformation, welche zeitbezogene Welle im Ortsraum in ihre freuqenzmä\ss igen Spektralanteile zerlegt. Bei der Fouriertransformation wird die Welle in Teilwellen zerlegt (Abbildung \ref{fig:fourier_example}). Diese Teilwellen ergeben summiert wieder die ursprüngliche Welle (Gleichung \eqref{eq:fourier-series}) \cite{FOURIERDEF}. Somit ergibt sich die Darstellung einer Funktion in ihren freuqenzmä\ss igen Spektralanteilen als stückweise stetig differenzierbaren und T- periodischen Funktion $ f_{T}: \mathbb{R} \longrightarrow \mathbb{R}$ durch folgenden Funktionalen Zusammenhang : 
 
 \begin{equation}\label{eq:fourier-series}
 f _ { T } ( t ) = \sum _ { k = - \infty } ^ { \infty } \gamma _ { k } e ^ { i k \omega t }  \textrm{ mit } \omega = \frac { 2 \pi } { T } 
