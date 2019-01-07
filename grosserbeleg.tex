@@ -274,7 +274,7 @@ Das entstandene Produkt der Fouriertransformation ist im Raum der Komplexen Zahl
 \label{img:detector}
 \end{figure}
 
-\subsection{Auswirkung der Startparameter auf das Simulationsprodukt}
+\subsection{Auswirkung der Startparameter auf das Simulationsergebnis}
 Die Startparameter des Simulation haben ebenfalls Auswirkung auf das Endprodukt der Simulation. Betrachtet man zunächst die Auswirkungen des Starparameters Pitch (Abbildung \ref{img:pitch_detector}), kann man erkennen, dass mit steigendem Pitch sich das Intensitätsmaximum verringert. Zusätzlich kommen noch mehr Peaks hinzu. Das hängt damit zusammen, dass mit steigenden Pitch sich die Anzahl der Features verringert und somit mehr Frequenzen benötigt werden, um die Gitterstruktur zu modellieren. 
 
 \begin{figure}[hh]
@@ -284,24 +284,37 @@ Die Startparameter des Simulation haben ebenfalls Auswirkung auf das Endprodukt 
 \label{img:pitch_detector}
 \end{figure}
 
-Der Startparamter Fsize verhält sich invers zum Parameter Pitch. Mit steigendem Fsize, kommt es zu einer Erhöhung des Intensitätsmaximums und es werden weniger Frequenzen benötigt um die Gitterstruktur zu modellieren, somit sind auch weniger Peaks in der vorhanden(Abbildung \ref{img:pitch_detector}). 
+Der Startparamter Fsize verhält sich invers zum Parameter Pitch. Mit steigendem Fsize, kommt es zu einer Erhöhung des Intensitätsmaximums und es werden weniger Frequenzen benötigt um die Gitterstruktur zu modellieren, somit sind auch weniger Peaks in der vorhanden(Abbildung \ref{img:fsize_detector}). 
 
 \begin{figure}[hh]
 \centering
 \includegraphics[scale=0.25]{images/fsize_endproduct.png} 
 \caption{Verhalten der Detektoraufnahme in Abhängigkeit des Parameters Fsize}
-\label{img:pitch_detector}
+\label{img:fsize_detector}
 \end{figure}
 
-Der letzte Starparameter Sigma hat ansteigenden Wert ähnliche Auswirkungen auf die Detektoraufnahmen, wie Fsize. Bei steigendem 
+Der letzte Starparameter Sigma hat ansteigenden Wert ähnliche Auswirkungen auf die Detektoraufnahmen wie Fsize. Bei steigendem Sigma-Wert steigt das Intensitätsmaximum und die Anzahl der Peaks verringert sich (Abbildung \. Jedoch skaliert der Parameter Sigma anders als Fsize. Kleinere Unterschiede im Sigma Wert, kann größere Auswirkungen auf die Anzahl der Peaks haben. Auch der Anstieg des Intensitätsmaximums in Abhängigkeit zu Sigma ist geringer im Vergleich zur Abhängigkeit zu Fsize. 
 
-
-
+\begin{figure}[hh]
+\centering
+\includegraphics[scale=0.25]{images/sigma_endproduct.png} 
+\caption{Verhalten der Detektoraufnahme in Abhängigkeit des Parameters Fsize}
+\label{img:sigma_detector}
+\end{figure}
 
 \chapter{Datenbasis}
 \section{Generator}
-	\subsection{Aufbau}
-	\subsection{Wahl der Eingangsparameter}
+Um einen Machine Learning Ansatz auszuführen, muss eine ausreichend große Datenbasis existieren. Dazu wurde im Rahmen dieser Arbeit ein  Generator entwickelt, welcher mit Hilfe der vorher beschriebenen Simulation ausreichend viele Trainingsdaten produzieren kann. Bevor der Generator beginnen kann, muss eine Population P von Startparametern festgelegt werden. Um die Berechung der Simulationsdaten, welche aus P resultieren, zu beschleunigen wurde die Simulation mit Hilfe von MPI (Message Parsing Interface) parallisiert. MPI dubliziert einen Algorithmus auf N beliebige Prozesse, welche dann mit Hilfe vordefinierter Routinen miteinander kommunizieren können \cite{MPI}. Mit Hilfe von MPI-Routinen wurde die Population auf N MPI generierte Prozesse aufgeteilt. Jeder Prozess berechnet dann für seine kleinere Population von Startparametern die Simulationsergebnisse, welche dann anschließend als Dateien in den Speicher geladen werden. Zusätzlich zum Simulationsergebnis wird die Population der Startparameter und die daraus generierten Gitterstrukturen gespeichert, welche als Labels für das Training des neuronalen Netzes vorgesehen sind. 
+
+\begin{figure}[hh]
+\centering
+\includegraphics[scale=0.5]{images/generator_schema.png} 
+\caption{Schematischer Aufbau des Generators}
+\label{img:sigma_detector}
+\end{figure}
+
+
+\section{Wahl der Eingangsparameter}
 \section{Training-, Validation- und Testdatensatz}
 
 \chapter{Neuronales Netz}
