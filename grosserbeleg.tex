@@ -246,47 +246,57 @@ Die drei Startparameter Sigma (\( \sigma\)), Pitch  und Feature-Size(fsize), wel
 \label{img:edge_sigma}
 \end{figure}
 
-Der Parameter Pitch(p) bestimmt die Wellenlänge der Kantenstruktur und bestimmt somit auch die Periodizität der Kantenstruktur \eqref{eq:edge}. Indirekt bestimmt Pitch auch die Anzahl der vorkommenden Features des Targets, da in in der Simulation von einer gleichbleibend großen Targetbreite ausgegangen wird. Daraus folgt, dass mit steigendem Pitch die Anzahl der Features sinkt. Dieser Effekt ist in der Abbildung \ref{img:edge_pitch_fsize} in der linken Spalte dargestellt.
+Der Parameter Pitch(p) bestimmt die Wellenlänge der Kantenstruktur und bestimmt, somit auch die Periodizität der Kantenstruktur.  Daraus folgt, dass mit steigendem Pitch-Wert die Anzahl der Features sinkt. Dieser Effekt ist in der Abbildung \ref{img:edge_pitch_fsize} in der rechten Spalte dargestellt.
 
 \begin{figure}[hh]
-  \subfigure[Pitch]{\includegraphics[width=0.49\textwidth]{images/edge_pitch.png}} 
-   \subfigure[Feature-Size]{\includegraphics[width=0.5\textwidth]{images/edge_fsize.png}}   	 
-	\caption{Vergleich der Kantenstruktur unter variierenden Pitch-Werten(linke Spalte) und variierenden Feature-Size-Werten(rechte Spalte)} 
+	\centering 
+	\includegraphics[scale=0.5]{images/pitch_fsize_edge.png} 
+	\caption{Vergleich der Kantenstruktur unter variierenden Pitch-Werten(rechte Spalte) und variierenden Feature-Size-Werten(linke Spalte)} 
 	\label{img:edge_pitch_fsize}
 \end{figure} 
 
-Der dritte Startparamter Feature-Size(f) bestimmt die Größe der Gitterstäbe (Features). Dabei kann die Feature-Size nicht größer als Pitch gewählt werden, da sonst keine Kantenstruktur mehr erkennbar wäre. Der Effekt der Feature Size wird in Abbildung \ref{img:edge_pitch_fsize} in der rechten Spalte dargestellt.
-\subsection{Simulation des Detektorinputs}
+Der dritte Startparamter Feature-Size(f) bestimmt die Größe der Features. Dabei kann die Feature-Size nicht größer als Pitch gewählt werden, da sonst keine Kantenstruktur mehr erkennbar wäre. Der Effekt der Feature Size wird in Abbildung \ref{img:edge_pitch_fsize} in der linken Spalte dargestellt.
 
-Wie im Kapitel zur Experimentbeschreibung beschrieben, ist das aufgenommene Detektorbild äquivalent zum Betragsquadrat der  Fouriertransformation der Elektronendichte $\eta $.  Im Fall der Simulation ist die Elektronendichte eine diskrete zwei dimensionale Elektronendichteverteilung. Deswegen wird zur Bildung des Detektorbildes eine zweidimensionale diskrekte Fouriertransformation verwendet \cite{WIKI_DFT}. Dabei ist es meistens der Fall, dass das Fourierbild die gleiche Höhe und Breite aufweist,wie die Elektronendichteverteilung. 
-Um den Informationsverlust durch die Fouriertransformation zu verringern, wird die Elektronendichteverteilung oversampled und dann das Fourierbild dann wieder auf die normale Größe skaliert. 
+\subsection{Simulation der Streuung}
 
-\begin{equation}
-\hat { a } _ { k , l } = \sum _ { m = 0 } ^ { M - 1 } \sum _ { n = 0 } ^ { N - 1 } \eta _ { m , n } \cdot \mathrm { e } ^ { - 2 \pi i \cdot \frac { m k } { M } } \mathrm { e } ^ { - 2 \pi \mathrm { i } - \frac { n l } { N } } \text { fur } k = 0 , \ldots , M - 1 \text { und } l = 0 , \ldots , N - 1
+Wie im Kapitel zur Experimentbeschreibung beschrieben, ist das aufgenommene Detektorbild äquivalent zum Betragsquadrat der  Fouriertransformation der Elektronendichte $\eta $.  Im Fall der Simulation ist die Elektronendichte eine diskrete eindimensionale Elektronendichteverteilung. Deswegen wird zur Bildung des Detektorbildes eine eindimensionale diskrekte Fouriertransformation  \eqref{eq:fft} verwendet \cite{Zach17}
+
+\begin{equation}\label{eq:fft}
+\hat { a } _ { k } = \sum _ { j = 0 } ^ { N - 1 } e ^ { - 2 \pi \mathrm { i } \cdot \frac { j k } { N } } \cdot a _ { j } \text { für } k = 0 , \ldots , N - 1
 \end{equation}
 
-Das entstandene Fourierbild ist im Raum der Komplexen Zahlen und weißt den gleichen Informationsgehalt wie die Elektronendichteverteilung auf. Das heißt Amplituden- und Phaseninformationen(Abbildung \ref{img:phase_amplitude}) sind nach wie vor vorhanden. Wie in Kapitel 1 beschrieben, ist der Detektor nicht in der Lage Phaseninformation zu speichern, deswegen wird diese Information im weiteren Simulationsverlauf nicht weiter verwendet. 
-
-\begin{figure}[hh]
- 	\subfigure[log(Amplitude(FFT($\eta$)))]{\includegraphics[width=0.55\textwidth]{images/amplitude.png}} 
-    \subfigure[Phase(FFT($\eta$)))]{\includegraphics[width=0.55\textwidth]{images/phase.png}} 
-\caption{Fouriertransformierte Elektronendichte und dessen Abbildung auf dem Detektor} 
-\label{img:phase_amplitude}
-\end{figure} 
-
-Im Amplituden- und Phasenbild Fourier-Bild(Abbildung \ref{img:phase_amplitude})ist erkennbar, dass nur Frequenzen,welche auf der mittleren Achse des Bildes liegen, für die Kodierung des Bildes benutzt wurden. Das liegt daran, dass die Gitterstruktur nur eine horizontale Ausrichtung hat, sowie der Laser auch nur einen horizontalen Schmelzprozess hervorruft. Um das Detektorbild zu erhalten, wird das Betragsquadrat des Amplitudenbildes gebildet.
-
-
-
-\subsubsection{Simulation der Detektoreigenschaften}
-Im letztem Schritt werden die Detektoreigenschaften auf das Betragsquadrat angewandt, dabei werden Beugungserscheinungen, Abbildungsfehler und der Einfluss der Sensorenfläche des Detektors mit der sogenannten Point Spread Function simuliert. Die Point Spread Function wird durch einen Faltung mit einem Gauss-Filter umgesetzt.\cite{WIKI_PSF} Außerdem werden Intensitätswerte, welche über dem Intensitätsmaximum des Detektors liegen auf dieses Maximum reduziert. Das finalisierte Detektorbild ist in Abbildung \ref{img:detector} sichtbar.
+Das entstandene Produkt der Fouriertransformation ist im Raum der Komplexen Zahlen und weißt den gleichen Informationsgehalt wie die Elektronendichteverteilung auf. Das heißt Amplituden- und Phaseninformationen sind nach wie vor vorhanden. Wie in Kapitel 1 beschrieben, ist der Detektor zeitintegrierend und die Phase geht verloren, deswegen wird die Phaseninformation im weiteren Simulationsverlauf nicht weiter verwendet. Um schlussendlich die aufgenommenen Intensitäten des Detektors (siehe Abbildung \ref{img:detector}) zu erhalten, wird das Betragsquadrat des Amplitudenspektrums gebildet. 
 
 \begin{figure}[hh]
 \centering
-\includegraphics[scale=0.55]{images/detector_result.png} 
+\includegraphics[scale=0.3]{images/endproduct.png} 
 \caption{Resultierendes Detektorbild als Endprodukt der Simulation}
 \label{img:detector}
 \end{figure}
+
+\subsection{Auswirkung der Startparameter auf das Simulationsprodukt}
+Die Startparameter des Simulation haben ebenfalls Auswirkung auf das Endprodukt der Simulation. Betrachtet man zunächst die Auswirkungen des Starparameters Pitch (Abbildung \ref{img:pitch_detector}), kann man erkennen, dass mit steigendem Pitch sich das Intensitätsmaximum verringert. Zusätzlich kommen noch mehr Peaks hinzu. Das hängt damit zusammen, dass mit steigenden Pitch sich die Anzahl der Features verringert und somit mehr Frequenzen benötigt werden, um die Gitterstruktur zu modellieren. 
+
+\begin{figure}[hh]
+\centering
+\includegraphics[scale=0.25]{images/pitch_endproduct.png} 
+\caption{Verhalten der Detektoraufnahme in Abhängigkeit des Parameters Pitch }
+\label{img:pitch_detector}
+\end{figure}
+
+Der Startparamter Fsize verhält sich invers zum Parameter Pitch. Mit steigendem Fsize, kommt es zu einer Erhöhung des Intensitätsmaximums und es werden weniger Frequenzen benötigt um die Gitterstruktur zu modellieren, somit sind auch weniger Peaks in der vorhanden(Abbildung \ref{img:pitch_detector}). 
+
+\begin{figure}[hh]
+\centering
+\includegraphics[scale=0.25]{images/fsize_endproduct.png} 
+\caption{Verhalten der Detektoraufnahme in Abhängigkeit des Parameters Fsize}
+\label{img:pitch_detector}
+\end{figure}
+
+Der letzte Starparameter Sigma hat ansteigenden Wert ähnliche Auswirkungen auf die Detektoraufnahmen, wie Fsize. Bei steigendem 
+
+
+
 
 \chapter{Datenbasis}
 \section{Generator}
