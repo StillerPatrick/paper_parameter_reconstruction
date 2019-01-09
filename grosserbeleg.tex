@@ -11,11 +11,11 @@
 % notoc			kein Inhaltsverzeichnis
 % twoside		zweiseitig
 \author{Patrick Stiller}
-\title{Parameterrekonstrukton für Röntgen-Kleinwinkelstreuung mit Deep Learning}
+\title{Parameterrekonstruktion für Röntgen-Kleinwinkelstreuung mit Deep Learning}
 \birthday{8. Januar 1994}
 \placeofbirth{Dresden}
 \matno{3951290}
-\betreuer{Dr. Dmitrij Schlesinger, Dr. Heide Meissner, Dr. Michael Bussmann}
+\betreuer{Dr. Dmitrij Schlesinger, Dr. Heide Meißner, Dr. Michael Bussmann}
 \bibfiles{literatur}
 \problem{aufgabenstellung}
 \copyrighterklaerung{Hier soll jeder Autor die von ihm eingeholten
@@ -47,7 +47,7 @@ Das Experiment besteht aus vier Hauptkomponenten (siehe Abbildung \ref{fig:saxss
 
 
 \paragraph{Target}
-Um das Target analytisch beschreiben zu können und das Experiment Resultat zu vereinfachen und somit besser verstehen zu können, wurden die Targets als regelmäßiges Gitter (Grating) designed. Dafür wurde das Target mit einer 2 $\mu$m breiten Siliziumschicht überzogen und das Grating in diese Schicht eingraviert. Der Effekt des gewählten Targetdesigns ist, dass das Target einen eindimensionalen Informationsgehalt hat und somit auch durch eine eindimensionale Funktion in Abhängigkeit von drei Parametern beschrieben werden kann (siehe Abbildung \ref{fig:grating_structure}). Die drei Paramter sind Pitch, Feature-Size und Aufweichungsbreite $ \sigma $. Dabei beschreiben Pitch und Feature-Size die Struktur des Targets und Sigma den Aufweichungseffekt des Hochenergielasers, auf den aber in einem späteren Kapitel eingegangen wird. 
+Um das Target analytisch beschreiben zu können und das Experiment Resultat zu vereinfachen und somit besser verstehen zu können, wurden die Targets als regelmäßiges Gitter (Grating) designend. Dafür wurde das Target mit einer 2 $\mu$m breiten Siliziumschicht überzogen und das Grating in diese Schicht eingraviert. Der Effekt des gewählten Targetdesigns ist, dass das Target einen eindimensionalen Informationsgehalt hat und somit auch durch eine eindimensionale Funktion in Abhängigkeit von drei Parametern beschrieben werden kann (siehe Abbildung \ref{fig:grating_structure}). Die drei Paramter sind Pitch, Feature-Size und die Aufweichungsbreite $ \sigma $. Dabei beschreiben Pitch und Feature-Size die Struktur des Targets und Sigma den Aufweichungseffekt des Hochenergielasers, auf den aber in einem späteren Kapitel eingegangen wird. 
 
 \begin{figure}[ht]
 	\centering
@@ -60,7 +60,7 @@ Des weiteren müssen noch Begrifflichkeiten bezüglich des Targets geklärt werden.
 
 
 \paragraph{Small Angle X-Ray Scattering}
-Um das Plasma auf seine Struktur zu untersuchen wird der Ansatz des Small Angle X-Ray Scatterings mit Hilfe eines Röntgen- Frei Elektron Laser (XFEL) verwendet. Bei diesem  Small Angle X-Ray Scattering Ansatz wird ein Frei Elektronen Röntgenlaser in einem kleinen Winkel von 45° auf das Target geschossen (Abbildung \ref{fig:saxssetup}). Bei diesem Vorgang kommt es zu einem Streuvorgang des Lichts des Röntgenlasers an den Elektronen des Targets. Die Intensitäten des gestreuten Röntgenlasers werden durch einen Detektor, welches hinter dem Target platziert ist, gemessen(Abbildung \ref{fig:saxssetup}). Beim Detektor handelt es sich um ein Raster von Lichtdetektoren, welche die ankommenden Lichtintensitäten messen. Dabei ist der Lichtdetektor zeitintgrierend, dass heißt, das ankommende Lichtintensitäten über die Zeit summiert werden. Diesen Effekt ist in der Abbildung \ref{fig:electron_scattering} zu erkennen, welche einen beispielhfaften Steuprozess an zwei Elektronen zeigt. 
+Um das Plasma auf seine Struktur zu untersuchen wird der Ansatz des Small Angle X-Ray Scatterings mit Hilfe eines Röntgen- Frei Elektron Laser (XFEL) verwendet. Bei diesem  Small Angle X-Ray Scattering Ansatz wird ein Frei Elektronen Röntgenlaser in einem kleinen Winkel von 45° auf das Target geschossen (Abbildung \ref{fig:saxssetup}). Bei diesem Vorgang kommt es zu einem Streuvorgang des Lichts des Röntgenlasers an den Elektronen des Targets. Die Intensitäten des gestreuten Röntgenlasers werden durch einen Detektor, welches hinter dem Target platziert ist, gemessen(Abbildung \ref{fig:saxssetup}). Beim Detektor handelt es sich um ein Raster von Lichtdetektoren, welche die ankommenden Lichtintensitäten messen. Dabei ist der Lichtdetektor Zeit integrierend, dass heißt, das ankommende Lichtintensitäten über die Zeit summiert werden. Diesen Effekt ist in der Abbildung \ref{fig:electron_scattering} zu erkennen, welche einen beispielhaften Streuprozess an zwei Elektronen zeigt. 
 
 \begin{figure}[hh]
 	\centering
@@ -93,12 +93,12 @@ Die letzte wichtige Komponente ist der Hochintensitätslaser, welcher zur Generie
 Ein Nebeneffekt des Schmelzvorgangs ist der Informationsverlust der ursprünglichen Kantenstruktur, welcher sich auch im Detektorbild bemerkbar macht. Im rechen Teil der Abbildung \ref{fig:saxssetup} ist erkennbar, dass mit späterem Einsätzen des Röntgenlasers, was äquivalent zu längeren Bestrahlungsdauer des Hochintensitätslaser ist, Informationspunkte am Rand des Detektorbildes verloren gehen. 
 
 \section{Problemidentifikation / vielleicht Einleitung }
-Beim beschriebenen Experiment ist das größte Problem die Zeitintegrität des Detektors. Diese Detektoreigenschaft ruft den Verlust der Phase hervor, sodass eine Rekonstruktion der Elektronendichteverteilung $ \eta $ mit Hilfe einer inversen Fouriertransformation (IFT) nicht möglich ist. Um dieses Problem zu lösen werden iterative Algorithmen, sogenannte Phaseretrieval-Algorithmen verwendet. Beispiele für solche Algorithmen sind : Error-Reduction Algorithm, Gradient Search Methods und der Input Output Algorithmus. Probleme bei diesen Algorithmen ist, dass erstens bei allen Algorithmen keine Konvergenz garantiert ist und zweitens sehr viele Iterationen notwendig sind um eine Optimierung der errechneten Phase zu erzeugen  \cite{Fienup:82}. Diese Algorithmeneigenschaften führen dazu, dass eine hohe Bildraten im Megahertz im Experiment verweht bleibt. Deswegen soll mit Hilfe von Deep Learning die Phase bzw. die Eigenschaften (drei Parameter zur Beschreibung der Welle) der Elektronendichteverteilung $ \eta $ rekonstruiert werden. Der gewählte Deep Learning Ansatz ist ein neuronales Netz. Ein neuronales Netz hat den Vorteil, dass es durch  GPU parallelisierbar ist und dass es die Phaseninformation bzw. die Parameter der Elektronendichte nicht-iterativ bestimmt. 
+Beim beschriebenen Experiment ist das größte Problem die Zeitintegrität des Detektors. Diese Detektoreigenschaft ruft den Verlust der Phase hervor, sodass eine Rekonstruktion der Elektronendichteverteilung $ \eta $ mit Hilfe einer inversen Fouriertransformation (IFT) nicht möglich ist. Um dieses Problem zu lösen werden iterative Algorithmen, sogenannte Phaseretrieval-Algorithmen verwendet. Beispiele für solche Algorithmen sind : Error-Reduction Algorithm, Gradient Search Methods und der Input Output Algorithmus. Probleme bei diesen Algorithmen ist, dass erstens bei allen Algorithmen keine Konvergenz garantiert ist und zweitens sehr viele Iterationen notwendig sind um eine Optimierung der errechneten Phase zu erzeugen \cite{Fienup:82}. Diese Eigenschaften führen dazu, dass eine hohe Bildrate im Megahertz-Bereich im Experiment verwehrt bleibt. Deswegen soll mit Hilfe von Deep Learning die Phase bzw. die Eigenschaften (drei Parameter zur Beschreibung der Welle) der Elektronendichteverteilung $ \eta $ rekonstruiert werden. Der gewählte Deep Learning Ansatz ist ein neuronales Netz. Ein neuronales Netz hat den Vorteil, dass es durch  GPU parallelisierbar ist und dass es die Phaseninformation bzw. die Parameter der Elektronendichte nicht-iterativ bestimmt. 
 
 
 
 \section{Fouriertransformation}
-Die Fouriertransformation (benannt nach Jean Baptiste Joseph Fourier) ist eine Transformation, welche zeitbezogene Welle im Ortsraum in ihre freuqenzmä\ss igen Spektralanteile zerlegt. Bei der Fouriertransformation wird die Welle in Teilwellen zerlegt (Abbildung \ref{fig:fourier_example}). Diese Teilwellen ergeben summiert wieder die ursprüngliche Welle (Gleichung \eqref{eq:fourier-series}) \cite{FOURIERDEF}. Somit ergibt sich die Darstellung einer Funktion in ihren freuqenzmä\ss igen Spektralanteilen als stückweise stetig differenzierbaren und T- periodischen Funktion $ f_{T}: \mathbb{R} \longrightarrow \mathbb{R}$ durch folgenden Funktionalen Zusammenhang : 
+Die Fouriertransformation (benannt nach Jean Baptiste Joseph Fourier) ist eine Transformation, welche zeitbezogene Welle im Ortsraum in ihre freuqenzmä\ss igen Spektralanteile zerlegt. Bei der Fouriertransformation wird die Welle in Teilwellen zerlegt (Abbildung \ref{fig:fourier_example}). Diese Teilwellen ergeben summiert wieder die ursprüngliche Welle (Gleichung \eqref{eq:fourier-series}) \cite{FOURIERDEF}. Somit ergibt sich die Darstellung einer Funktion in ihren frequenzmä\ss igen Spektralanteilen als stückweise stetig differenzierbaren und T- periodischen Funktion $ f_{T}: \mathbb{R} \longrightarrow \mathbb{R}$ durch folgenden funktionalen Zusammenhang : 
 
 \begin{equation}\label{eq:fourier-series}
 f _ { T } ( t ) = \sum _ { k = - \infty } ^ { \infty } \gamma _ { k } e ^ { i k \omega t }  \textrm{ mit } \omega = \frac { 2 \pi } { T } 
@@ -110,7 +110,7 @@ die Fourier-Koeffizienten $\gamma_{k}$  werden wie bei einem Basiswechsel durch 
 \gamma _ { \mathrm { k } } = \frac { 1 } { T } \int _ { 0 } ^ { \top } f _ { \mathrm { T } } ( \tau ) e ^ { - i k \omega \tau } \mathrm { d } \tau
 \end{equation}
 
-Somit ergibt sich als Resultat der Fouriertransformation eine Folge von Komplexenzahlen $u$ mit zugehörigen Koeffizienten $ \gamma_{k}$. Jede Komplexe Zahl kodiert eine Welle, welche über die Euler Identität $e ^ { i k x } = \cos ( k x ) + i \cdot \sin ( k x )$ errechnet werden kann. Zusätzlich kann noch das Amplituden- und das Phasenspektrum bestimmt werden.  Dabei bestimmt das Amplitude die Maxima und Minima der zugehörigen Welle und das Phase die Verschiebung der Welle. Das Amplitudenspektrum $| F ( u ) | $ und das Phasenspektrum $\phi ( u )$ ergeben sich durch die folgende Gleichungen \cite{FOURIER2}.
+Somit ergibt sich als Resultat der Fouriertransformation eine Folge von Komplexenzahlen $u$ mit zugehörigen Koeffizienten $ \gamma_{k}$. Jede Komplexe Zahl kodiert eine Welle, welche über die Euler Identität $e ^ { i k x } = \cos ( k x ) + i \cdot \sin ( k x )$ errechnet werden kann. Zusätzlich kann noch das Amplituden- und das Phasenspektrum bestimmt werden.  Dabei bestimmt dieAmplitude das Maxima und das Minima der zugehörigen Welle und die Phase die Verschiebung der Welle. Das Amplitudenspektrum $| F ( u ) | $ und das Phasenspektrum $\phi ( u )$ ergeben sich durch die folgende Gleichungen \cite{FOURIER2}.
 
 \begin{equation}
 | F ( u ) | = \sqrt { R ^ { 2 } ( u ) + I ^ { 2 } ( u ) }
@@ -130,7 +130,7 @@ Somit ergibt sich als Resultat der Fouriertransformation eine Folge von Komplexe
 
 \section{Filter}
 
-Ein Filter ist eine Operation, welche auf einem Signal verwendet wird um Signale zu glätten, Signalstörungen zu vermeiden oder um Rauschen zu verhindern. In den meisten Fällen wird die Filteroperation mit Hilfe von Faltung realisiert. Dabei wird die Faltung zweier Funktionen (f * g) durch folgenden funktionalen Zusammenhang in Formel \eqref{eq:convolution} beschrieben. Dabei ist f die Funktion, welche das Signal beschreibt und g die Funktion, welche den Filter beschreibt. Im diskreten Fall wird das Integral durch eine Summe bis zur entsprechenden Filtergröße ersetzt. 
+Ein Filter ist eine Operation, welche auf einem Signal verwendet wird um Signale zu glätten, Signalstörungen zu vermeiden oder um Rauschen zu verhindern. In den meisten Fällen wird die Filteroperation mit Hilfe von Faltung realisiert. Dabei wird die Faltung zweier Funktionen (f * g) durch den  funktionalen Zusammenhang in Formel \eqref{eq:convolution} beschrieben. Dabei ist f die Funktion, welche das Signal beschreibt und g die Funktion, welche den Filter beschreibt. Im diskreten Fall wird das Integral durch eine Summe bis zur entsprechenden Filtergröße ersetzt. 
 
 \begin{equation}\label{eq:convolution}
 ( f * g ) ( x ) : = \int _ { \mathbb { R } ^ { n } } f ( \tau ) g ( x - \tau ) \mathrm { d } \tau
@@ -219,21 +219,24 @@ Der Backpropagation wird iterativ solange angewandt, bis eine bestimmte Anzahl v
 
 \chapter{Simulation}
 \section{Motivation}
-Um das Ergebniss des SAXS-Experimentes bestmöglich zu verstehen und aufgrund mangelnder Anzahl von Experimentdaten, wurde im Rahmen der Master Arbeit von Malte Zacharias mit dem Titel: \grqq Model-Driven Parameter Reconstruction from Small Angle X-Ray Scattering Images \grqq eine Simulation entwickelt. Die Simulation beinhaltet das Design der Gitterstruktur (Elektronendichteverteilung), die Simulation des Hochenergielasereinflusses, die Simulation des Streuvorgangs und die Simulation des Detektorbildes. \cite{Zach17}.
+Um das Ergebniss, des SAXS-Experimentes bestmöglich zu verstehen und aufgrund einer mangelnder Anzahl von Experimentdaten, wurde im Rahmen der Master Arbeit von Malte Zacharias mit dem Titel: \grqq Model-Driven Parameter Reconstruction from Small Angle X-Ray Scattering Images \grqq eine Modellierung entwickelt. Die Modellierung beinhaltet das Design der Gitterstruktur (Elektronendichteverteilung), die Modellierung des Hochenergielasereinflusses,die Modellierung des Streuvorgangs und die Modellierung des Detektorbildes. Das ganze Kapitel bezieht sich auf die Master Arbeit von Malte Zacharias \cite{Zach17}. 
 
 \section{Simulationsbeschreibung}
 \subsection{Design der Gitterstruktur und Simulation des Hochenergielasereinflusses}
-Wie in Kapitel 2 beschrieben sind die Targets des SAXS-Experiments als Gitter strukturiert, um eine analytische Beschreibung des Targets zu ermöglichen. Der erste Simulationsschritt ist die Bestimmung der Gitterstruktur. Die Breite des Gratings ist auf N Pixel beschränkt. Und die Struktur des Gratings ist über die drei Starparameter Pitch, Fsize und Sigma definiert. Zunächst wird anhand der Parameter Fsize und Sigma die Struktur eines Features bestimmt. Dazu wird eine Rechteckfunktion (\( 1_{[0,\text{fsize}]} \)),welche die Breite eines Features bestimmt, mit einer Gaussverteilung (\(\exp \left( - x ^ { 2 } / 2 \sigma ^ { 2 } \right) \)) gefaltet, um den Hochenergielasereinfluss zu simulieren. Das Ergebnis der Faltung wird zur Vereinfachung mit der Errorfunktion \eqref{eq:erf} substituiert \cite{SAXS18}. 
+Wie in Kapitel 2 beschrieben sind die Targets des SAXS-Experiments als Gitter strukturiert, um eine analytische Beschreibung des Targets zu ermöglichen. Der erste Simulationsschritt ist die Bestimmung der Gitterstruktur. Die Breite des Gratings ist auf N Pixel beschränkt. Die Struktur des Gratings ist über die drei Startparameter Pitch, Feature-Size und Sigma definiert. Dabei ist der Parameter Feature-Size für die Breite eines Features zuständig und der Parameter Pitch für die Periodizität, somit sind beide Parameter für die Struktur des Gratings ohne Einfluss des Hochenergielasers verantwortlich. Der Parameter Sigma bestimmt die Aufweichungsbreite des Gratings und somit den Einfluss des Hochenenergielasers. Zunächst wird anhand der Parameter Fsize und Sigma, die Struktur eines Features bestimmt.  Dazu wird eine Rechteckfunktion (\( 1_{[0,\text{Feature-Size}]} \)),welche die Breite eines Features bestimmt, mit einer Gaussverteilung (\(\exp \left( - x ^ { 2 } / 2 \sigma ^ { 2 } \right) \)) gefaltet \cite{SAXS18}, um den Hochenergielasereinfluss zu simulieren. Das Ergebnis der Faltung wird mit Hilfe der Errorfunktion (Gleichung \eqref{eq:erf}) dargestellt. 
 
 \begin{equation}\label{eq:erf}
 \text{erf(x)} = \frac{2}{\sqrt{\pi}} \int_{0}^{x} e^{-\xi^{2}}d\xi
 \end{equation}
 
-Das Ergebnis der Faltung des Rechteckimpulses und der Gauss-Verteilung ist die Modellierung eines Features \eqref{eq:feature} , welches durch eine weitere Faltung mit mehreren um Pitch verschobene Dirac-Impulsen \cite{beucher_2011} periodisch forgesetzt wird, um die Grating-Struktur zu komplettieren \cite{Zach17}. Aufgrund der begrenzten Targetbreite N Befinden sich \( \frac{N}{Pitch}\) Features in der Grating Struktur \cite{Zach17}. 
+Das Ergebnis der Faltung des Rechteckimpulses und der Gauss-Verteilung ist die Modellierung eines Features:
 
 \begin{equation}\label{eq:feature}
 	\tilde{\eta} = \frac{\sqrt{\pi}\sigma}{2}(\text{erf}(\frac{x}{\sqrt{2}\sigma}) - \text{erf}(\frac{x - \text{fsize}}{\sqrt{2}\sigma}))
 \end{equation}
+
+Das modellierte Feature wird durch eine weitere Faltung mit mehreren um Pitch verschobene Dirac-Impulsen \cite{beucher_2011} periodisch fortgesetzt wird, um die Grating-Struktur zu komplettieren. 
+
 
 \subsection{Effekt der Startparameter auf die Gitterstruktur}
 
@@ -275,7 +278,7 @@ Das entstandene Produkt der Fouriertransformation ist im Raum der Komplexen Zahl
 \end{figure}
 
 \subsection{Auswirkung der Startparameter auf das Simulationsergebnis}
-Die Startparameter des Simulation haben ebenfalls Auswirkung auf das Endprodukt der Simulation. Betrachtet man zunächst die Auswirkungen des Starparameters Pitch (Abbildung \ref{img:pitch_detector}), kann man erkennen, dass mit steigendem Pitch sich das Intensitätsmaximum verringert. Zusätzlich kommen noch mehr Peaks hinzu. Das hängt damit zusammen, dass mit steigenden Pitch sich die Anzahl der Features verringert und somit mehr Frequenzen benötigt werden, um die Gitterstruktur zu modellieren. 
+Die Startparameter des Simulation haben ebenfalls Auswirkung auf das Endprodukt der Simulation. Betrachtet man zunächst die Auswirkungen des Startparameters Pitch (Abbildung \ref{img:pitch_detector}), kann man erkennen, dass mit steigendem Pitch sich das Intensitätsmaximum verringert. Zusätzlich kommen noch mehr Peaks hinzu. Das hängt damit zusammen, dass mit steigenden Pitch sich die Anzahl der Features verringert und somit mehr Frequenzen benötigt werden, um die Gitterstruktur zu modellieren. 
 
 \begin{figure}[hh]
 \centering
@@ -293,7 +296,7 @@ Der Startparamter Fsize verhält sich invers zum Parameter Pitch. Mit steigendem 
 \label{img:fsize_detector}
 \end{figure}
 
-Der letzte Starparameter Sigma hat ansteigenden Wert ähnliche Auswirkungen auf die Detektoraufnahmen wie Fsize. Bei steigendem Sigma-Wert steigt das Intensitätsmaximum und die Anzahl der Peaks verringert sich (Abbildung \. Jedoch skaliert der Parameter Sigma anders als Fsize. Kleinere Unterschiede im Sigma Wert, kann größere Auswirkungen auf die Anzahl der Peaks haben. Auch der Anstieg des Intensitätsmaximums in Abhängigkeit zu Sigma ist geringer im Vergleich zur Abhängigkeit zu Fsize. 
+Der letzte Startparameter Sigma hat ansteigenden Wert ähnliche Auswirkungen auf die Detektoraufnahmen wie Fsize. Bei steigendem Sigma-Wert steigt das Intensitätsmaximum und die Anzahl der Peaks verringert sich (Abbildung \. Jedoch skaliert der Parameter Sigma anders als Fsize. Kleinere Unterschiede im Sigma Wert, kann größere Auswirkungen auf die Anzahl der Peaks haben. Auch der Anstieg des Intensitätsmaximums in Abhängigkeit zu Sigma ist geringer im Vergleich zur Abhängigkeit zu Fsize. 
 
 \begin{figure}[hh]
 \centering
