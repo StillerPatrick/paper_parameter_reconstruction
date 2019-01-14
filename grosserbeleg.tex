@@ -244,25 +244,26 @@ Die drei Startparameter Sigma (\( \sigma\)), Pitch  und Feature-Size(fsize), wel
 
 \begin{figure}[hh]
 \centering
-\includegraphics[scale=0.3]{images/edge_sigma.png} 
+\includegraphics[scale=0.30]{images/edge_sigma.png} 
 \caption{Vergleich der Kantenstruktur unter variierenden Sigma-Werten bei gleichbleibenden Pitch- und Feature-Size- Werten}
 \label{img:edge_sigma}
 \end{figure}
 
-Der Parameter Pitch(p) bestimmt die Wellenlänge der Kantenstruktur und bestimmt, somit auch die Periodizität der Kantenstruktur.  Daraus folgt, dass mit steigendem Pitch-Wert die Anzahl der Features sinkt. Dieser Effekt ist in der Abbildung \ref{img:edge_pitch_fsize} in der rechten Spalte dargestellt.
+Der Parameter Pitch(p) bestimmt die Periodizität der Kantenstruktur.  Daraus folgt, dass mit steigendem Pitch-Wert die Anzahl der Features sinkt. Dieser Effekt ist in der Abbildung \ref{img:edge_pitch_fsize} in der rechten Spalte dargestellt. Der dritte Startparamter Feature-Size(f) bestimmt die Größe der Features. Dabei kann die Feature-Size nicht größer als Pitch gewählt werden, da sonst keine Kantenstruktur mehr erkennbar wäre. Der Effekt der Feature-Size wird in Abbildung \ref{img:edge_pitch_fsize} in der linken Spalte dargestellt.
+
 
 \begin{figure}[hh]
 	\centering 
-	\includegraphics[scale=0.5]{images/pitch_fsize_edge.png} 
+	\includegraphics[scale=0.35]{images/pitch_fsize_edge.png} 
 	\caption{Vergleich der Kantenstruktur unter variierenden Pitch-Werten(rechte Spalte) und variierenden Feature-Size-Werten(linke Spalte)} 
 	\label{img:edge_pitch_fsize}
 \end{figure} 
 
-Der dritte Startparamter Feature-Size(f) bestimmt die Größe der Features. Dabei kann die Feature-Size nicht größer als Pitch gewählt werden, da sonst keine Kantenstruktur mehr erkennbar wäre. Der Effekt der Feature Size wird in Abbildung \ref{img:edge_pitch_fsize} in der linken Spalte dargestellt.
+
 
 \subsection{Simulation der Streuung}
 
-Wie im Kapitel zur Experimentbeschreibung beschrieben, ist das aufgenommene Detektorbild äquivalent zum Betragsquadrat der  Fouriertransformation der Elektronendichte $\eta $.  Im Fall der Simulation ist die Elektronendichte eine diskrete eindimensionale Elektronendichteverteilung. Deswegen wird zur Bildung des Detektorbildes eine eindimensionale diskrekte Fouriertransformation  \eqref{eq:fft} verwendet \cite{Zach17}
+Wie im Kapitel zur Experimentbeschreibung beschrieben, ist das aufgenommene Detektorbild äquivalent zum Betragsquadrat der  Fouriertransformation der Elektronendichte $\eta $.  Im Fall der Simulation ist die Elektronendichte eine diskrete eindimensionale Elektronendichteverteilung. Deswegen wird zur Bildung des Detektorbildes eine eindimensionale diskrekte Fouriertransformation  \eqref{eq:fft} verwendet.
 
 \begin{equation}\label{eq:fft}
 \hat { a } _ { k } = \sum _ { j = 0 } ^ { N - 1 } e ^ { - 2 \pi \mathrm { i } \cdot \frac { j k } { N } } \cdot a _ { j } \text { für } k = 0 , \ldots , N - 1
@@ -282,7 +283,7 @@ Die Startparameter des Simulation haben ebenfalls Auswirkung auf das Endprodukt 
 
 \begin{figure}[hh]
 \centering
-\includegraphics[scale=0.25]{images/pitch_endproduct.png} 
+\includegraphics[scale=0.31]{images/pitch_endproduct.png} 
 \caption{Verhalten der Detektoraufnahme in Abhängigkeit des Parameters Pitch }
 \label{img:pitch_detector}
 \end{figure}
@@ -291,7 +292,7 @@ Der Startparamter Fsize verhält sich invers zum Parameter Pitch. Mit steigendem 
 
 \begin{figure}[hh]
 \centering
-\includegraphics[scale=0.25]{images/fsize_endproduct.png} 
+\includegraphics[scale=0.31]{images/fsize_endproduct.png} 
 \caption{Verhalten der Detektoraufnahme in Abhängigkeit des Parameters Fsize}
 \label{img:fsize_detector}
 \end{figure}
@@ -300,8 +301,8 @@ Der letzte Startparameter Sigma hat ansteigenden Wert ähnliche Auswirkungen auf 
 
 \begin{figure}[hh]
 \centering
-\includegraphics[scale=0.25]{images/sigma_endproduct.png} 
-\caption{Verhalten der Detektoraufnahme in Abhängigkeit des Parameters Fsize}
+\includegraphics[scale=0.28]{images/sigma_endproduct.png} 
+\caption{Verhalten der Detektoraufnahme in Abhängigkeit des Parameters Sigma}
 \label{img:sigma_detector}
 \end{figure}
 
