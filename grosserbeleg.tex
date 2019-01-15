@@ -83,19 +83,14 @@ Durch die Zeitintegrität des Detektors, gehen die zeitlichen Abstände der Wellen
 Einer der Herausforderungen des beschriebenen Experiment ist die Zeitintegrität des Detektors. Diese Detektoreigenschaft ruft den Verlust der Phase hervor, sodass eine Rekonstruktion der Elektronendichteverteilung $ \eta $ mit Hilfe einer inversen Fouriertransformation (IFT) nicht möglich ist. Um dieses Problem zu lösen werden iterative Algorithmen, sogenannte Phaseretrieval-Algorithmen verwendet. Beispiele für solche Algorithmen sind \cite{Fienup:82}: Error-Reduction Algorithm, Gradient Search Methods und der Input Output Algorithmus. Probleme bei diesen Algorithmen sind, dass erstens bei allen Algorithmen keine Konvergenz garantiert ist und zweitens sehr viele Iterationen notwendig sind um eine Optimierung der errechneten Phase zu erzeugen. Diese Eigenschaften führen dazu, dass eine hochfrequente Verarbeitung von Experiment Ergebnissen verwehrt bleibt. Deswegen soll mit Hilfe von Deep Learning die Phase bzw. die Eigenschaften (drei Parameter zur Beschreibung des Gratings) der Elektronendichteverteilung $ \eta $ rekonstruiert werden. Der gewählte Deep Learning Ansatz ist ein neuronales Netz. Ein neuronales Netz hat den Vorteil, dass es sich im Gegensatz zu iterativen Verfahren durch GPU parallelisieren lässt und es die Phaseninformation bzw. die Parameter der Elektronendichte nicht-iterativ bestimmt(Einschrittverfahren) . 
 
 \section{Fouriertransformation}
-Die Fouriertransformation (benannt nach Jean Baptiste Joseph Fourier) ist eine Transformation, welche zeitbezogene Welle im Ortsraum in ihre frequenzmä\ss igen Spektralanteile zerlegt. Bei der Fouriertransformation wird die Welle in Teilwellen zerlegt (Abbildung \ref{fig:fourier_example}) und wird somit als Transformation vom Orts- in den Frequenzraum bezeichnet. Die Fouriertransformation ist folgendermaßen definiert:
+Die Fouriertransformation (benannt nach Jean Baptiste Joseph Fourier) ist eine Transformation, welche zeitbezogene Welle im Ortsraum in ihre frequenzmä\ss igen Spektralanteile zerlegt(Abbildung \ref{fig:fourier_example}). Die Fouriertransformation wird auch als Transformation vom Orts- in den Frequenzraum bezeichnet. Die Fouriertransformation ist folgendermaßen definiert:
 
 \begin{equation}\label{eq:fourier-series}
 F ( u ) = \int _ { - \infty } ^ { \infty } f ( x ) e ^ { - 2 \pi i x u } d x
 \end{equation}
 
-die Fourier-Koeffizienten $\gamma_{k}$  werden wie bei einem Basiswechsel durch ein Integral bestimmt( Gleichung \eqref{eq:fourier_coefficients}). Dabei ist das Ergebnis des Integrals die Länge der Projektion in Richtung der Basis des Frequenzraumes. 
 
-\begin{equation}\label{eq:fourier_coefficients}
-\gamma _ { \mathrm { k } } = \frac { 1 } { T } \int _ { 0 } ^ { \top } f _ { \mathrm { T } } ( \tau ) e ^ { - i k \omega \tau } \mathrm { d } \tau
-\end{equation}
-
-Somit ergibt sich als Resultat der Fouriertransformation eine Folge von Komplexenzahlen $u$ mit zugehörigen Koeffizienten $ \gamma_{k}$. Jede Komplexe Zahl kodiert eine Welle, welche über die Euler Identität $e ^ { i k x } = \cos ( k x ) + i \cdot \sin ( k x )$ errechnet werden kann. Zusätzlich kann noch das Amplituden- und das Phasenspektrum bestimmt werden.  Dabei bestimmt dieAmplitude das Maxima und das Minima der zugehörigen Welle und die Phase die Verschiebung der Welle. Das Amplitudenspektrum $| F ( u ) | $ und das Phasenspektrum $\phi ( u )$ ergeben sich durch die folgende Gleichungen \cite{FOURIER2}.
+Die Spektralanteile \textit{F(u)} werden wie bei einem Basiswechsel durch ein Integral bestimmt. Dabei ist das Ergebnis des Integrals die Länge der Projektion in Richtung der durch \textit{u} kodierten Frequenz. Im endlich-diskreten Fall wird das Integral durch eine Summe bis zur Anzahl der zu verwendeten Wellen ersetzt.  Jede Stelle u der Fouriertransformation kodiert eine Welle $e ^ { - 2 \pi i x u }$, welche über die Euler Identität $e ^ { i k x } = \cos ( k x ) + i \cdot \sin ( k x )$ auch in ihre Kosinus- und Sinusanteilen beschrieben werden kann. Der Funktionswert der Fouriertransformation \textit{F(u)} kodiert mit welchem Anteil die durch \textit{u} kodierte Frequenz verwendet wird. Das Ergebnis der Fouriertransformation kann man auch durch das Amplituden- und durch das Phasenspektrum beschreiben. Dabei bestimmt die Amplitude das Maxima und das Minima der zugehörigen Welle und die Phase die Verschiebung der Welle. Das Amplitudenspektrum $| F ( u ) | $ und das Phasenspektrum $\phi ( u )$ ergeben sich durch die folgende Gleichungen \cite{FOURIER2}:
 
 \begin{equation}
 | F ( u ) | = \sqrt { R ^ { 2 } ( u ) + I ^ { 2 } ( u ) }
@@ -105,13 +100,13 @@ Somit ergibt sich als Resultat der Fouriertransformation eine Folge von Komplexe
 \phi ( u ) = \tan ^ { - 1 } \frac { I ( u ) } { R ( u ) }
 \end{equation}
 
+
 \begin{figure}[hh]
 	\centering
 		\includegraphics [scale=0.5]{images/example_fourier.png}
 	\caption{Überlagerung mehrerer Wellen um eine Rechteckfunktion zu approximieren. Bildquelle: \cite{Gallagher2008AnIT}}
 	\label{fig:fourier_example}
 \end{figure}
-
 
 \section{Filter}
 
@@ -137,7 +132,7 @@ Der Output  $o_{j} $ eines Neuronen j wird mit Hilfe der Aktivierungsfunktion $a
 o_{j} = a_{j}(net_{j} - \theta_{j}) = f(x)
 \end{equation}
 
-Die Wahl der Aktivierungsfunktion ist von Anwendungsfall von Anwendungsfall unterschiedlich. In den meisten Fällen werden differenzierbare Aktivierungsfunktionen benutzt, da sie den Lernprozess, des neuronalen Netzes erleichtern. Das erste Beispiel für eine Aktivierungsfunktion ist die Heaviside-Funktion(Step-Funktion), welche auf 0 oder 1 abbildet(Abbildung \ref{fig:activations}a). Diese Funktion ist an der Stelle 0 nicht differenzierbar und im generellen für moderne Optimierungsansätze für neuronale Netze nicht geeignet, da die Ableitung der Step-Funktion an allen Stellen 0 ist. Beispiel für gängige und differenzierbare Funktionen sind die Sigmoid-(Abbildung \ref{fig:activations}b, Formel \eqref{eq:sigmoid}), Tangens Hyperbolicus-(Abbildung \ref{fig:activations}c, Formel \eqref{eq:tanh}) und die Rectified Linear Units- Aktivierungsfunktion(Abbildung \ref{fig:activations}d, Formel \eqref{eq:relu})
+Die Wahl der Aktivierungsfunktion ist von Anwendungsfall von Anwendungsfall unterschiedlich. In den meisten Fällen werden differenzierbare Aktivierungsfunktionen benutzt, da sie den Lernprozess, des neuronalen Netzes erleichtern. Das erste Beispiel für eine Aktivierungsfunktion ist die Heaviside-Funktion(Step-Funktion), welche auf 0 oder 1 abbildet(Abbildung \ref{fig:activations}a). Diese Funktion ist an der Stelle 0 nicht differenzierbar und im generellen für moderne Optimierungsansätze für neuronale Netze nicht geeignet, da die Ableitung der Step-Funktion an allen Stellen 0 ist. Beispiel für gängige und differenzierbare Funktionen sind die Sigmoid-(Formel \eqref{eq:sigmoid}), Tangens Hyperbolicus-(Formel \eqref{eq:tanh}) und die Rectified Linear Units- Aktivierungsfunktion(Formel \eqref{eq:relu})
 
 \begin{equation}\label{eq:sigmoid}
 f(x)= \frac { 1 } { 1 + e ^ { - x } }
@@ -151,19 +146,11 @@ f(x)= tanh(x) = 1 - \frac { 2 } { \mathrm { e } ^ { 2 x } + 1 }
 f(x)= max(0,x)
 \end{equation}
 
-\begin{figure}[hh]
-	\subfigure[Heavisidefunction]{\includegraphics[width=0.5\textwidth]{images/step.png}}
-    \subfigure[Sigmoid]{\includegraphics[width=0.5\textwidth]{images/sigmoid.png}} 
-     \subfigure[Tanh]{\includegraphics[width=0.5\textwidth]{images/tanh.png}} 
-    \subfigure[Relu]{\includegraphics[width=0.5\textwidth]{images/relu.png}} 
-    \caption{Übersicht Aktivierungsfunktionen, Bildquelle:  \cite{Kriesel2007NeuralNetworks}}
-\label{fig:activations}
-\end{figure} 
 
 Jeder der genannten Aktivierungsfunktion hat auf Hinsicht seiner Berechnungsdauer, Wertebereich und Ableitung Vor- und Nachteile. Die Sigmoid und die Tangens Hyperbolicus  Aktivierungsfunktion haben einen eingeschränkten Wertebereich, dadurch kann es mit diesen Aktivierungsfunktionen zu keinen zu hohen Werten im Neuronalen Netz kommen und negative Werte werden im Gegensatz zu ReLu noch berücksichtigt. Jedoch sind beide langsamer zu berechnen als die Rectified Linear Units und bieten für den Lernprozess kleinere Gradienten. Rectified Linear Units(ReLu) ist im Vergleich zu Sigmoid und Tangens Hyperbolicus schneller zu berechnen und bietet größere Gradienten. Jedoch können Neuronen, welche einen negativen Input bekommen nur noch 0 Ausgeben. Man spricht in diesem Zusammenhang von einem totem Neuron. Ein weiterer Nachteil von ReLu ist der Wertebereich,denn dieser ist nicht eingeschränkt. Somit können im Neuronalen Netz sehr große Werte entstehen, welche den Wertebereich von Zahlenstandards wie zum Beispiel 32 Bit Float überschreiten und somit kein valider Datenfluss im Neuronalen Netz gegeben ist. 
 
 \subsection{Feed-Forward-Neuronal  Networks}
-Für ein Neuronales Netzwerk werden verschiedene Netzwerktopologien verwendet. Ein Beispiel dafür ist das Feed Forward Neuronal Network (Abbildung \ref{fig:ffnn}) Bei einem Feed Forward Neuronal Network werden die Neuronen als Schichten angeordnet. Diese Schichten sind miteinander verbunden. Dabei ist die Erste Schicht, welche die Input Daten bekommt, wird als Input-Layer bezeichnet. Und die letzte Schicht, welche die Netzberechnung ausgibt, als Output-Layer bezeichnet. Schichten, welche sich zwischen Input- und Output-Layer befinden und somit keinen Kontakt nach Außen haben, werden als Hidden Layer bezeichnet. Ein wichtiges Merkmal von Feed Forward Networks ist, dass der Datenfluss geradlinig ohne Rückkopplung von Input-Layer über die Hiddenlayer bishin zum Output-Layer verläuft. 
+Für ein Neuronales Netzwerk werden verschiedene Netzwerktopologien verwendet. Ein Beispiel dafür sind Feed Forward Neuronal Networks (Abbildung \ref{fig:ffnn}) Bei einem Feed Forward Neuronal Network werden die Neuronen als Schichten angeordnet. Diese Schichten sind miteinander verbunden. Dabei wird die Erste Schicht, welche die Input Daten bekommt, als Input-Layer bezeichnet. Und die letzte Schicht, welche die Netzberechnung ausgibt, als Output-Layer bezeichnet. Schichten, welche sich zwischen Input- und Output-Layer befinden und somit keinen Kontakt nach außen haben, werden als Hidden Layer bezeichnet. Ein wichtiges Merkmal von Feed Forward Networks ist, dass der Datenfluss geradlinig ohne Rückkopplung vom Input-Layer über die Hidden-Layer zum Output-Layer verläuft. 
 
 \begin{figure}[hh]
 \centering
@@ -173,27 +160,27 @@ Für ein Neuronales Netzwerk werden verschiedene Netzwerktopologien verwendet. Ei
 \end{figure}
 
 \subsection{Lernprozess}
-Das Anlernen von Neuronalen Netzen wird in den meisten Fällen durch überwachtes Lernen (supervised Learning) realisiert. Im speziellen wird der Lernprozess durch den Backpropagation Algorithmus durchgeführt. Bei einem überwachten Lernansatz besteht der Datensatz zum Trainieren des Neuronalen Netzen aus zwei Teilen. Zu jedem Netzinput $x_{i}$ gibt es ein zugehöriges Label $y_{i}$ , welches den gewünschten Netzoutput definiert. Der Lernprozess eines neuronalen Netzes kann in drei Phasen aufgeteilt werden. Der Forward-Pass, Loss-Calculation und Backward Pass \cite{NeuronaleNetze}. Zu Beginn des Trainingsprozesses werden die Gewichte des Neuronalen Netzes mit Zufallszahlen initialisiert. Beim Forward Pass werden die Input Daten zur Kalkulation des derzeitigen Net-Outputs zum Input-Layer des neuronalen Netzes gegeben. Das Neuronale Netz bestimmt dann durch die Rechenvorschriften des Neuronalen Netzes den Net-Output $\hat { y } _ { i }$. Im zweiten Schritt wird dann die Qualität des Netouput $\hat { y } _ { i }$ bestimmt.. Dazu wird ein Fehlermaß benutzt, was den Grad des Unterschiedes zwischen $\hat { y } _ { i }$ und $y_{i}$  bestimmt. Eine beispielhafte Errorfunktion ist Mean-Squared Error \eqref{eq:mse}. 
+Das Anlernen von Neuronalen Netzen wird in den meisten Fällen durch überwachtes Lernen (supervised Learning) realisiert. Im speziellen wird der Lernprozess durch den Backpropagation Algorithmus und Gradientenabstiegsverfahren durchgeführt. Bei einem überwachten Lernansatz besteht der Datensatz zum Trainieren des Neuronalen Netzen aus zwei Teilen. Zu jedem Netzinput $x_{i}$ gibt es ein zugehöriges Label $y_{i}$, welches den gewünschten Netzoutput definiert. Der Lernprozess eines neuronalen Netzes kann in drei Phasen aufgeteilt werden. Der Forward-Pass, Loss-Calculation und Backward Pass \cite{NeuronaleNetze}. Zu Beginn des Trainingsprozesses werden die Gewichte des Neuronalen Netzes mit Zufallszahlen initialisiert. Beim Forward Pass werden die Input Daten zur Kalkulation des derzeitigen Net-Outputs zum Input-Layer des Neuronalen Netzes gegeben. Das Neuronale Netz bestimmt dann durch die Rechenvorschriften des Neuronalen Netzes den Net-Output $\hat { y } _ { i }$. Im zweiten Schritt wird dann die Qualität des Netouput $\hat { y } _ { i }$ bestimmt.. Dazu wird ein Fehlermaß benutzt, das den Grad des Unterschiedes zwischen $\hat { y } _ { i }$ und $y_{i}$  bestimmt. Eine beispielhafte Errorfunktion ist Mean-Squared Error \eqref{eq:mse}. 
 
 
 \begin{equation}\label{eq:mse}
 \mathrm { MSE } = \frac { 1 } { n } \sum _ { i = 1 } ^ { n } \left( Y _ { i } - \hat { Y } _ { i } \right) ^ { 2 }
 \end{equation}
 
-Im drittem Schritt, dem Backward-Pass, kommt es zur Optimierung des Neuronalen Netzes. Mithilfe des Fehlers, welcher bis zur Eingabeschicht zurück propagiert, werden die Gewichte, je nach ihrem Einfluss auf den Net-Output angepasst. Dazu wird ein Gradientenabstiegsverfahren verwendet. Dafür wird die partielle Ableitung des Fehlerterms benötigt. Somit ergibt sich für die Gewichtsveränderung $\Delta w _ { i j }$ des Gewichts zwischen Neuron i und Neuron j durch folgenden Funktionalen Zusammenhang : 
+Im dritten Schritt, dem Backward-Pass, kommt es zur Optimierung des Neuronalen Netzes. Mithilfe des Fehlers, welcher bis zur Eingabeschicht zurück propagiert, werden die Gewichte, je nach ihrem Einfluss auf den Net-Output angepasst. Dazu wird ein Gradientenabstiegsverfahren verwendet. Dafür wird die partielle Ableitung des Fehlerterms benötigt. Somit ergibt sich für die Gewichtsveränderung $\Delta w _ { i j }$ des Gewichts zwischen Neuron i und Neuron j durch folgenden Funktionalen Zusammenhang : 
 
 \begin{equation}\label{eq: deltaw}
 \Delta w _ { i j } = - \eta \frac { \partial E } { \partial w _ { i j } } = - \eta \delta _ { j } o _ { i }
 \end{equation}
 
-Dabei ist E die Errorfunktion. $\delta _ { j }$ das Fehlersignal des bzw. der Gradient Neurons j und $o _ { i }$ die Ausgabe des Neuron i. Der letzte wichtige Parameter ist $\eta $ welche die Learning-Rate des Gradientenabstiegsverfahren bestimmt. Schlussendlich fehlt die Definition des Gradienten. Dieser ist davon abhängig, wie stark das Neuron den Output des Neuronalen Netz beeinträchtigt. Deswegen wird eine Unterscheidung getroffen, ob das Neuron sich im Output-Layer oder darunter befindet. In der folgenden Gleichung \eqref{eq:gradient} ist die Definition des Gradienten und die zugehörige Propagierung des Fehlers. 
+Dabei ist \textit{E} die Errorfunktion. $\delta _ { j }$ der Gradient Neurons j und $o _ { i }$ die Ausgabe des Neuron i. Der letzte wichtige Parameter ist $\eta $ welche die Learning-Rate des Gradientenabstiegsverfahren bestimmt. Schlussendlich fehlt die Definition des Gradienten. Dieser ist davon abhängig, wie stark das Neuron den Output des Neuronalen Netz beeinträchtigt. Deswegen wird eine Unterscheidung getroffen, ob das Neuron sich im Output-Layer oder darunter befindet. In der folgenden Gleichung \eqref{eq:gradient} ist die Definition des Gradienten und die zugehörige Propagierung des Fehlers. 
 
 
 \begin{equation}\label{eq:gradient}
 \delta _ { j } = \left\{ \begin{array} { l l } { a_{j}  \left( \text { net } _ { j } \right) \left( o _ { j } - t _ { j } \right) } & { \text { falls } j \text { Ausgabeneuron ist } } \\ { a_{j}  \left( \text { net } _ { j } \right) \sum _ { k } \delta _ { k } w _ { j k } } & { \text { falls } j \text { verdecktes Neuron ist. } } \end{array} \right.
 \end{equation}
 
-Dabei ist die Gleichung \eqref{eq:gradient} in Abhängigkeit von den Variablen $o_{j}$ dem Output des Neurons j , $t_{j}$ die Soll-Ausgabe des Neurons j und der Aktivierungsfunktion $a_{j} $ des Neuron j angegeben. Und somit ergibt sich die Veränderung des neuem Gewicht durch eine Addition des alten Gewichts. 
+Dabei ist die Gleichung \eqref{eq:gradient} in Abhängigkeit von den Variablen $o_{j}$ dem Output des Neurons j, $t_{j}$ die Soll-Ausgabe des Neurons j und der Aktivierungsfunktion $a_{j} $ des Neuron j angegeben. Und somit ergibt sich das neue Gewicht durch eine Addition des alten Gewichts mit der errechneten Gewichtsveränderung. 
 
 \begin{equation}
 w _ { i j } ^ { \text { neu } } = w _ { i j } ^ { \text { alt } } + \Delta w _ { i j }
@@ -286,7 +273,7 @@ Der letzte Startparameter Sigma hat ansteigenden Wert ähnliche Auswirkungen auf 
 
 \begin{figure}[hh]
 \centering
-\includegraphics[scale=0.28]{images/sigma_endproduct.png} 
+\includegraphics[scale=0.25]{images/sigma_endproduct.png} 
 \caption{Verhalten der Detektoraufnahme in Abhängigkeit des Parameters Sigma}
 \label{img:sigma_detector}
 \end{figure}
