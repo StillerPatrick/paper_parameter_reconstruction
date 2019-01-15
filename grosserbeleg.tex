@@ -32,7 +32,7 @@ Bild"ubernahmen zitieren.}
 \section{Physikalischer Hintergrund}
 
 \subsection{Kleinwinkelstreuung}
-Die Kleinwinkelstreuung in Englisch Small Angle X-Ray Scattering (SAXS) ist eine universelle Technik zur Untersuchung von Feststoffen. Dabei kann SAXS Informationen über die kristalline Struktur, chemische Komposition und die physikalische Eigenschaften eines untersuchten Feststoffes liefern \cite{THEORYSAXS}. Die Untersuchung von Feststoffen unter Einfluss von Kurzpulslasern ist eine wichtige Aufgabe der heutigen Physik. Wissen über das Verhalten von Feststoffen unter Einfluss von Kurzpulslasern kann offene Fragen in der Krebsforschung und in der Astrophysik beantworten. Dieser Beleg bezieht sich auf die Publikation von Thomas Kluge, welches 2018 mit dem Titel:\grqq Observation of ultrafast solid-density plasma dynamics using femtosecond X-ray pulses from a free-electron laser \grqq veröffentlicht wurde. In der angesprochenen Publikation wurde SAXS für die Untersuchung von Plasma eingesetzt \cite{SAXS18}?. 
+Die Kleinwinkelstreuung in Englisch Small Angle X-Ray Scattering (SAXS) ist eine universelle Technik zur Untersuchung von Feststoffen. Dabei kann SAXS Informationen über die kristalline Struktur, chemische Komposition und die physikalische Eigenschaften eines untersuchten Feststoffes liefern \cite{THEORYSAXS}. Die Untersuchung von Feststoffen unter Einfluss von Kurzpulslasern ist eine wichtige Aufgabe der heutigen Physik. Wissen über das Verhalten von Feststoffen unter Einfluss von Kurzpulslasern kann offene Fragen in der Krebsforschung und in der Astrophysik beantworten. Dieser Beleg bezieht sich auf die Publikation von Thomas Kluge, welches 2018 mit dem Titel:\grqq Observation of ultrafast solid-density plasma dynamics using femtosecond X-ray pulses from a free-electron laser\grqq veröffentlicht wurde. In der angesprochenen Publikation wurde SAXS für die Untersuchung von Plasma eingesetzt \cite{SAXS18}. 
 
 \begin{figure}[ht]
 	\centering
@@ -52,7 +52,7 @@ Das in \cite{SAXS18} beschriebene Experiment besteht aus vier Hauptkomponenten (
 	
 	\label{fig:grating_structure}
 \end{figure}
-Während des Experiments wird das Target durch den Hochintensitätslaser in einem Winkel von 90° beschossen. Augrund des Elektrischen Feldes des Lasers entsteht Plasma. Bei Plasma handelt es sich um ein Gemisch aus freien Elektronen, positiven Ionen und neutralen Teilchen, welche unter ständiger Wechselwirkung untereinander und mit Photonen stehen. Dadurch kann es zu unterschiedlichen Energie- bzw. Anregungszuständen kommen. Der Plasmazustand eines Stoffes wird auch als vierter Aggregatzustand bezeichnet \cite{PLASMADEF}. Während des Beschusses durch den Hochintensitätslaser ist außerdem ein Schmelzprozess und somit eine Aufweichung der Gitterstruktur des Targets wahrzunehmen (siehe Abbildung \ref{fig:melting_grating}). 
+Während des Experiments wird das Target durch einen Hochintensitätslaser in einem Winkel von 90° beschossen. Augrund des Elektrischen Feldes des Lasers entsteht Plasma. Bei Plasma handelt es sich um ein Gemisch aus freien Elektronen, positiven Ionen und neutralen Teilchen, welche unter ständiger Wechselwirkung untereinander und mit Photonen stehen. Dadurch kann es zu unterschiedlichen Energie- bzw. Anregungszuständen kommen. Der Plasmazustand eines Stoffes wird auch als vierter Aggregatzustand bezeichnet \cite{PLASMADEF}. Während des Beschusses durch den Hochintensitätslaser ist außerdem ein Schmelzprozess und somit eine Aufweichung der Gitterstruktur des Targets wahrzunehmen (siehe Abbildung \ref{fig:melting_grating}). 
 
 \begin{figure}[hh]
 \centering
@@ -70,7 +70,7 @@ Das durch den Hochintensitätslaser erzeugte Plasma soll es auf seine Struktur un
 \label{fig:electron_scattering}
 \end{figure}
 
-Durch die Zeitintegrität des Detektors, gehen die zeitlichen Abstände der Wellen verloren (Phase). Das entstandene Detektorsignal ist äquivalent zum Betragsquadrat der Fouriertransformation Gitterstruktur $\eta $ (siehe Gleichung \eqref{eq:xrayscattering})
+Durch die Zeitintegrität des Detektors, gehen die zeitlichen Abstände der Wellen verloren (Phase). Das entstandene Detektorsignal ist äquivalent zum Betragsquadrat der Fouriertransformation Gitterstruktur $\eta $ (siehe Gleichung \eqref{eq:xrayscattering}) \cite{SAXS18}.
 
 
 \begin{equation}\label{eq:xrayscattering}
@@ -80,13 +80,13 @@ Durch die Zeitintegrität des Detektors, gehen die zeitlichen Abstände der Wellen
 
 
 \section{Problemidentifikation }
-Einer der Herausforderungen des beschriebenen Experiment ist die Zeitintegrität des Detektors. Diese Detektoreigenschaft ruft den Verlust der Phase hervor, sodass eine Rekonstruktion der Elektronendichteverteilung $ \eta $ mit Hilfe einer inversen Fouriertransformation (IFT) nicht möglich ist. Um dieses Problem zu lösen werden iterative Algorithmen, sogenannte Phaseretrieval-Algorithmen verwendet. Beispiele für solche Algorithmen sind \cite{Fienup:82}: Error-Reduction Algorithm, Gradient Search Methods und der Input Output Algorithmus. Probleme bei diesen Algorithmen ist, dass erstens bei allen Algorithmen keine Konvergenz garantiert ist und zweitens sehr viele Iterationen notwendig sind um eine Optimierung der errechneten Phase zu erzeugen. Diese Eigenschaften führen dazu, dass eine hochfrequente Verarbeitung von Experiment Ergebnissen verwehrt bleibt. Deswegen soll mit Hilfe von Deep Learning die Phase bzw. die Eigenschaften (drei Parameter zur Beschreibung des Gratings) der Elektronendichteverteilung $ \eta $ rekonstruiert werden. Der gewählte Deep Learning Ansatz ist ein neuronales Netz. Ein neuronales Netz hat den Vorteil, dass es sich im Gegensatz zu iterativen Verfahren durch GPU parallelisieren lässt und es die Phaseninformation bzw. die Parameter der Elektronendichte nicht-iterativ bestimmt. 
+Einer der Herausforderungen des beschriebenen Experiment ist die Zeitintegrität des Detektors. Diese Detektoreigenschaft ruft den Verlust der Phase hervor, sodass eine Rekonstruktion der Elektronendichteverteilung $ \eta $ mit Hilfe einer inversen Fouriertransformation (IFT) nicht möglich ist. Um dieses Problem zu lösen werden iterative Algorithmen, sogenannte Phaseretrieval-Algorithmen verwendet. Beispiele für solche Algorithmen sind \cite{Fienup:82}: Error-Reduction Algorithm, Gradient Search Methods und der Input Output Algorithmus. Probleme bei diesen Algorithmen sind, dass erstens bei allen Algorithmen keine Konvergenz garantiert ist und zweitens sehr viele Iterationen notwendig sind um eine Optimierung der errechneten Phase zu erzeugen. Diese Eigenschaften führen dazu, dass eine hochfrequente Verarbeitung von Experiment Ergebnissen verwehrt bleibt. Deswegen soll mit Hilfe von Deep Learning die Phase bzw. die Eigenschaften (drei Parameter zur Beschreibung des Gratings) der Elektronendichteverteilung $ \eta $ rekonstruiert werden. Der gewählte Deep Learning Ansatz ist ein neuronales Netz. Ein neuronales Netz hat den Vorteil, dass es sich im Gegensatz zu iterativen Verfahren durch GPU parallelisieren lässt und es die Phaseninformation bzw. die Parameter der Elektronendichte nicht-iterativ bestimmt(Einschrittverfahren) . 
 
 \section{Fouriertransformation}
-Die Fouriertransformation (benannt nach Jean Baptiste Joseph Fourier) ist eine Transformation, welche zeitbezogene Welle im Ortsraum in ihre freuqenzmä\ss igen Spektralanteile zerlegt. Bei der Fouriertransformation wird die Welle in Teilwellen zerlegt (Abbildung \ref{fig:fourier_example}). Diese Teilwellen ergeben summiert wieder die ursprüngliche Welle (Gleichung \eqref{eq:fourier-series}) \cite{FOURIERDEF}. Somit ergibt sich die Darstellung einer Funktion in ihren frequenzmä\ss igen Spektralanteilen als stückweise stetig differenzierbaren und T- periodischen Funktion $ f_{T}: \mathbb{R} \longrightarrow \mathbb{R}$ durch folgenden funktionalen Zusammenhang : 
+Die Fouriertransformation (benannt nach Jean Baptiste Joseph Fourier) ist eine Transformation, welche zeitbezogene Welle im Ortsraum in ihre frequenzmä\ss igen Spektralanteile zerlegt. Bei der Fouriertransformation wird die Welle in Teilwellen zerlegt (Abbildung \ref{fig:fourier_example}) und wird somit als Transformation vom Orts- in den Frequenzraum bezeichnet. Die Fouriertransformation ist folgendermaßen definiert:
 
 \begin{equation}\label{eq:fourier-series}
-f _ { T } ( t ) = \sum _ { k = - \infty } ^ { \infty } \gamma _ { k } e ^ { i k \omega t }  \textrm{ mit } \omega = \frac { 2 \pi } { T } 
+F ( u ) = \int _ { - \infty } ^ { \infty } f ( x ) e ^ { - 2 \pi i x u } d x
 \end{equation}
 
 die Fourier-Koeffizienten $\gamma_{k}$  werden wie bei einem Basiswechsel durch ein Integral bestimmt( Gleichung \eqref{eq:fourier_coefficients}). Dabei ist das Ergebnis des Integrals die Länge der Projektion in Richtung der Basis des Frequenzraumes. 
@@ -115,7 +115,7 @@ Somit ergibt sich als Resultat der Fouriertransformation eine Folge von Komplexe
 
 \section{Filter}
 
-Ein Filter ist eine Operation, welche auf einem Signal verwendet wird um Signale zu glätten, Signalstörungen zu vermeiden oder um Rauschen zu verhindern. In den meisten Fällen wird die Filteroperation mit Hilfe von Faltung realisiert. Dabei wird die Faltung zweier Funktionen (f * g) durch den  funktionalen Zusammenhang in Formel \eqref{eq:convolution} beschrieben. Dabei ist f die Funktion, welche das Signal beschreibt und g die Funktion, welche den Filter beschreibt. Im diskreten Fall wird das Integral durch eine Summe bis zur entsprechenden Filtergröße ersetzt. 
+Ein Filter ist eine Operation, welche auf einem Signal verwendet wird um Signale zu glätten, Signalstörungen zu vermeiden oder um Rauschen zu verhindern. In den meisten Fällen wird die Filteroperation mit Hilfe von Faltung realisiert. Dabei wird die Faltung zweier Funktionen (f * g) durch den  funktionalen Zusammenhang in Formel \eqref{eq:convolution} beschrieben. Dabei ist f die Funktion, welche das Signal beschreibt und g die Funktion, welche den Filter beschreibt. Im diskreten Fall wird das Integral durch eine Summe bis zur entsprechenden Filtergröße ersetzt \cite{CONV}. 
 
 \begin{equation}\label{eq:convolution}
 ( f * g ) ( x ) : = \int _ { \mathbb { R } ^ { n } } f ( \tau ) g ( x - \tau ) \mathrm { d } \tau
@@ -208,7 +208,7 @@ Um das Ergebniss, des SAXS-Experimentes bestmöglich zu verstehen und aufgrund ei
 
 \section{Simulationsbeschreibung}
 \subsection{Design der Gitterstruktur und Simulation des Hochenergielasereinflusses}
-Wie in Kapitel 2 beschrieben sind die Targets des SAXS-Experiments als Gitter strukturiert, um eine analytische Beschreibung des Targets zu ermöglichen. Der erste Simulationsschritt ist die Bestimmung der Gitterstruktur. Die Breite des Gratings ist auf N Pixel beschränkt. Die Struktur des Gratings ist über die drei Startparameter Pitch, Feature-Size und Sigma definiert. Dabei ist der Parameter Feature-Size für die Breite eines Features zuständig und der Parameter Pitch für die Periodizität, somit sind beide Parameter für die Struktur des Gratings ohne Einfluss des Hochenergielasers verantwortlich. Der Parameter Sigma bestimmt die Aufweichungsbreite des Gratings und somit den Einfluss des Hochenenergielasers. Zunächst wird anhand der Parameter Fsize und Sigma, die Struktur eines Features bestimmt.  Dazu wird eine Rechteckfunktion (\( 1_{[0,\text{Feature-Size}]} \)),welche die Breite eines Features bestimmt, mit einer Gaussverteilung (\(\exp \left( - x ^ { 2 } / 2 \sigma ^ { 2 } \right) \)) gefaltet \cite{SAXS18}, um den Hochenergielasereinfluss zu simulieren. Das Ergebnis der Faltung wird mit Hilfe der Errorfunktion (Gleichung \eqref{eq:erf}) dargestellt. 
+Wie in Kapitel 2 beschrieben sind die Targets des SAXS-Experiments als Gitter strukturiert, um eine analytische Beschreibung des Targets zu ermöglichen. Der erste Simulationsschritt ist die Bestimmung der Gitterstruktur. Die Breite des Gratings ist auf N Pixel beschränkt. Die Struktur des Gratings ist über die drei Startparameter Pitch, Feature-Size und Sigma definiert. Dabei ist der Parameter Feature-Size für die Breite eines Features zuständig und der Parameter Pitch für die Periodizität, somit sind beide Parameter für die Struktur des Gratings ohne Einfluss des Hochenergielasers verantwortlich. Der Parameter Sigma bestimmt die Aufweichungsbreite des Gratings und somit den Einfluss des Hochenenergielasers. Zunächst wird anhand der Parameter Feature-Size und Sigma, die Struktur eines Features bestimmt.  Dazu wird eine Rechteckfunktion (\( 1_{[0,\text{Feature-Size}]} \)),welche die Breite eines Features bestimmt, mit einer Gaussverteilung (\(\exp \left( - x ^ { 2 } / 2 \sigma ^ { 2 } \right) \)) gefaltet \cite{SAXS18}, um den Hochenergielasereinfluss zu simulieren. Das Ergebnis der Faltung wird mit Hilfe der Errorfunktion (Gleichung \eqref{eq:erf}) dargestellt. 
 
 \begin{equation}\label{eq:erf}
 \text{erf(x)} = \frac{2}{\sqrt{\pi}} \int_{0}^{x} e^{-\xi^{2}}d\xi
@@ -273,7 +273,7 @@ Die Startparameter des Simulation haben ebenfalls Auswirkung auf das Endprodukt 
 \label{img:pitch_detector}
 \end{figure}
 
-Der Startparamter Fsize verhält sich invers zum Parameter Pitch. Mit steigendem Fsize, kommt es zu einer Erhöhung des Intensitätsmaximums und es werden weniger Frequenzen benötigt um die Gitterstruktur zu modellieren, somit sind auch weniger Peaks in der vorhanden(Abbildung \ref{img:fsize_detector}). 
+Der Startparamter Feature-Size verhält sich invers zum Parameter Pitch. Mit steigendem Feature-Size Wert, kommt es zu einer Erhöhung des Intensitätsmaximums und es werden weniger Frequenzen benötigt um die Gitterstruktur zu modellieren, somit sind auch weniger Peaks im Detektorsignal vorhanden(Abbildung \ref{img:fsize_detector}). 
 
 \begin{figure}[hh]
 \centering
