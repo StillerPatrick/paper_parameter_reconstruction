@@ -1,5 +1,6 @@
 \documentclass[hyperref,german,beleg]{cgvpub}
 \usepackage{subfigure}
+\usepackage{array}
 %weitere Optionen zum Ergänzen (in eckigen Klammern):
 % 
 % female	weibliche Titelbezeichnung bei Diplom
@@ -15,7 +16,7 @@
 \birthday{8. Januar 1994}
 \placeofbirth{Dresden}
 \matno{3951290}
-\betreuer{Dr. Dmitrij Schlesinger, Dr. Heide Meißner, Dr. Michael Bussmann}
+\betreuer{Dr. Dmitrij Schlesinger(TU Dresden), Dr. Heide Meißner(HZDR), Dr. Michael Bussmann(HZDR)}
 \bibfiles{literatur}
 \problem{aufgabenstellung}
 \copyrighterklaerung{Hier soll jeder Autor die von ihm eingeholten
@@ -32,27 +33,27 @@ Bild"ubernahmen zitieren.}
 \section{Physikalischer Hintergrund}
 
 \subsection{Kleinwinkelstreuung}
-Die Kleinwinkelstreuung in Englisch Small Angle X-Ray Scattering (SAXS) ist eine universelle Technik zur Untersuchung von Feststoffen. Dabei kann SAXS Informationen über die kristalline Struktur, chemische Komposition und die physikalische Eigenschaften eines untersuchten Feststoffes liefern \cite{THEORYSAXS}. Die Untersuchung von Feststoffen unter Einfluss von Hochintensitätslaser ist ein Schwerpunkt der heutigen Physik. Wissen über das Verhalten von Feststoffen unter Einfluss von Hochintensitätslaser kann offene Fragen in der Krebsforschung und in der Astrophysik beantworten. Dieser Beleg bezieht sich auf die Publikation von Thomas Kluge, welche 2018 mit dem Titel:\grqq Observation of ultrafast solid-density plasma dynamics using femtosecond X-ray pulses from a free-electron laser\grqq veröffentlicht wurde. In der angesprochenen Publikation wurde SAXS für die Untersuchung von Plasma eingesetzt \cite{SAXS18}. Bisher konnte die Plasmadynamik, welche bei der Interaktion eines Feststoffes und eines Hochintensitätslaser entsteht nur durch Simulationen erfasst werden. Mit Hilfe von SAXS: Gibt es neue Möglichkeiten die Laser-Plasma Interaktion auf einem Feststoff zu charakterisieren, eine räumliche Auflösung im Femtosekunden-Bereich und deine zeitliche Auflösung im Nanosekunden Bereich ist  machbar und es kann Anhand der Einstrahlung auf den Detektor mit Hilfe von numerischen Simulationen Aussagen über die Elektronendynamik im Plasma getroffen werden \cite{SAXS18}.
+Die Kleinwinkelstreuung in Englisch Small Angle X-Ray Scattering (SAXS) ist eine universelle Technik zur Untersuchung von Feststoffen. Dabei kann SAXS Informationen über die kristalline Struktur, chemische Komposition und die physikalische Eigenschaften eines untersuchten Feststoffes liefern \cite{THEORYSAXS}. Die Untersuchung von Feststoffen unter Einfluss von Hochintensitätslasern ist ein Schwerpunkt der heutigen Physik. Wissen über das Verhalten von Feststoffen unter Einfluss von Hochintensitätslasern kann offene Fragen in der Krebsforschung und in der Astrophysik beantworten. Dieser große Beleg bezieht sich auf die Publikation von Thomas Kluge, welche 2018 mit dem Titel:\grqq Observation of ultrafast solid-density plasma dynamics using femtosecond X-ray pulses from a free-electron laser\grqq veröffentlicht wurde. In der angesprochenen Publikation wurde SAXS für die Untersuchung von Plasma eingesetzt \cite{SAXS18}. Bisher konnte die Plasmadynamik, welche bei der Interaktion eines Feststoffes und eines Hochintensitätslasern entsteht, nur durch Simulationen erfasst werden mit Hilfe von SAXS gibt es neue Möglichkeiten, die Laser-Plasma-Interaktion auf einem Feststoff zu charakterisieren. SAXS erreicht außerdem eine räumliche Auflösung im Femtosekunden-Bereich und eine zeitliche Auflösung im Nanosekunden-Bereich. Mit SAXS ist es möglich anhand der Einstrahlung auf den Detektor mit Hilfe von numerischen Simulationen Aussagen über die Elektronendynamik im Plasma zu treffen \cite{SAXS18}.
  
 \begin{figure}[ht]
 	\centering
 		\includegraphics [scale=0.5]{images/saxs_setup.png}
-	\caption{Links: Schematischer Aufbau des Experimentaufbaus. Im rechten Teil der Abbildung sind Detektorbilder in Abhängigkeit der 					Bestrahlungsdauer des Hochintensitätslaser dargestellt. Bildquelle: \cite{SAXS18}}
+	\caption{Links: Schematischer Aufbau des Experimentaufbaus. Rechts: der Abbildung sind Detektorbilder in Abhängigkeit der 					Bestrahlungsdauer des Hochintensitätslasern dargestellt. Bildquelle: \cite{SAXS18}}
 	\label{fig:saxssetup}
 \end{figure}
 
 \subsection{Experimentbeschreibung}
 
-Das in \cite{SAXS18} beschriebene Experiment besteht aus vier Hauptkomponenten (siehe Abbildung \ref{fig:saxssetup} links): dem Target, dem Hochintensitätslaser (UHI), dem Röntgen-Freie-Elektronen-Laser (XFEL) und dem Detektor. Der Hauptbestandteil des Targets ist Kupfer. Um eine analytische Beschreibung des Experimentausgangs zu ermöglichen, wurde eine Gitterstruktur in das Kupfertarget eingraviert. Zusätzlich wurde das Taget mit einer 2 $\mu$m breiten Siliziumschicht überzogen. Durch die eingravierte Gitterstruktur besitzt das Target einen eindimensionalen Informationsgehalt und kann somit durch drei Parameter vollständig beschrieben werden. Die drei Paramter sind Pitch, Feature-Size und die Aufweichungsbreite $ \sigma $. Dabei beschreiben Pitch und Feature-Size die Struktur des Targets und Sigma den Aufweichungseffekt des Hochintensitätslasers (siehe Abbildung \ref{fig:grating_structure}). Die Gesamtheit des Targets wird auch als Elektronendichteverteilung bezeichnet. Erhebungen des Gitters werden als Features bezeichnet. 
+Das in \cite{SAXS18} beschriebene Experiment besteht aus vier Hauptkomponenten (siehe Abbildung \ref{fig:saxssetup} links): Dem Target(Mitte), dem Hochintensitätslasern (UHI) (Links), dem Röntgen-Freie-Elektronen-Laser (XFEL) (Links Unten) und dem Detektor (Rechts Oben). Der Hauptbestandteil des Targets ist Kupfer. Um eine analytische Beschreibung des Experimentausgangs zu ermöglichen, wurde eine Gitterstruktur in das Kupfertarget eingraviert. Zusätzlich wurde das Taget mit einer 2 $\mu$m breiten Siliziumschicht überzogen. Durch die eingravierte Gitterstruktur besitzt das Target einen eindimensionalen Informationsgehalt und kann somit durch drei Parameter vollständig beschrieben werden. Die drei Paramter sind Pitch, Feature-Size und die Aufweichungsbreite Sigma($ \sigma $). Dabei beschreiben Pitch und Feature-Size die Struktur des Targets und Sigma($ \sigma $) den Aufweichungseffekt des Hochintensitätslasers (siehe Abbildung \ref{fig:grating_structure}). Die Gesamtheit des Targets wird auch als Grating bezeichnet. Erhebungen des Gratings werden als Features bezeichnet. Im weiteren Verlauf dieser Arbeit wird der Begriff Elektronendichteverteilung $\eta$ verwendet, welcher oft im Zusammenfang des SAXS-Ansatzes fällt. Der Begriff Elektronendichteverteilung $\eta$ wird in dieser Arbeit als Synonym für das Grating verwendet. 
 
 \begin{figure}[hh]
 	\centering
 		\includegraphics [scale=0.5]{images/grating_structure.png}
-	\caption{Analytische Beschreibung des Querschnittes des Targets. Dabei ist das Grating zu erkennen und dass es durch drei Parameter: Pitch, Feature-Size und Sigma beschrieben werden kann. Die beiden Parameter Pitch und Feature Size bestimmen das Urspungsgitter. Der Parameter Sigma beschreibt den Einfluss des Hochintensitätslasers Bildquelle: \cite{Zach17}}
+	\caption{Analytische Beschreibung des Querschnittes des Targets. Dabei ist das Grating zu erkennen und dass es durch drei Parameter: Pitch, Feature-Size und Sigma beschrieben werden kann. Bildquelle: \cite{Zach17}}
 	
 	\label{fig:grating_structure}
 \end{figure}
-Während des Experiments wird das Target durch einen Hochintensitätslaser in einem Winkel von 90° beschossen. Augrund des Elektrischen Feldes des Lasers entsteht Plasma. Bei Plasma handelt es sich um ein Gemisch aus freien Elektronen, positiven Ionen und neutralen Teilchen, welche unter ständiger Wechselwirkung untereinander und mit Photonen stehen. Dadurch kann es zu unterschiedlichen Energie- bzw. Anregungszuständen kommen. Der Plasmazustand eines Stoffes wird auch als vierter Aggregatzustand bezeichnet \cite{PLASMADEF}. Während des Beschusses durch den Hochintensitätslaser ist außerdem ein Schmelzprozess und somit eine Aufweichung der Gitterstruktur des Targets wahrzunehmen (siehe Abbildung \ref{fig:melting_grating}). Das durch den Hochintensitätslaser erzeugte Plasma soll es auf seine Struktur und Elektrodynamik mit Hilfe von SAXS untersucht werden. Dafür wird leicht zeitversetzt ein zweiter Laser benutzt. Dabei handelt es sich um einen Röntgen-Freie-Elektronen-Laser, welcher in einem Winkel von 45° mit einer Pulsdauer von 40 Femtosekunden auf das Target schießt. Bei diesem Vorgang kommt es zu einer Streuung des Lichts des Röntgenlasers an den Elektronen des Targets. Die Lichtintensitäten des gestreuten Röntgenlasers werden durch einen Detektor, welches hinter dem Target platziert ist, gemessen(Abbildung \ref{fig:saxssetup} links). 
+Während des Experiments wird das Target durch einen Hochintensitätslasers in einem Winkel von 90° beschossen. Augrund des elektrischen Feldes des Lasers entsteht Plasma. Bei Plasma handelt es sich um ein Gemisch aus freien Elektronen, positiven Ionen und neutralen Teilchen, welche unter ständiger Wechselwirkung miteinander und mit Photonen stehen. Dadurch kann es zu unterschiedlichen Energie- bzw. Anregungszuständen kommen. Der Plasmazustand eines Stoffes wird auch als vierter Aggregatzustand bezeichnet \cite{PLASMADEF}. Während des Beschusses durch den Hochintensitätslasers ist außerdem ein Schmelzprozess und somit eine Aufweichung der Gitterstruktur des Targets wahrzunehmen (siehe Abbildung \ref{fig:melting_grating}). Das durch den Hochintensitätslasers erzeugte Plasma soll auf seine Struktur und Elektrodynamik mit Hilfe von SAXS untersucht werden. Dafür wird leicht zeitversetzt ein zweiter Laser benutzt. Dabei handelt es sich um einen Röntgen-Freie-Elektronen-Laser, welcher in einem Winkel von 45° mit einer Pulsdauer von 40 Femtosekunden auf das Target schießt. Bei diesem Vorgang kommt es zu einer Streuung des Lichts des Röntgenlasers an den Elektronen des Targets. Die Lichtintensitäten des gestreuten Röntgenlasers werden durch einen Detektor, welches hinter dem Target platziert ist, gemessen (Abbildung \ref{fig:saxssetup} links). 
 
 \begin{figure}[hh]
 \centering
@@ -61,36 +62,35 @@ Während des Experiments wird das Target durch einen Hochintensitätslaser in eine
 \label{fig:melting_grating}
 \end{figure}
 
-Beim Detektor handelt es sich um ein Raster von Lichtdetektoren, welche die ankommenden Lichtintensitäten messen. Dabei ist der Lichtdetektor Zeit integrierend, das heißt, dass ankommende Lichtintensitäten über die Zeit summiert werden. Diesen Effekt ist in der Abbildung \ref{fig:electron_scattering} zu erkennen, welche einen beispielhaften Streuprozess an zwei Elektronen zeigt. 
+Beim Detektor handelt es sich um ein Raster von Lichtdetektoren, welche die ankommenden Lichtintensitäten messen. Dabei integriert der Detektor über die Zeit, das heißt, dass ankommende Lichtintensitäten über die Zeit summiert werden. Dieser Effekt ist in der Abbildung \ref{fig:electron_scattering} zu erkennen, welche einen beispielhaften Streuprozess an zwei Elektronen zeigt. 
 
 \begin{figure}[hh]
 	\centering
 		\includegraphics [scale=0.4 ]{images/electron_scattering.png}
-	\caption{Beispielhafte Darstellung einer Streuung an zwei Elektronen. Die Röngenlaserpulse treffen geradlinig auf die Elektronen und werden dann bei den Elektronen gestreut. Der Detektor dahinter misst die ankommenden Intensitäten der kreiförmigen Wellen und summiert diese über die Zeit.  Bildquelle: \cite{Zach17}}
+	\caption{Beispielhafte Darstellung einer Streuung an zwei Elektronen. Die Röntgenlaserpulse treffen geradlinig auf die Elektronen und werden dann bei den Elektronen gestreut. Der Detektor dahinter misst die ankommenden Intensitäten der kreisförmigen Wellen und summiert diese über die Zeit.  Bildquelle: \cite{Zach17}}
 \label{fig:electron_scattering}
 \end{figure}
 
-Durch die Zeitintegrität des Detektors, gehen die zeitlichen Abstände der Wellen verloren (Phase). Das entstandene Detektorsignal ist äquivalent zum Betragsquadrat der Fouriertransformation Gitterstruktur $\eta $ (siehe Gleichung \eqref{eq:xrayscattering}) \cite{SAXS18}.
+Durch die Zeitintegration des Detektors, gehen die zeitlichen Abstände der Wellen verloren (Phase). Das entstandene Detektorsignal skaliert mit dem  Betragsquadrat der Fouriertransformation der Gitterstruktur $\eta $ (siehe Gleichung \eqref{eq:xrayscattering}) \cite{SAXS18}.
 
 
 \begin{equation}\label{eq:xrayscattering}
-\Phi \approx | r _{0} \cdot \int \eta (\vec r) \cdot e^{i\vec q \vec r} d \vec r|^2
+\Phi  \propto | \int \eta (\vec r) \cdot e^{i\vec q \vec r} d \vec r|^2
 \end{equation}
 
 
-
 \section{Problemidentifikation }
-Einer der Herausforderungen des beschriebenen Experiment ist die Zeitintegrität des Detektors. Diese Detektoreigenschaft ruft den Verlust der Phase hervor, sodass eine Rekonstruktion der Elektronendichteverteilung $ \eta $ mit Hilfe einer inversen Fouriertransformation (IFT) nicht möglich ist. Um dieses Problem zu lösen werden iterative Algorithmen, sogenannte Phaseretrieval-Algorithmen verwendet. Beispiele für solche Algorithmen sind \cite{Fienup:82}: Error-Reduction Algorithm, Gradient Search Methods und der Input Output Algorithmus. Probleme bei diesen Algorithmen sind, dass erstens bei allen Algorithmen keine Konvergenz garantiert ist und zweitens sehr viele Iterationen notwendig sind um eine Optimierung der errechneten Phase zu erzeugen. Diese Eigenschaften führen dazu, dass eine hochfrequente Verarbeitung von Experiment Ergebnissen verwehrt bleibt. Deswegen soll mit Hilfe von Deep Learning die Phase bzw. die Eigenschaften (drei Parameter zur Beschreibung des Gratings) der Elektronendichteverteilung $ \eta $ rekonstruiert werden. Der gewählte Deep Learning Ansatz ist ein neuronales Netz. Ein neuronales Netz hat den Vorteil, dass es sich im Gegensatz zu iterativen Verfahren durch GPU parallelisieren lässt und es die Phaseninformation bzw. die Parameter der Elektronendichte nicht-iterativ bestimmt (Einschrittverfahren) . 
+Eine der Herausforderungen des beschriebenen Experimentes ist die Zeitintegration des Detektors. Diese Detektoreigenschaft ruft den Verlust der Phase hervor, sodass eine Rekonstruktion der Elektronendichteverteilung $ \eta $ mit Hilfe einer inversen Fouriertransformation (IFT) nicht möglich ist. Um dieses Problem zu lösen, werden iterative Algorithmen, sogenannte Phaseretrieval-Algorithmen verwendet. Beispiele für solche Algorithmen sind \cite{Fienup:82}: Error-Reduction Algorithm, Gradient Search Methods und der Input-Output Algorithmus. Probleme bei diesen Algorithmen sind, dass erstens bei allen Algorithmen keine Konvergenz garantiert ist und zweitens sehr viele Iterationen notwendig sind um eine Optimierung der errechneten Phase zu erzeugen. Diese Eigenschaften führen dazu, dass eine hochfrequente Verarbeitung von Experimentergebnissen verwehrt bleibt. Deswegen soll mit Hilfe von Deep Learning die Charakterisierung der Elektronendichteverteilung $ \eta $ (Parameter zur Beschreibung der Gitterstruktur) rekonstruiert werden. Neuronale Netze haben den Vorteil, dass sie sich im Gegensatz zu iterativen Verfahren parallelisieren und durch GPUs beschleunigen lassen und die Parameter der Elektronendichtenverteilung nicht-iterativ bestimmt werden (Einschrittverfahren). 
 
 \section{Fouriertransformation}
-Die Fouriertransformation (benannt nach Jean Baptiste Joseph Fourier) ist eine Transformation, welche zeitbezogene Welle im Ortsraum in ihre frequenzmä\ss igen Spektralanteile zerlegt(Abbildung \ref{fig:fourier_example}). Die Fouriertransformation wird auch als Transformation vom Orts- in den Frequenzraum bezeichnet. Die Fouriertransformation ist folgendermaßen definiert:
+Die Fouriertransformation (benannt nach Jean Baptiste Joseph Fourier) ist eine Transformation, welche zeitbezogene Wellen im Ortsraum in ihre frequenzmä\ss igen Spektralanteile zerlegt (Abbildung \ref{fig:fourier_example}). Die Fouriertransformation wird auch als Transformation vom Orts- in den Frequenzraum bezeichnet. Die Fouriertransformation F(u) einer Welle f(x) ist folgendermaßen definiert:
 
 \begin{equation}\label{eq:fourier-series}
 F ( u ) = \int _ { - \infty } ^ { \infty } f ( x ) e ^ { - 2 \pi i x u } d x
 \end{equation}
 
 
-Die Spektralanteile \textit{F(u)} werden wie bei einem Basiswechsel durch ein Integral bestimmt. Dabei ist das Ergebnis des Integrals die Länge der Projektion in Richtung der durch \textit{u} kodierten Frequenz. Im endlich-diskreten Fall wird das Integral durch eine Summe bis zur Anzahl der zu verwendeten Wellen ersetzt.  Jede Stelle u der Fouriertransformation kodiert eine Welle $e ^ { - 2 \pi i x u }$, welche über die Euler Identität $e ^ { i k x } = \cos ( k x ) + i \cdot \sin ( k x )$ auch in ihre Kosinus- und Sinusanteilen beschrieben werden kann. Der Funktionswert der Fouriertransformation \textit{F(u)} kodiert mit welchem Anteil die durch \textit{u} kodierte Frequenz verwendet wird. Das Ergebnis der Fouriertransformation kann man auch durch das Amplituden- und durch das Phasenspektrum beschreiben. Dabei bestimmt die Amplitude das Maxima und das Minima der zugehörigen Welle und die Phase die Verschiebung der Welle. Das Amplitudenspektrum $| F ( u ) | $ und das Phasenspektrum $\phi ( u )$ ergeben sich durch die folgende Gleichungen \cite{FOURIER2}:
+Die Spektralanteile \textit{F(u)} werden wie bei einem Basiswechsel durch ein Integral bestimmt. Dabei ist das Ergebnis des Integrals die Länge der Projektion in Richtung der durch $ u $ kodierten Frequenz. Im endlich-diskreten Fall wird das Integral durch eine Summe bis zur Anzahl der zu verwendeten Wellen ersetzt.  Jede Stelle u der Fouriertransformation kodiert eine Welle $e ^ { - 2 \pi i x u }$, welche über die Euler-Identität $e ^ { i k x } = \cos ( k x ) + i \cdot \sin ( k x )$ auch in ihren Kosinus- und Sinusanteilen beschrieben werden kann. Der Funktionswert der Fouriertransformation \textit{F(u)} kodiert mit welchem Anteil die durch \textit{u} kodierte Frequenz verwendet wird. Das Ergebnis der Fouriertransformation kann auch durch das Amplituden- und durch das Phasenspektrum beschrieben werden.. Dabei bestimmt die Amplitude das Maximum und das Minimum der jeweiligen Welle und die Phase die Verschiebung der jeweiligen Welle.  Um die Amplituden- $| F ( u ) | $ und die  Phaseninformation $\phi ( u )$ einer komplexen Zahl $ u $ zu errechnen, werden folgende Gleichungen verwendet \cite{FOURIER2}:
 
 \begin{equation}
 | F ( u ) | = \sqrt { R ^ { 2 } ( u ) + I ^ { 2 } ( u ) }
@@ -100,16 +100,10 @@ Die Spektralanteile \textit{F(u)} werden wie bei einem Basiswechsel durch ein In
 \phi ( u ) = \tan ^ { - 1 } \frac { I ( u ) } { R ( u ) }
 \end{equation}
 
-\begin{figure}[hh]
-	\centering
-		\includegraphics [scale=0.5]{images/example_fourier.png}
-	\caption{Überlagerung mehrerer Wellen um eine Rechteckfunktion zu approximieren. Bildquelle: \cite{Gallagher2008AnIT}}
-	\label{fig:fourier_example}
-\end{figure}
 
 \section{Filter}
 
-Ein Filter ist eine Operation, welche auf einem Signal verwendet wird um Signale zu glätten, Signalstörungen zu vermeiden oder um Rauschen zu verhindern. In den meisten Fällen wird die Filteroperation mit Hilfe von Faltung realisiert. Dabei wird die Faltung zweier Funktionen (f * g) durch den  funktionalen Zusammenhang in Formel \eqref{eq:convolution} beschrieben. Dabei ist f die Funktion, welche das Signal beschreibt und g die Funktion, welche den Filter beschreibt. Im diskreten Fall wird das Integral durch eine Summe bis zur entsprechenden Filtergröße ersetzt \cite{CONV}. 
+Ein Filter ist eine Operation, welche auf einem Signal verwendet wird, um Signale zu glätten, Signalstörungen zu vermeiden, oder um Rauschen zu verhindern. In den meisten Fällen wird die Filteroperation mit Hilfe von Faltung realisiert. Die Faltung zweier Funktionen $(f * g)$ durch den funktionalen Zusammenhang in Formel \eqref{eq:convolution} beschrieben. Dabei ist $f$ die Funktion, welche das Signal beschreibt und $g$ die Funktion, welche den Filter beschreibt. Im diskreten Fall wird das Integral durch eine Summe bis zur entsprechenden Filtergröße ersetzt \cite{CONV}. 
 
 \begin{equation}\label{eq:convolution}
 ( f * g ) ( x ) : = \int _ { \mathbb { R } ^ { n } } f ( \tau ) g ( x - \tau ) \mathrm { d } \tau
@@ -118,83 +112,79 @@ Ein Filter ist eine Operation, welche auf einem Signal verwendet wird um Signale
 
 
 \section{Neuronale Netze}
+Neuronale Netze sind eine mathematische Adaption des realen menschlichen Gehirns. Wie im realen menschlichen Gehirn sind Neuronen miteinander verbunden, um einen Informationsfluss zu gewährleisten. Die ersten Ansätze für neuronale Netze wurden bereits 1943 von Warren McCulloch und Walter Pitts entwickelt \cite{Kriesel2007NeuralNetworks}. Heute sind Neuronale Netze der Schwerpunkt des Machine Learnings und werden auf großen Datenmengen angewendet, um ein gewünschtes Verhalten zu trainieren . 
+
 \subsection{Aufbau}
-Neuronale Netze sind eine mathematische Adaption des realen menschlichen Gehirns. Ein neuronales Netz besteht aus vielen kleinen Komponenten, Neuronen, welche durch gerichtete und gewichtete Verbindungen verbunden sind.  Mathematisch definiert ist ein neuronales Netz ein Tripel (N,V,w) mit den Beiden Mengen N und V und der Funktion w.  N ist die Menge aller Neuronen und V = $\{ (i,j) | i, j \epsilon \mathbb{N}\}$  die Menge der  Verbindungen zwischen Neuron i und Neuron j . Die Funktion $w : V \longrightarrow \mathbb{R} $  beschreibt die Gewichte des Neuronalen Netzes. Wobei w(i,j) das Gewicht zwischen dem Neuron i und Neuron j beschreibt. Im Allgemeinen wird anstatt der Funktionsnotation die Notation $w_{i,j}$ für die Gewichte zwischen zwei Neuronen verwendet.  \cite{Kriesel2007NeuralNetworks} Die nächste wichtige Komponente ist die Propagierungsfunktion $net_{j}$  eines Neurons, welche einen wichtigen Teil des Informationsflusses in einem Neuronalen Netz definiert. Dabei wird der Input des Neurons j durch dessen Propagierungsfunktion $net_{j}$ bestimmt. Die Propagierungsfunktion $net_{j}$ nimmt den Output aller Neuronen welche eine ausgehende Verbindung zum Neuron j besitzen als Input.  So wird die Propagierungsfunktion $net_{j}$ durch folgenden funktionalen Zusammenhang beschrieben : 
+Ein neuronales Netz besteht aus vielen kleinen Komponenten, Neuronen, welche durch gerichtete und gewichtete Verbindungen verbunden sind.  Sämtliche Beschreibungen und Notationen beziehen sich auf \cite{Kriesel2007NeuralNetworks}. Mathematisch definiert ist ein neuronales Netz als ein Tripel $(N,V,w)$ mit den Beiden Mengen $N$ und $V$ und der Funktion $w$.  $N$ ist die Menge aller Neuronen und $V$ = $\{ (i,j) |  i, j \epsilon \mathbb{N}\}$ die Menge der Verbindungen zwischen Neuron i und Neuron j. Die Funktion $w : V \longrightarrow \mathbb{R} $  beschreibt die Gewichte des Neuronalen Netzes. Wobei w(i,j) das Gewicht zwischen dem Neuron i und Neuron j beschreibt. Im Allgemeinen wird anstatt der Funktionsnotation die Notation $w_{i,j}$ für die Gewichte zwischen zwei Neuronen verwendet. Die nächste wichtige Komponente ist die Propagierungsfunktion $net_{j}$  eines Neurons, welche einen wichtigen Teil des Informationsflusses in einem Neuronalen Netz definiert. Dabei wird der Input des Neurons j durch dessen Propagierungsfunktion $net_{j}$ bestimmt. Die Propagierungsfunktion $net_{j}$ nimmt den Output aller Neuronen welche eine ausgehende Verbindung zum Neuron j besitzen als Input.  So wird die Propagierungsfunktion $net_{j}$ durch folgenden funktionalen Zusammenhang beschrieben : 
 
 \begin{equation}\label{eq:propagation_function}
  net_ { j } = \sum _ { i \in I_{j}} ( o _ { i }\cdot w _ { i , j }) \textrm{ mit } I_{j} = \{ i \epsilon N | (i,j) \epsilon V \}
 \end{equation}
 
-Der Output  $o_{j} $ eines Neuronen j wird mit Hilfe der Aktivierungsfunktion $a_{j}$ und der der Propagierungsfunktion berechnet. Dazu wird noch der Schwellwert $ \theta_{j} $ zur Hemmung des Aktivierungszustand des Neurons zur Hilfe genommen. Somit ergibt sich für den Output des Neurons folgender funktionaler Zusammenhang : 
+Der Output  $o_{j} $ eines Neurons $j$ wird mit Hilfe der Aktivierungsfunktion $a_{j}$ und der der Propagierungsfunktion  $net_{j}$  berechnet. Dazu wird noch der Schwellwert $ \theta_{j} $ zur Hemmung des Aktivierungszustandes des Neurons zur Hilfe genommen. Somit ergibt sich für den Output des Neurons folgender funktionaler Zusammenhang: 
 
 \begin{equation}
 o_{j} = a_{j}(net_{j} - \theta_{j}) = f(x)
 \end{equation}
 
-Die Wahl der Aktivierungsfunktion ist von Anwendungsfall von Anwendungsfall unterschiedlich. In den meisten Fällen werden differenzierbare Aktivierungsfunktionen benutzt, da sie den Lernprozess, des neuronalen Netzes erleichtern. Das erste Beispiel für eine Aktivierungsfunktion ist die Heaviside-Funktion(Step-Funktion), welche auf 0 oder 1 abbildet(Abbildung \ref{fig:activations}a). Diese Funktion ist an der Stelle 0 nicht differenzierbar und im generellen für moderne Optimierungsansätze für neuronale Netze nicht geeignet, da die Ableitung der Step-Funktion an allen Stellen 0 ist. Beispiel für gängige und differenzierbare Funktionen sind die Sigmoid-(Formel \eqref{eq:sigmoid}), Tangens Hyperbolicus-(Formel \eqref{eq:tanh}) und die Rectified Linear Units- Aktivierungsfunktion(Formel \eqref{eq:relu})
+In den meisten Fällen werden differenzierbare Aktivierungsfunktionen benutzt, da sie den Lernprozess des neuronalen Netzes erleichtern. Für diesen Beleg ist die Rectified Linear Units- Aktivierungsfunktion (Formel \eqref{eq:relu}) relevant.
 
-\begin{equation}\label{eq:sigmoid}
-f(x)= \frac { 1 } { 1 + e ^ { - x } }
-\end{equation}
-
-\begin{equation}\label{eq:tanh}
-f(x)= tanh(x) = 1 - \frac { 2 } { \mathrm { e } ^ { 2 x } + 1 }
-\end{equation}
 
 \begin{equation}\label{eq:relu}
 f(x)= max(0,x)
 \end{equation}
 
+Die ReLu-Aktivierungsfunktion ist im Vergleich anderen Aktivierungsfunktionen schneller zu berechnen und bietet größere Gradienten. Jedoch können Neuronen, welche einen negativen Input bekommen nur noch 0 Ausgeben. Es wird in diesem Zusammenhang von einem gestorbenen Neuron gesprochen. Ein weiterer Nachteil der ReLu-Aktivierungsfunktion ist der Wertebereich, denn dieser ist nach oben nicht eingeschränkt. Somit können in einem Neuronalen Netz sehr große Werte entstehen, welche den Wertebereich von Zahlenstandards wie zum Beispiel IEEE 754 (Single Precision Float 32-Bit) \cite{IEEE754} überschreiten, womit kein valider Datenfluss im Neuronalen Netz gegeben ist. 
 
-Jeder der genannten Aktivierungsfunktion hat auf Hinsicht seiner Berechnungsdauer, Wertebereich und Ableitung Vor- und Nachteile. Die Sigmoid und die Tangens Hyperbolicus  Aktivierungsfunktion haben einen eingeschränkten Wertebereich, dadurch kann es mit diesen Aktivierungsfunktionen zu keinen zu hohen Werten im Neuronalen Netz kommen und negative Werte werden im Gegensatz zu ReLu noch berücksichtigt. Jedoch sind beide langsamer zu berechnen als die Rectified Linear Units und bieten für den Lernprozess kleinere Gradienten. Rectified Linear Units(ReLu) ist im Vergleich zu Sigmoid und Tangens Hyperbolicus schneller zu berechnen und bietet größere Gradienten. Jedoch können Neuronen, welche einen negativen Input bekommen nur noch 0 Ausgeben. Man spricht in diesem Zusammenhang von einem totem Neuron. Ein weiterer Nachteil von ReLu ist der Wertebereich,denn dieser ist nicht eingeschränkt. Somit können im Neuronalen Netz sehr große Werte entstehen, welche den Wertebereich von Zahlenstandards wie zum Beispiel 32 Bit Float überschreiten und somit kein valider Datenfluss im Neuronalen Netz gegeben ist. 
-
-\subsection{Feed-Forward-Neuronal  Networks}
-Für ein Neuronales Netzwerk werden verschiedene Netzwerktopologien verwendet. Ein Beispiel dafür sind Feed Forward Neuronal Networks (Abbildung \ref{fig:ffnn}) Bei einem Feed Forward Neuronal Network werden die Neuronen als Schichten angeordnet. Diese Schichten sind miteinander verbunden. Dabei wird die Erste Schicht, welche die Input Daten bekommt, als Input-Layer bezeichnet. Die letzte Schicht, welche die Netzberechnung ausgibt, als Output-Layer bezeichnet. Schichten, welche sich zwischen Input- und Output-Layer befinden und somit keinen Kontakt nach außen haben, werden als Hidden Layer bezeichnet. Ein wichtiges Merkmal von Feed Forward Networks ist, dass der Datenfluss geradlinig ohne Rückkopplung vom Input-Layer über die Hidden-Layer zum Output-Layer verläuft. 
+\subsection{Feed-Forward Neuronal  Networks}
+Für ein Neuronales Netzwerk können verschiedene Netzwerktopologien werden. Ein Beispiel dafür sind Feed Forward Neuronal Networks (Abbildung \ref{fig:ffnn}).Bei einem Feed Forward Neuronal Network werden die Neuronen als Schichten (Layer) angeordnet. Diese Layer sind miteinander verbunden. Die erste Layer, welche die Input Daten bekommt, wird als Input-Layer bezeichnet. Die letzte Schicht, welche die Netzberechnung ausgibt, wird als Output-Layer bezeichnet. Schichten, welche sich zwischen Input- und Output-Layer befinden und somit keinen Kontakt nach Außen haben, werden als Hidden Layer bezeichnet. Ein wichtiges Merkmal von Feed-Forward Neuronal Networks ist, dass der Datenfluss geradlinig  vom Input-Layer über die Hidden-Layer zum Output-Layer ohne Rückkopplung verläuft. 
 
 \begin{figure}[hh]
 \centering
 \includegraphics [scale=0.4]{images/feed_forward_neuronal_network.png}
-\caption{Beispielhafte Darstellung für ein Feed-Forward-Neuronal-Network. Bildquelle: \cite{COMPMETHODS}}
+\caption{Beispielhafte Darstellung eines Feed-Forward Neuronal Networks. Bildquelle: \cite{COMPMETHODS}}
 \label{fig:ffnn}
 \end{figure}
 
 \subsection{Lernprozess}
-Das Anlernen von Neuronalen Netzen wird in den meisten Fällen durch überwachtes Lernen (supervised Learning) realisiert. Im speziellen wird der Lernprozess durch den Backpropagation Algorithmus und Gradientenabstiegsverfahren durchgeführt. Bei einem überwachten Lernansatz besteht der Datensatz zum Trainieren des Neuronalen Netzen aus zwei Teilen. Zu jedem Netzinput $x_{i}$ gibt es ein zugehöriges Label $y_{i}$, welches den gewünschten Netzoutput definiert. Der Lernprozess eines neuronalen Netzes kann in drei Phasen aufgeteilt werden. Der Forward-Pass, Loss-Calculation und Backward Pass \cite{NeuronaleNetze}. Zu Beginn des Trainingsprozesses werden die Gewichte des Neuronalen Netzes mit Zufallszahlen initialisiert. Beim Forward Pass werden die Input Daten zur Kalkulation des derzeitigen Net-Outputs zum Input-Layer des Neuronalen Netzes gegeben. Das Neuronale Netz bestimmt dann durch die Rechenvorschriften des Neuronalen Netzes den Net-Output $\hat { y } _ { i }$. Im zweiten Schritt wird dann die Qualität des Netouput $\hat { y } _ { i }$ bestimmt.. Dazu wird ein Fehlermaß benutzt, das den Grad des Unterschiedes zwischen $\hat { y } _ { i }$ und $y_{i}$  bestimmt. Eine beispielhafte Errorfunktion ist Mean-Squared Error \eqref{eq:mse}. 
+Das Anlernen von Neuronalen Netzen wird in den meisten Fällen durch überwachtes Lernen (supervised Learning) realisiert. Im Speziellen wird der Lernprozess durch den Backpropagation-Algorithmus und Gradientenabstiegsverfahren durchgeführt. Bei einem überwachten Lernansatz besteht der Datensatz zum Trainieren des Neuronalen Netzen aus zwei Teilen. Zu jedem Netzinput $x_{i}$ gibt es ein zugehöriges Label $y_{i}$, welches den gewünschten Netzoutput definiert. Der Lernprozess eines neuronalen Netzes kann in drei Phasen eingeteilt werden: Dem Forward-Pass, die Loss-Calculation und dem Backward Pass \cite{NeuronaleNetze}. Zu Beginn des Trainingsprozesses werden die Gewichte des Neuronalen Netzes mit Zufallszahlen initialisiert. In vielen Implementationen werden die Gewichte zufällig und normal verteilt initialisiert. Beim Forward Pass werden die Input-Daten zur Kalkulation des derzeitigen Netz-Outputs zum Input-Layer des Neuronalen Netzes gegeben. Das Neuronale Netz bestimmt dann durch die Rechenvorschriften des Neuronalen Netzes den Netz-Output $\hat { y } _ { i }$. Im zweiten Schritt wird die Qualität des Netz-Ouputs $\hat { y } _ { i }$ bestimmt.. Dazu wird ein Fehlermaß benutzt, das den Grad des Unterschiedes zwischen $\hat { y } _ { i }$ und $y_{i}$  bestimmt. Eine beispielhafte Errorfunktion ist Mean-Squared Error \eqref{eq:mse}. 
 
 
 \begin{equation}\label{eq:mse}
 \mathrm { MSE } = \frac { 1 } { n } \sum _ { i = 1 } ^ { n } \left( Y _ { i } - \hat { Y } _ { i } \right) ^ { 2 }
 \end{equation}
 
-Im dritten Schritt, dem Backward-Pass, kommt es zur Optimierung des Neuronalen Netzes. Mithilfe des Fehlers, welcher bis zur Eingabeschicht zurück propagiert, werden die Gewichte, je nach ihrem Einfluss auf den Net-Output angepasst. Dazu wird ein Gradientenabstiegsverfahren verwendet. Dafür wird die partielle Ableitung des Fehlerterms benötigt. Somit ergibt sich für die Gewichtsveränderung $\Delta w _ { i j }$ des Gewichts zwischen Neuron i und Neuron j durch folgenden Funktionalen Zusammenhang : 
+Im dritten Schritt, dem Backward-Pass, kommt es zur Optimierung des Neuronalen Netzes. Mithilfe des Fehlers, welcher bis zur Eingabeschicht zurück propagiert wird, werden die Gewichte entsprechend ihres Einflusses auf den Net-Output \eqref{eq:gradient} mittels Gradientenabstiegsverfahrens angepasst. Für die Anwendung des Gradientenabstiegsverfahrens werden die partiellen Ableitungen des Fehlerterms benötigt. Die Gewichtsveränderung $\Delta w _ { i j }$ des Gewichts zwischen Neuron $i$ und Neuron $j$  ergibt sich durch folgenden unktionalen Zusammenhang : 
 
 \begin{equation}\label{eq: deltaw}
 \Delta w _ { i j } = - \eta \frac { \partial E } { \partial w _ { i j } } = - \eta \delta _ { j } o _ { i }
 \end{equation}
 
-Dabei ist \textit{E} die Errorfunktion. $\delta _ { j }$ der Gradient Neurons j und $o _ { i }$ die Ausgabe des Neuron i. Der letzte wichtige Parameter ist $\eta $ welche die Learning-Rate des Gradientenabstiegsverfahren bestimmt. Schlussendlich fehlt die Definition des Gradienten. Dieser ist davon abhängig, wie stark das Neuron den Output des Neuronalen Netz beeinträchtigt. Deswegen wird eine Unterscheidung getroffen, ob das Neuron sich im Output-Layer oder darunter befindet. In der folgenden Gleichung \eqref{eq:gradient} ist die Definition des Gradienten und die zugehörige Propagierung des Fehlers. 
+Dabei ist \textit{E} die Errorfunktion, $\delta _ { j }$ des Gradient Neurons j,  $o _ { i }$ die Ausgabe des Neurons i. Der Parameter $\eta $ , welcher die Learning-Rate des Gradientenabstiegsverfahren bestimmt. Schlussendlich fehlt die Definition des Gradienten. Dieser ist davon abhängig, wie stark ein Neuron den Output des Neuronalen Netzes beeinträchtigt. Deswegen wird eine Unterscheidung getroffen, ob ein Neuron sich im Output-Layer oder dem Hidden- bzw. Input-Layer befindet. In der folgenden Gleichung \eqref{eq:gradient} ist die Definition des Gradienten und die zugehörige Propagierung des Fehlers. 
 
 
 \begin{equation}\label{eq:gradient}
-\delta _ { j } = \left\{ \begin{array} { l l } { a_{j}  \left( \text { net } _ { j } \right) \left( o _ { j } - t _ { j } \right) } & { \text { falls } j \text { Ausgabeneuron ist } } \\ { a_{j}  \left( \text { net } _ { j } \right) \sum _ { k } \delta _ { k } w _ { j k } } & { \text { falls } j \text { verdecktes Neuron ist. } } \end{array} \right.
+\delta _ { j } = \left\{ \begin{array} { l l } { a_{j}  \left( \text { net } _ { j } \right) \left( o _ { j } - t _ { j } \right) } & { \text { falls } j \text { sich in der Output-Layer befindet} } \\ { a_{j}  \left( \text { net } _ { j } \right) \sum _ { k } \delta _ { k } w _ { j k } } & { \text { falls } j \text { verdecktes Neuron oder ein Input-Neuron ist } } \end{array} \right.
 \end{equation}
 
-Dabei ist die Gleichung \eqref{eq:gradient} in Abhängigkeit von den Variablen $o_{j}$ dem Output des Neurons j, $t_{j}$ die Soll-Ausgabe des Neurons j und der Aktivierungsfunktion $a_{j} $ des Neuron j angegeben. Somit ergibt sich das neue Gewicht durch eine Addition des alten Gewichts mit der errechneten Gewichtsveränderung. 
+Dabei ist die Gleichung \eqref{eq:gradient} in Abhängigkeit von den Variablen $o_{j}$ , dem Output des Neurons j, $t_{j}$, die Soll-Ausgabe des Neurons $j$ und der Aktivierungsfunktion $a_{j} $ des Neurons $j$ angegeben. Somit ergibt sich das neue Gewicht durch eine Addition des alten Gewichts mit der errechneten Gewichtsveränderung. 
 
 \begin{equation}
 w _ { i j } ^ { \text { neu } } = w _ { i j } ^ { \text { alt } } + \Delta w _ { i j }
 \end{equation} 
 
-Der Backpropagation wird iterativ solange angewandt, bis eine bestimmte Anzahl von Iterationen erreicht ist, oder andere Kriterien erfüllt sind.  \cite{wiki:Backpropagation}
+Der Backpropagation-Algorithmus wird iterativ solange angewandt, bis eine bestimmte Anzahl von Iterationen erreicht ist oder andere Kriterien erfüllt sind \cite{wiki:Backpropagation}.
 
 
 \chapter{Simulation}
 \section{Motivation}
-Um das Ergebniss, des SAXS-Experimentes bestmöglich zu verstehen und aufgrund einer mangelnder Anzahl von Experimentdaten, wurde im Rahmen der Master Arbeit von Malte Zacharias mit dem Titel: \grqq Model-Driven Parameter Reconstruction from Small Angle X-Ray Scattering Images \grqq eine Modellierung entwickelt. Die Modellierung beinhaltet das Design der Gitterstruktur (Elektronendichteverteilung), die Modellierung des Hochenergielasereinflusses,die Modellierung des Streuvorgangs und die Modellierung des Detektorbildes. Das ganze Kapitel bezieht sich auf die Master Arbeit von Malte Zacharias \cite{Zach17}. 
+Um das Ergebnis des SAXS-Experiments bestmöglich zu verstehen und aufgrund einer geringen Anzahl von Experimentdaten, wurde im Rahmen der Master-Arbeit von Malte Zacharias mit dem Titel \grqq Model-Driven Parameter Reconstruction from Small Angle X-Ray Scattering Images\grqq \  eine Modellierung entwickelt. Die Modellierung beinhaltet das Design der Gitterstruktur (Elektronendichteverteilung), die Modellierung des Hochenergielasereinflusses, die Modellierung des Streuvorgangs und die Modellierung des Detektorbildes. Das ganze Kapitel bezieht sich auf die Master-Arbeit von Malte Zacharias \cite{Zach17}. 
 
 \section{Simulationsbeschreibung}
 \subsection{Design der Gitterstruktur und Simulation des Hochenergielasereinflusses}
-Wie in Kapitel 2 beschrieben sind die Targets des SAXS-Experiments als Gitter strukturiert, um eine analytische Beschreibung des Targets zu ermöglichen. Der erste Simulationsschritt ist die Bestimmung der Gitterstruktur. Die Breite des Gratings ist auf N Pixel beschränkt. Die Struktur des Gratings ist über die drei Startparameter Pitch, Feature-Size und Sigma definiert. Dabei ist der Parameter Feature-Size für die Breite eines Features zuständig und der Parameter Pitch für die Periodizität, somit sind beide Parameter für die Struktur des Gratings ohne Einfluss des Hochenergielasers verantwortlich. Der Parameter Sigma bestimmt die Aufweichungsbreite des Gratings und somit den Einfluss des Hochenenergielasers. Zunächst wird anhand der Parameter Feature-Size und Sigma, die Struktur eines Features bestimmt.  Dazu wird eine Rechteckfunktion (\( 1_{[0,\text{Feature-Size}]} \)),welche die Breite eines Features bestimmt, mit einer Gaussverteilung (\(\exp \left( - x ^ { 2 } / 2 \sigma ^ { 2 } \right) \)) gefaltet \cite{SAXS18}, um den Hochenergielasereinfluss zu simulieren. Das Ergebnis der Faltung wird mit Hilfe der Errorfunktion (Gleichung \eqref{eq:erf}) dargestellt. 
+Wie in Kapitel 2 beschrieben sind die Targets des SAXS-Experiments als Gitter strukturiert, um eine analytische Beschreibung des Targets zu ermöglichen. Der erste Simulationsschritt ist die Bestimmung der Gitterstruktur. Die Breite des Gratings ist auf N Pixel beschränkt. Die Struktur des Gratings ist über die drei Startparameter Pitch, Feature-Size und Sigma definiert. Der Parameter Feature-Size legt die Breite eines Features fest und der Parameter Pitch bestimmt die Periodizität eines Features, womit beide Parameter für die Struktur des Gratings ohne Einfluss des Hochintensitätslasers verantwortlich sind. Der Parameter Sigma  $\sigma$ bestimmt die Aufweichungsbreite des Gratings und modelliert den Einfluss des Hochenenintensitätslasers. 
+
+Der erste Schritt der Simulation ist die Modellierung eines Features mit Hochintensitätslasereinfluss. Dazu wird eine Rechteckfunktion (\( 1_{[0,\text{Feature-Size}]} \)), welche die Breite eines Features festlegt mit einer Gaussverteilung (\(\exp \left( - x ^ { 2 } / 2 \sigma ^ { 2 } \right) \)) gefaltet \cite{SAXS18}. Das Ergebnis der Faltung wird mit Hilfe der Errorfunktion (Gleichung \eqref{eq:erf}) dargestellt. 
 
 \begin{equation}\label{eq:erf}
 \text{erf(x)} = \frac{2}{\sqrt{\pi}} \int_{0}^{x} e^{-\xi^{2}}d\xi
@@ -206,12 +196,12 @@ Das Ergebnis der Faltung des Rechteckimpulses und der Gauss-Verteilung ist die M
 	\tilde{\eta} = \frac{\sqrt{\pi}\sigma}{2}(\text{erf}(\frac{x}{\sqrt{2}\sigma}) - \text{erf}(\frac{x - \text{fsize}}{\sqrt{2}\sigma}))
 \end{equation}
 
-Das modellierte Feature wird durch eine weitere Faltung mit mehreren um Pitch verschobene Dirac-Impulsen \cite{beucher_2011} periodisch fortgesetzt wird, um die Grating-Struktur zu komplettieren. 
+Das modellierte Feature wird durch eine weitere Faltung mit mehreren um Pitch verschobenen Dirac-Impulsen \cite{beucher_2011} periodisch fortgesetzt wird, um die Grating-Struktur zu komplettieren. 
 
 
 \subsection{Effekt der Startparameter auf die Gitterstruktur}
 
-Die drei Startparameter Sigma (\( \sigma\)), Pitch  und Feature-Size(fsize), welche die Struktur des Gratings beschreiben, haben unterschiedliche Effekte auf die Gratingstruktur. Sigma ist der Parameter, welcher, wie bereits beschrieben, den Einfluss des Hochenergielasers auf ein Feature modelliert. Desto höher Sigma gewählt wird, desto mehr wird die Kantenstruktur des Targets aufgeweicht. In Abbildung \ref{img:edge_sigma} ist dieser Effekt dargestellt. 
+Die drei Startparameter Sigma (\( \sigma\)), Pitch  und Feature-Size, welche die Struktur des Gratings beschreiben, haben unterschiedliche Effekte auf die Gratingstruktur. Sigma ist der Parameter, welcher, wie bereits beschrieben, den Einfluss des Hochenergielasers auf ein Feature modelliert. Je höher Sigma gewählt wird, desto mehr wird die Kantenstruktur des Targets aufgeweicht. In Abbildung \ref{img:edge_sigma} ist dieser Effekt dargestellt. 
 
 \begin{figure}[hh]
 \centering
@@ -220,13 +210,13 @@ Die drei Startparameter Sigma (\( \sigma\)), Pitch  und Feature-Size(fsize), wel
 \label{img:edge_sigma}
 \end{figure}
 
-Der Parameter Pitch(p) bestimmt die Periodizität der Kantenstruktur.  Daraus folgt, dass mit steigendem Pitch-Wert die Anzahl der Features sinkt. Dieser Effekt ist in der Abbildung \ref{img:edge_pitch_fsize} in der rechten Spalte dargestellt. Der dritte Startparamter Feature-Size(f) bestimmt die Größe der Features. Dabei kann die Feature-Size nicht größer als Pitch gewählt werden, da sonst keine Kantenstruktur mehr erkennbar wäre. Der Effekt der Feature-Size wird in Abbildung \ref{img:edge_pitch_fsize} in der linken Spalte dargestellt.
+Der Parameter Pitch bestimmt die Periodizität der Kantenstruktur.  Daraus folgt, dass mit steigendem Pitch-Wert die Anzahl der Features sinkt. Dieser Effekt ist in der Abbildung \ref{img:edge_pitch_fsize} in der rechten Spalte dargestellt. Der dritte Startparamter Feature-Size bestimmt die Größe der Features. Dabei kann die Feature-Size nicht größer als Pitch gewählt werden, da sonst keine Kantenstruktur mehr erkennbar wäre. Der Effekt der Feature-Size wird in Abbildung \ref{img:edge_pitch_fsize} in der linken Spalte dargestellt.
 
 
 \begin{figure}[hh]
 	\centering 
 	\includegraphics[scale=0.35]{images/pitch_fsize_edge.png} 
-	\caption{Vergleich der Kantenstruktur unter variierenden Pitch-Werten(rechte Spalte) und variierenden Feature-Size-Werten(linke Spalte)} 
+	\caption{Vergleich der Kantenstruktur unter variierenden Pitch-Werten (rechte Spalte) und variierenden Feature-Size-Werten (linke Spalte)} 
 	\label{img:edge_pitch_fsize}
 \end{figure} 
 
@@ -240,7 +230,7 @@ Wie im Kapitel zur Experimentbeschreibung beschrieben, ist das aufgenommene Dete
 \hat { a } _ { k } = \sum _ { j = 0 } ^ { N - 1 } e ^ { - 2 \pi \mathrm { i } \cdot \frac { j k } { N } } {\eta} _{ k} \text { für } k = 0 , \ldots , N - 1
 \end{equation}
 
-Das entstandene Produkt der Fouriertransformation ist im Raum der Komplexen Zahlen und weißt den gleichen Informationsgehalt wie die Elektronendichteverteilung auf. Das heißt Amplituden- und Phaseninformationen sind nach wie vor vorhanden. Wie in Kapitel 1 beschrieben, ist der Detektor zeitintegrierend und die Phase geht verloren, deswegen wird die Phaseninformation im weiteren Simulationsverlauf nicht weiter verwendet. Um schlussendlich die aufgenommenen Intensitäten des Detektors (siehe Abbildung \ref{img:detector}) zu erhalten, wird das Betragsquadrat des Amplitudenspektrums gebildet ($ \Phi = | \hat { a } _ { k }| ^{2}$)
+Das entstandene Produkt der Fouriertransformation ist im Raum der Komplexen Zahlen und weist den gleichen Informationsgehalt wie die Elektronendichteverteilung auf. Das heißt die Amplituden- und Phaseninformationen sind nach wie vor vorhanden. Wie in Kapitel 1 beschrieben, ist der Detektor Zeit integrierend und die Phase geht verloren, weswegen wird die Phaseninformation im weiteren Simulationsverlauf nicht weiter verwendet. Um schlussendlich die aufgenommenen Intensitäten des Detektors (siehe Abbildung \ref{img:detector}) zu erhalten, wird das Betragsquadrat des Amplitudenspektrums gebildet ($ \Phi = | \hat { a } _ { k }| ^{2}$)
 
 \begin{figure}[hh]
 \centering
@@ -250,7 +240,7 @@ Das entstandene Produkt der Fouriertransformation ist im Raum der Komplexen Zahl
 \end{figure}
 
 \subsection{Auswirkung der Startparameter auf das Simulationsergebnis}
-Die Startparameter des Simulation haben ebenfalls Auswirkung auf das Endprodukt der Simulation. Betrachtet man zunächst die Auswirkungen des Startparameters Pitch (Abbildung \ref{img:pitch_detector}), kann man erkennen, dass mit steigendem Pitch sich das Intensitätsmaximum verringert. Zusätzlich kommen noch mehr Peaks hinzu. Das hängt damit zusammen, dass mit steigenden Pitch sich die Anzahl der Features verringert und somit mehr Frequenzen benötigt werden, um die Gitterstruktur zu modellieren. 
+Die Startparameter des Simulation haben ebenfalls Auswirkung auf das Endprodukt der Simulation. Betrachtet man zunächst die Auswirkungen des Startparameters Pitch (Abbildung \ref{img:pitch_detector}), kann man erkennen, dass mit steigendem Pitch sich das Intensitätsmaximum verringert wird. Zusätzlich kommen noch mehr Peaks hinzu. Das hängt damit zusammen, dass sich mit steigenden Pitch  die Anzahl der Features verringert und somit mehr Frequenzen benötigt werden, um die Gitterstruktur zu modellieren. 
 
 \begin{figure}[hh]
 \centering
@@ -259,7 +249,7 @@ Die Startparameter des Simulation haben ebenfalls Auswirkung auf das Endprodukt 
 \label{img:pitch_detector}
 \end{figure}
 
-Der Startparamter Feature-Size verhält sich invers zum Parameter Pitch. Mit steigendem Feature-Size Wert, kommt es zu einer Erhöhung des Intensitätsmaximums und es werden weniger Frequenzen benötigt um die Gitterstruktur zu modellieren, somit sind auch weniger Peaks im Detektorsignal vorhanden(Abbildung \ref{img:fsize_detector}). 
+Der Startparamter Feature-Size verhält sich invers zum Parameter Pitch. Mit steigendem Feature-Size Wert kommt es zu einer Erhöhung des Intensitätsmaximums und es werden weniger Frequenzen benötigt, um die Gitterstruktur zu modellieren, somit sind auch weniger Peaks im Detektorsignal vorhanden(Abbildung \ref{img:fsize_detector}). 
 
 \begin{figure}[hh]
 \centering
@@ -268,7 +258,7 @@ Der Startparamter Feature-Size verhält sich invers zum Parameter Pitch. Mit stei
 \label{img:fsize_detector}
 \end{figure}
 
-Der letzte Startparameter Sigma hat ansteigenden Wert ähnliche Auswirkungen auf die Detektoraufnahmen wie Fsize. Bei steigendem Sigma-Wert steigt das Intensitätsmaximum und die Anzahl der Peaks verringert sich (Abbildung \. Jedoch skaliert der Parameter Sigma anders als Fsize. Kleinere Unterschiede im Sigma Wert, kann größere Auswirkungen auf die Anzahl der Peaks haben. Auch der Anstieg des Intensitätsmaximums in Abhängigkeit zu Sigma ist geringer im Vergleich zur Abhängigkeit zu Fsize. 
+Der letzte Startparameter Sigma hat mit steigenden Wert ähnliche Auswirkungen auf die Detektoraufnahmen wie Feature-Size. Bei steigendem Sigma-Wert steigt das Intensitätsmaximum und die Anzahl der Peaks verringert sich (Abbildung \. Jedoch skaliert der Parameter Sigma anders als Feature-Size. Kleinere Unterschiede im Sigma-Wert können größere Auswirkungen auf die Anzahl der Peaks haben. Auch der Anstieg des Intensitätsmaximums in Abhängigkeit zu Sigma ist geringer im Vergleich zur Abhängigkeit zu Fsize. 
 
 \begin{figure}[hh]
 \centering
@@ -279,7 +269,7 @@ Der letzte Startparameter Sigma hat ansteigenden Wert ähnliche Auswirkungen auf 
 
 \chapter{Datenbasis}
 \section{Generator}
-Um einen Machine Learning Ansatz auszuführen, muss eine ausreichend große Datenbasis existieren. Dazu wurde im Rahmen dieser Arbeit ein  Generator entwickelt, welcher mit Hilfe der vorher beschriebenen Simulation ausreichend viele Trainingsdaten produzieren kann. Bevor der Generator beginnen kann, muss eine Population P von Startparametern festgelegt werden. Um die Berechung der Simulationsdaten, welche aus P resultieren, zu beschleunigen wurde die Simulation mit Hilfe von MPI (Message Parsing Interface) parallisiert. MPI dubliziert einen Algorithmus auf N beliebige Prozesse, welche dann mit Hilfe vordefinierter Routinen miteinander kommunizieren können \cite{MPI}. Mit Hilfe von MPI-Routinen wurde die Population auf N MPI generierte Prozesse aufgeteilt. Jeder Prozess berechnet dann für seine kleinere Population von Startparametern die Simulationsergebnisse, welche dann anschließend als Dateien in den Speicher geladen werden. Zusätzlich zum Simulationsergebnis wird die Population der Startparameter und die daraus generierten Gitterstrukturen gespeichert, welche als Labels für das Training des neuronalen Netzes vorgesehen sind. 
+Um einen Machine-Learning-Ansatz auszuführen, muss eine ausreichend große Datenbasis existieren. Dazu wurde im Rahmen dieser Arbeit ein  Generator entwickelt, welcher mit Hilfe der vorher beschriebenen Simulation ausreichend viele Trainingsdaten produzieren kann. Bevor der Generator beginnen kann, muss eine Menge P von Startparametern festgelegt werden. Wobei ein Startparamter ein Tripel (Feature-Size, Pitch, Sigma) ist. Um die Berechung der Simulationsdaten, welche aus P resultieren, zu beschleunigen wurde die Simulation mit Hilfe von MPI (Message Parsing Interface) parallisiert. MPI dupliziert auszuführenden Code auf N beliebige Prozesse, welche dann mit Hilfe vordefinierter Routinen miteinander kommunizieren können \cite{MPI}. Mit Hilfe von MPI-Routinen wurde die Menge auf N MPI-generierte Prozesse aufgeteilt. Jeder Prozess berechnet für seine kleinere Menge von Startparametern die Simulationsergebnisse, welche anschließend als Dateien in den Speicher geladen werden. Zusätzlich zum Simulationsergebnis wird die Menge der Startparameter, welche als Labels für das Training des neuronalen Netzes vorgesehen sind, gespeichert. 
 
 \begin{figure}[hh]
 \centering
