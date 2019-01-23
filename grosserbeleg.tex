@@ -175,6 +175,14 @@ w _ { i j } ^ { \text { neu } } = w _ { i j } ^ { \text { alt } } + \Delta w _ {
 
 Der Backpropagation-Algorithmus wird iterativ solange angewandt, bis eine bestimmte Anzahl von Iterationen erreicht ist oder andere Kriterien erfüllt sind \cite{wiki:Backpropagation}.
 
+\subsection{Convolutional Neuronal Networks}
+Klassische Neuronal Networks besitzen die Einschränkung, dass dessen Inputs als Vektor geliefert werden müssen. Soll ein klassisches Neuronal Network zum Beispiel ein Bild der Größe $N   \times M \times C$ (C steht für Kanäle) verarbeiten, muss das Bild in einen Vektor der Größe $ N * M * C $ transformiert werden (Flatten). Convolutional Neuronal Networks (CNNs) besitzen im Gegensatz zu klassischen Neuronal Networks Convolutional Layer, und können somit Inputs höherer Dimension verarbeiten. Dazu sind die Neuronen als Filter $k$ der Größe $ H \times  W \times D $ (Höhe Breite,Tiefe) angeordnet. Ein Filter $k$ führt an einer Position $(x,y)$ des Inputs $I$  eine zweidimensionale diskrete Faltung durch und berechnet somit einen Datenpunkt \eqref{eq:2Dconv} der Feature Map $I ^{*}$ (Ergebnis eines Filters des Convolutional Layers).  Der Parameter $a$ steht für die Koordinate des Mittelpunktes des Filters. Ist der Filter zum Beispiel 5 breit, so ist $a=3$. Dabei geht die Gleichung \eqref{eq:2Dconv} von Filtern mit quadratischer Grundfläche aus. 
+
+\begin{equation}\label{eq:2Dconv}
+ 	I ^ { * } ( x , y ) = \sum _ { i = 1 } ^ { H} \sum _ { j = 1 } ^ { W } I ( x - i + a , y - j + a ) k ( i , j )
+\end{equation}
+
+Zur Berechnung des nächsten Datenpunktes der Feature Map wird der Filter um eine Schrittweite (\textit{stride)} verschoben. Sollte für die Berechnung von $ I ^ { * } ( x , y )$ Datenpunkte benötigt werden, welche über den Rand des Inputs hinaus liegen, müssen diese Punkte auf einer andere Weise bestimmt werden. Eine mögliche Strategie ist das vernachlässigen dieser Punkte, was je nach Größe des Filters eine Verkleinerung von $I ^ { * }$ zur Folge hätte. Die zweite mögliche Strategie, welche die fehlenden Datenpunkte zur Verfügung stellt, ist das Zero-Padding, welches die fehlenden Datenpunkte mit dem Wert Null ersetzt. Außerdem besteht als dritte Möglichkeit, dass die fehlenden Datenpunkte mit  dem dazugehörigen Randwert ersetzt wird. 
 
 \chapter{Simulation}
 \section{Motivation}
@@ -244,7 +252,7 @@ Die Startparameter des Simulation haben ebenfalls Auswirkung auf das Endprodukt 
 
 \begin{figure}[hh]
 \centering
-\includegraphics[scale=0.31]{images/pitch_endproduct.png} 
+\includegraphics[scale=0.25]{images/pitch_endproduct.png} 
 \caption{Verhalten der Detektoraufnahme in Abhängigkeit des Parameters Pitch }
 \label{img:pitch_detector}
 \end{figure}
@@ -253,7 +261,7 @@ Der Startparamter Feature-Size verhält sich invers zum Parameter Pitch. Mit stei
 
 \begin{figure}[hh]
 \centering
-\includegraphics[scale=0.31]{images/fsize_endproduct.png} 
+\includegraphics[scale=0.25]{images/fsize_endproduct.png} 
 \caption{Verhalten der Detektoraufnahme in Abhängigkeit des Parameters Fsize}
 \label{img:fsize_detector}
 \end{figure}
