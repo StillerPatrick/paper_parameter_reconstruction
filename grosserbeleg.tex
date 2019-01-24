@@ -197,6 +197,16 @@ Nach Ausführung der Faltung wird die errechnete Feature-Map durch eine ausgewähl
 \subsection{Residual Strukturen}
 Wie in Kapitel \ref{CNN} beschrieben, können beliebig viele Convolutional Layers hintereinander platziert werden. Je mehr Layer verwendet werden, desto tiefer wird das Netz. Mit steigender Tiefe des Netzes tritt erhöht das Problem kleiner werdender Gradienten auf (Vanishing-Gradient Problem). Das Vanishing Gradient Problem ist auf die Eigenschaft der Backpropagation zurückzuführen, dass die Gradienten der Gewichte eines Neurons in Abhängigkeit zu dessen Einfluss auf den Net-Output stehen. Bei tieferen Netzstrukturen verringert sich dieser Einfluss. Um den Einfluss der Neuronen auf den Net-Output zu erhöhen, werden Skip-Connections benutzt. Dazu wird der Output eines Layers auf den Input z.B. der übernächsten Schicht addiert. Es sind auch Skip-Connections mit einer höheren Schrittweite möglich \cite{ResNet}.
 
+\begin{figure}[hh]
+\centering
+\includegraphics [scale=0.5]{images/ResNet.png}
+\caption{Realisierung einer Skip-Connection in einem Neuronal Network. Bildquelle: \cite{ResNet}}
+\label{fig:cnn_archtitecture}
+\end{figure}
+
+
+
+
 \chapter{Simulation}
 \section{Motivation}
 Um das Ergebnis des SAXS-Experiments bestmöglich zu verstehen und aufgrund einer geringen Anzahl von Experimentdaten, wurde im Rahmen der Master-Arbeit von Malte Zacharias mit dem Titel \grqq Model-Driven Parameter Reconstruction from Small Angle X-Ray Scattering Images\grqq \  eine Modellierung entwickelt. Die Modellierung beinhaltet das Design der Gitterstruktur (Elektronendichteverteilung), die Modellierung des Hochenergielasereinflusses, die Modellierung des Streuvorgangs und die Modellierung des Detektorbildes. Das ganze Kapitel bezieht sich auf die Master-Arbeit von Malte Zacharias \cite{Zach17}. 
