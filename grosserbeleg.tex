@@ -207,7 +207,7 @@ Wie in Kapitel \ref{CNN} beschrieben, können beliebig viele Convolutional Layers
 
 
 
-\chapter{Simulation}
+\chapter{Simulation} \label{Simulation}
 \section{Motivation}
 Um das Ergebnis des SAXS-Experiments bestmöglich zu verstehen und aufgrund einer geringen Anzahl von Experimentdaten, wurde im Rahmen der Master-Arbeit von Malte Zacharias mit dem Titel \grqq Model-Driven Parameter Reconstruction from Small Angle X-Ray Scattering Images\grqq \  eine Modellierung entwickelt. Die Modellierung beinhaltet das Design der Gitterstruktur (Elektronendichteverteilung), die Modellierung des Hochenergielasereinflusses, die Modellierung des Streuvorgangs und die Modellierung des Detektorbildes. Das ganze Kapitel bezieht sich auf die Master-Arbeit von Malte Zacharias \cite{Zach17}. 
 
@@ -300,14 +300,25 @@ Der letzte Startparameter Sigma hat mit steigenden Wert ähnliche Auswirkungen au
 
 \chapter{Datenbasis}
 \section{Generator}
-Um einen Machine-Learning-Ansatz auszuführen, muss eine ausreichend große Datenbasis existieren. Dazu wurde im Rahmen dieser Arbeit ein  Generator entwickelt, welcher mit Hilfe der vorher beschriebenen Simulation ausreichend viele Training, Validierungs und Testsdaten produzieren kann. Der Ersteschritt der Genierierung der Datenbasis ist die Festlegung der Menge $P$von Startparametern, wobei ein Startparamter ein Tripel (Feature-Size, Pitch, Sigma) ist. Um die Berechung der Simulationsdaten, welche aus P resultieren, zu beschleunigen wurde die Simulation mit Hilfe des Message Parsing Interfaces(MPI) parallisiert. MPI dupliziert auszuführenden Code auf N beliebige Prozesse, welche mit Hilfe vonvordefinierten Routinen miteinander kommunizieren können \cite{MPI}. Wurde die Menge von Startparametern festgelegt, wird diese Menge über MPI-Routinen auf $N$ Prozesse aufgeteilt.  Jeder Prozess berechnet für seine zugewiesene Menge von Startparametern die Simulationsergebnisse, welche anschließend als Dateien in den Speicher des Rechenclusters gelegt werden. Zusätzlich zum Simulationsergebnis wird die Menge der Startparameter, welche als Labels für das Training des Neuronal Networks vorgesehen sind, gespeichert. 
+Um einen Machine-Learning-Ansatz auszuführen, muss eine ausreichend große Datenbasis existieren. Dazu wurde im Rahmen dieser Arbeit ein  Generator entwickelt, welcher mit Hilfe der vorher beschriebenen Simulation ausreichend viele Trainings-, Validierungs- und Testsdaten produzieren kann. Der erste Schritt der Genierierung der Datenbasis ist die Festlegung der Menge $P$ von Startparametern, wobei ein Startparamter ein Tripel (Feature-Size, Pitch, Sigma) ist. Um die Berechung der Simulationsdaten, welche aus P resultieren, zu beschleunigen wurde die Simulation aus Kapitel \ref{Simulation} mit Hilfe des Message Parsing Interfaces (MPI) parallisiert. MPI dupliziert auszuführenden Code auf N beliebige Prozesse, welche mit Hilfe von vordefinierten Routinen miteinander kommunizieren können \cite{MPI}. Wurde die Menge von Startparametern festgelegt, wird diese Menge über MPI-Routinen auf $N$ Prozesse aufgeteilt.  Jeder Prozess berechnet für seine zugewiesene Menge von Startparametern die Simulationsergebnisse, welche anschließend als Dateien in den Speicher des Rechenclusters gelegt werden. Zusätzlich zum Simulationsergebnis wird die Menge der Startparameter, welche als Labels für das Training des Neuronal Networks vorgesehen sind, gespeichert. 
 
 \begin{figure}[hh]
 \centering
-\includegraphics[scale=0.5]{images/generator_schema.png} 
+\includegraphics[scale=0.4]{images/generator_schema.png} 
 \caption{Schematischer Aufbau des Generators}
 \label{img:sigma_detector}
 \end{figure}
+
+Die Erstellung der Datenbasis wurde auf dem Rechencluster Hypnos des Helmholtz Zentrums Dresden Rossendorf auf 64 AMD 16-Kern Opteron Prozessoren ausgeführt. Die Parallelisierung der Simulation hat einen großen Speedup zur Folge, so dass 100.000 Bilder in knapp zwei Stunden anstatt in ca. 50 h Stunden(* lineare Regression aus Rechenzeiten kleinerer Datensätze) generiert werden können. Diese kurze Rechendauer ermöglicht ein schnelleres Validieren und Korrigieren des erstellten Datensatzes. Die Rechenzeiten für kleinere Datensätze sind der Tabelle \ref{tab:generator} zu sehen. Bei kleineren Datensätzen ist der Speedup nicht signifikant, da durch die Parallelisierung ein Kommunikationsoverhead entsteht.
+\begin{table}[hh]
+\centering
+\begin{tabular}{l|l|l|l|l|}
+            & 1 Bild    & 100 Bilder  & 1000 Bilder  & 100.000 Bilder   \\ \hline
+sequentiell & 1,889 sek & 187,613 sek & 1870,095 sek & 186940,286 sek * \\
+Generator   & 1,917 sek & 4,531 sek   & 42,831 sek   & 6900,243 sek    
+\end{tabular}
+\caption{\label{tab:generator} Vergleich der Berechnungsdauer für verschieden große Datensätze}
+\end{table}
 
 
 \section{Wahl der Eingangsparameter}
