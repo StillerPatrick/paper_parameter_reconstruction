@@ -1,6 +1,7 @@
 \documentclass[hyperref,german,beleg]{cgvpub}
 \usepackage{subfigure}
 \usepackage{array}
+\usepackage{listings}
 %weitere Optionen zum Ergänzen (in eckigen Klammern):
 % 
 % female	weibliche Titelbezeichnung bei Diplom
@@ -322,7 +323,25 @@ Generator   & 1,917 sek & 4,531 sek   & 42,831 sek   & 6900,243 sek
 
 
 \section{Wahl der Eingangsparameter}
-\section{Training-, Validation- und Testdatensatz}
+Anhand der Auswertung der Simulation in Kapitel \ref{Simulation} sind Abhängigkeiten zwischen den Startparametern Pitch, Feature-Size und Sigma festzustellen. Um einen validen Datensatz zu erstellen, müssen diese Abhängigkeiten berücksichtigt werden.  Der erste Startparameter Pitch ist der  Parameter, welcher den Wertebereich der anderen beiden Parametern Feature-Size und Sigma signifikant bestimmt. Wie in Kapitel \ref{Simulation} bemerkt, bestimmt Pitch die Periodizität der Features im Grating. Um aussagekräftige Detektorausgaben zu produzieren, wurde festgelegt, dass jedes Target mindestens vier und maximal 32 Features besitzt. Das bedeutet im Umkehrschluss, dass bei einer festen Targetbreite von 2048 Pixeln sich ein minimaler Pitch-Wert bei 64 und der maximaler Pitch-Wert bei 512 Pixeln ergibt. Je nach Wahl des Pitch-Wertes, ergeben sich die Definitionsbereiche für Sigma und Feature-Size. Um zu kleine Features zu vermeiden, wurde der minimale Feature-Size-Wert auf 25 \% des Pitch-Wertes festgelegt. Für ausreichend große Abstände zwischen den Features, wurde der maximale Feature-Size-Wert auf 75 \% des Pitch-Wertes festgelegt. Nach der Bestimmung von Pitch und Feature Size kann der Wertebereich von Sigma festgesetzt werden. Der minimale Sigma-Wert ist auf $ 10^{-9} $ festgelegt, um Simulationsergebnisse ohne Hochintensitätslasereinfluss zu generieren. Zur Bestimmung des maximalen Sigma-Wertes ist der Abstand zwischen zwei Features notwendig. Der Abstand zwischen zwei Features ergibt sich aus Pitch - FeatureSize. Da der Aufweichungseffekt gleichmäßig auf das Feature wirkt, muss für den maximalen Sigma-Wert der Feature-Abstand halbiert werden. Um keine zu hohen Aufweichungseffekte zu erhalten, wurde die obere Grenze des Sigma Wertes auf (Pitch - Fsize) / 4 festgesetzt. Für die Umsetzung der voneinander abhängigen Wertebereichen, werden Folgen konstruiert, dessen Elemente zu Startparameter Tripeln konkateniert werden. Eine Beispielhafte Implementierung ist in der Abbildung \ref{code:P} zu sehen, welche jeweils eine Folge mit 64 Elementen (Anzahl der Prozessoren) erstellt.
+
+
+
+\begin{figure}[htbp]\label{code:P}
+\centering 
+\begin{lstlisting}[frame=trbl][language=Python]
+num_pitches= 64
+num_fsizes= 64
+num_sigmas= 64
+for pitch in np.linspace(64,512,num=num_pitches):
+    for feature_size in np.linspace(0.25*pitch,0.75*pitch,num=num_fsizes):
+        for sigma in np.linspace(1e-9,(pitch-feature_size)/4.,num=num_sigmas):
+            add_to_P(sigma,pitch,feature_size,number))
+\end{lstlisting}
+\caption{Umsetzung der Wertebereiche mit Hilfe drei verschachtelter Schleifen, welche voneinander Abhängig sind}
+\end{figure}
+
+\section{Trainings-, Validierungs- und Testdatensatz}
 
 \chapter{Neuronal Network }
 \section{Architektur}
