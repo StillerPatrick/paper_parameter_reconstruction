@@ -119,7 +119,7 @@ Neuronal Networks sind eine mathematische Adaption des realen menschlichen Gehir
 Ein Neuronal Network besteht aus vielen kleinen Komponenten, Neuronen, welche durch gerichtete und gewichtete Verbindungen verbunden sind.  Sämtliche Beschreibungen und Notationen beziehen sich auf \cite{Kriesel2007NeuralNetworks}. Mathematisch definiert ist ein Neuronal Network als ein Tripel $(N,V,w)$ mit den Beiden Mengen $N$ und $V$ und der Funktion $w$.  $N$ ist die Menge aller Neuronen und $V$ = $\{ (i,j) |  i, j \epsilon \mathbb{N}\}$ die Menge der Verbindungen zwischen Neuron i und Neuron j. Die Funktion $w : V \longrightarrow \mathbb{R} $  beschreibt die Gewichte des Neuronalen Netzes. Wobei w(i,j) das Gewicht zwischen dem Neuron i und Neuron j beschreibt. Im Allgemeinen wird anstatt der Funktionsnotation die Notation $w_{i,j}$ für die Gewichte zwischen zwei Neuronen verwendet. Die nächste wichtige Komponente ist die Propagierungsfunktion $net_{j}$  eines Neurons, welche einen wichtigen Teil des Informationsflusses in einem Neuronalen Netz definiert. Dabei wird der Input des Neurons j durch dessen Propagierungsfunktion $net_{j}$ bestimmt. Die Propagierungsfunktion $net_{j}$ nimmt den Output aller Neuronen welche eine ausgehende Verbindung zum Neuron j besitzen als Input.  So wird die Propagierungsfunktion $net_{j}$ durch folgenden funktionalen Zusammenhang beschrieben : 
 
 \begin{equation}\label{eq:propagation_function}
- net_ { j } = \sum _ { i \in I_{j}} ( o _ { i }\cdot w _ { i , j }) \textrm{ mit } I_{j} = \{ i \epsilon N | (i,j) \epsilon V \}
+ net_ { j } = \sum _ { i \in I_{j}} ( o _ { i }\cdot w _ { i , j }) \textrm{ mit } I_{j} = \{\ i \ \epsilon \  N\ |\ (i,j) \  \epsilon \  V\ \}
 \end{equation}
 
 Der Output  $o_{j} $ eines Neurons $j$ wird mit Hilfe der Aktivierungsfunktion $a_{j}$ und der der Propagierungsfunktion  $net_{j}$  berechnet. Dazu wird noch der Schwellwert $ \theta_{j} $ zur Hemmung des Aktivierungszustandes des Neurons zur Hilfe genommen. Somit ergibt sich für den Output des Neurons folgender funktionaler Zusammenhang: 
@@ -165,7 +165,7 @@ Dabei ist \textit{E} die Errorfunktion, $\delta _ { j }$ des Gradient Neurons j,
 
 
 \begin{equation}\label{eq:gradient}
-\delta _ { j } = \left\{ \begin{array} { l l } { a_{j}  \left( \text { net } _ { j } \right) \left( o _ { j } - t _ { j } \right) } & { \text { falls } j \text { sich in der Output-Layer befindet} } \\ { a_{j}  \left( \text { net } _ { j } \right) \sum _ { k } \delta _ { k } w _ { j k } } & { \text { falls } j \text { verdecktes Neuron oder ein Input-Neuron ist } } \end{array} \right.
+\delta _ { j } = \left\{ \begin{array} { l l } { a_{j}  \left( net_{ j } \right) \left( o _ { j } - t _ { j } \right) } & { \text { falls } j \text { sich in der Output-Layer befindet} } \\ { a_{j}  \left( net_{ j } \right) \sum _ { k } \delta _ { k } w _ { j k } } & { \text { falls } j \text { verdecktes Neuron oder ein Input-Neuron ist } } \end{array} \right.
 \end{equation}
 
 Dabei ist die Gleichung \eqref{eq:gradient} in Abhängigkeit von den Variablen $o_{j}$ , dem Output des Neurons j, $t_{j}$, die Soll-Ausgabe des Neurons $j$ und der Aktivierungsfunktion $a_{j} $ des Neurons $j$ angegeben. Somit ergibt sich das neue Gewicht durch eine Addition des alten Gewichts mit der errechneten Gewichtsveränderung. 
@@ -228,7 +228,7 @@ Das Ergebnis der Faltung des Rechteckimpulses und der Gauss-Verteilung ist die M
 	\tilde{\eta} = \frac{\sqrt{\pi}\sigma}{2}(\text{erf}(\frac{x}{\sqrt{2}\sigma}) - \text{erf}(\frac{x - \text{fsize}}{\sqrt{2}\sigma}))
 \end{equation}
 
-Das modellierte Feature wird durch eine weitere Faltung mit mehreren um Pitch verschobenen Dirac-Impulsen \cite{beucher_2011} periodisch fortgesetzt wird, um die Grating-Struktur zu komplettieren. 
+Das modellierte Feature wird durch eine weitere Faltung mit mehreren um Pitch verschobenen Impulsen\cite{beucher_2011} periodisch fortgesetzt wird, um die Grating-Struktur zu komplettieren. 
 
 
 \subsection{Effekt der Startparameter auf die Gitterstruktur}
@@ -301,7 +301,7 @@ Der letzte Startparameter Sigma hat mit steigenden Wert ähnliche Auswirkungen au
 
 \chapter{Datenbasis}
 \section{Generator}
-Um einen Machine-Learning-Ansatz auszuführen, muss eine ausreichend große Datenbasis existieren. Dazu wurde im Rahmen dieser Arbeit ein  Generator entwickelt, welcher mit Hilfe der vorher beschriebenen Simulation ausreichend viele Trainings-, Validierungs- und Testsdaten produzieren kann. Der erste Schritt der Genierierung der Datenbasis ist die Festlegung der Menge $P$ von Startparametern, wobei ein Startparamter ein Tripel (Feature-Size, Pitch, Sigma) ist. Um die Berechung der Simulationsdaten, welche aus P resultieren, zu beschleunigen wurde die Simulation aus Kapitel \ref{Simulation} mit Hilfe des Message Parsing Interfaces (MPI) parallisiert. MPI dupliziert auszuführenden Code auf N beliebige Prozesse, welche mit Hilfe von vordefinierten Routinen miteinander kommunizieren können \cite{MPI}. Wurde die Menge von Startparametern festgelegt, wird diese Menge über MPI-Routinen auf $N$ Prozesse aufgeteilt.  Jeder Prozess berechnet für seine zugewiesene Menge von Startparametern die Simulationsergebnisse, welche anschließend als Dateien in den Speicher des Rechenclusters gelegt werden. Zusätzlich zum Simulationsergebnis wird die Menge der Startparameter, welche als Labels für das Training des Neuronal Networks vorgesehen sind, gespeichert. 
+Um einen Machine-Learning-Ansatz auszuführen, muss eine ausreichend große Datenbasis existieren. Dazu wurde im Rahmen dieser Arbeit ein  Generator entwickelt, welcher mit Hilfe der vorher beschriebenen Simulation ausreichend viele Trainings-, Validierungs- und Testsdaten produzieren kann. Der erste Schritt der Genierierung der Datenbasis ist die Festlegung der Menge $P$ von Startparametern, wobei ein Startparamter ein Tripel (Feature-Size, Pitch, Sigma) ist. Um die Berechung der Simulationsdaten, welche aus P resultieren, zu beschleunigen wurde die Simulation aus Kapitel \ref{Simulation} mit Hilfe des Message Parsing Interfaces (MPI) parallisiert. MPI dupliziert auszuführenden Code auf N beliebige Prozesse, welche mit Hilfe von vordefinierten Routinen miteinander kommunizieren können \cite{MPI}. Wurde die Menge von Startparametern festgelegt, wird diese Menge über MPI-Routinen auf $N$ Prozesse aufgeteilt. Jeder Prozess führt für seine zugewiesene Menge von Startparametern die In Kapitel \ref{Simulation} beschriebene Simulation aus und schreibt deren Ausgabe als Dateien in den Speicher des Rechenclusters. Zusätzlich zum Simulationsergebnis wird die Menge der Startparameter, welche als Labels für das Training des Neuronal Networks vorgesehen sind, gespeichert. 
 
 \begin{figure}[hh]
 \centering
@@ -310,47 +310,147 @@ Um einen Machine-Learning-Ansatz auszuführen, muss eine ausreichend große Datenb
 \label{img:sigma_detector}
 \end{figure}
 
-Die Erstellung der Datenbasis wurde auf dem Rechencluster Hypnos des Helmholtz Zentrums Dresden Rossendorf auf 64 AMD 16-Kern Opteron Prozessoren ausgeführt. Die Parallelisierung der Simulation hat einen großen Speedup zur Folge, so dass 100.000 Bilder in knapp zwei Stunden anstatt in ca. 50 h Stunden(* lineare Regression aus Rechenzeiten kleinerer Datensätze) generiert werden können. Diese kurze Rechendauer ermöglicht ein schnelleres Validieren und Korrigieren des erstellten Datensatzes. Die Rechenzeiten für kleinere Datensätze sind der Tabelle \ref{tab:generator} zu sehen. Bei kleineren Datensätzen ist der Speedup nicht signifikant, da durch die Parallelisierung ein Kommunikationsoverhead entsteht.
-\begin{table}[hh]
-\centering
-\begin{tabular}{l|l|l|l|l|}
-            & 1 Bild    & 100 Bilder  & 1000 Bilder  & 100.000 Bilder   \\ \hline
-sequentiell & 1,889 sek & 187,613 sek & 1870,095 sek & 186940,286 sek * \\
-Generator   & 1,917 sek & 4,531 sek   & 42,831 sek   & 6900,243 sek    
-\end{tabular}
-\caption{\label{tab:generator} Vergleich der Berechnungsdauer für verschieden große Datensätze}
-\end{table}
-
-
 \section{Wahl der Eingangsparameter}
-Anhand der Auswertung der Simulation in Kapitel \ref{Simulation} sind Abhängigkeiten zwischen den Startparametern Pitch, Feature-Size und Sigma festzustellen. Um einen validen Datensatz zu erstellen, müssen diese Abhängigkeiten berücksichtigt werden.  Der erste Startparameter Pitch ist der  Parameter, welcher den Wertebereich der anderen beiden Parametern Feature-Size und Sigma signifikant bestimmt. Wie in Kapitel \ref{Simulation} bemerkt, bestimmt Pitch die Periodizität der Features im Grating. Um aussagekräftige Detektorausgaben zu produzieren, wurde festgelegt, dass jedes Target mindestens vier und maximal 32 Features besitzt. Das bedeutet im Umkehrschluss, dass bei einer festen Targetbreite von 2048 Pixeln sich ein minimaler Pitch-Wert bei 64 und der maximaler Pitch-Wert bei 512 Pixeln ergibt. Je nach Wahl des Pitch-Wertes, ergeben sich die Definitionsbereiche für Sigma und Feature-Size. Um zu kleine Features zu vermeiden, wurde der minimale Feature-Size-Wert auf 25 \% des Pitch-Wertes festgelegt. Für ausreichend große Abstände zwischen den Features, wurde der maximale Feature-Size-Wert auf 75 \% des Pitch-Wertes festgelegt. Nach der Bestimmung von Pitch und Feature Size kann der Wertebereich von Sigma festgesetzt werden. Der minimale Sigma-Wert ist auf $ 10^{-9} $ festgelegt, um Simulationsergebnisse ohne Hochintensitätslasereinfluss zu generieren. Zur Bestimmung des maximalen Sigma-Wertes ist der Abstand zwischen zwei Features notwendig. Der Abstand zwischen zwei Features ergibt sich aus Pitch - FeatureSize. Da der Aufweichungseffekt gleichmäßig auf das Feature wirkt, muss für den maximalen Sigma-Wert der Feature-Abstand halbiert werden. Um keine zu hohen Aufweichungseffekte zu erhalten, wurde die obere Grenze des Sigma Wertes auf (Pitch - Fsize) / 4 festgesetzt. Für die Umsetzung der voneinander abhängigen Wertebereichen, werden Folgen konstruiert, dessen Elemente zu Startparameter Tripeln konkateniert werden. Eine Beispielhafte Implementierung ist in der Abbildung \ref{code:P} zu sehen, welche jeweils eine Folge mit 64 Elementen (Anzahl der Prozessoren) erstellt.
-
-
+Anhand der Auswertung der Simulation in Kapitel \ref{Simulation} sind Abhängigkeiten zwischen den Startparametern Pitch, Feature-Size und Sigma festzustellen. Um einen validen Datensatz zu erstellen, müssen diese Abhängigkeiten berücksichtigt werden.  Der erste Startparameter Pitch ist der  Parameter, welcher den Wertebereich der anderen beiden Parametern Feature-Size und Sigma signifikant bestimmt. Wie in Kapitel \ref{Simulation} bemerkt, bestimmt Pitch die Periodizität der Gitterstruktur. Um aussagekräftige Detektorausgaben zu produzieren, wurde festgelegt, dass jedes Target mindestens vier und maximal 32 Features besitzt. Das bedeutet im Umkehrschluss, dass bei einer festen Targetbreite von 2048 Pixeln sich ein minimaler Pitch-Wert bei 64 und der maximaler Pitch-Wert bei 512 Pixeln ergibt. Je nach Wahl des Pitch-Wertes, ergeben sich die Definitionsbereiche für Sigma und Feature-Size. Um zu kleine Features zu vermeiden, wurde der minimale Feature-Size-Wert auf 25 \% des Pitch-Wertes festgelegt. Für ausreichend große Abstände zwischen den Features, wurde der maximale Feature-Size-Wert auf 75 \% des Pitch-Wertes beschränkt. Nach der Bestimmung von Pitch und Feature Size kann der Definitionsbereich von Sigma festgesetzt werden. Der minimale Sigma-Wert ist auf $ 10^{-9} $ festgelegt, um Simulationsergebnisse ohne Hochintensitätslasereinfluss zu generieren. Zur Bestimmung des maximalen Sigma-Wertes ist der Abstand zwischen zwei Features notwendig. Der Abstand zwischen zwei Features ergibt sich aus Pitch - FeatureSize. Da der Aufweichungseffekt gleichmäßig auf das Feature wirkt, muss für den maximalen Sigma-Wert der Feature-Abstand halbiert werden. Um keine zu hohen Aufweichungseffekte zu erhalten, wurde die obere Grenze des Sigma Wertes auf (Pitch - Fsize) / 4 festgesetzt. Für die Umsetzung der voneinander abhängigen Wertebereichen, werden Folgen konstruiert, dessen Elemente zu Startparameter Tripeln konkateniert werden. Eine Beispielhafte Implementierung ist in der Abbildung \ref{code:P} zu sehen, welche jeweils eine Folge mit 64 Elementen (Anzahl der Prozessoren) erstellt.
 
 \begin{figure}[htbp]\label{code:P}
 \centering 
 \begin{lstlisting}[frame=trbl][language=Python]
-num_pitches= 64
-num_fsizes= 64
-num_sigmas= 64
-for pitch in np.linspace(64,512,num=num_pitches):
-    for feature_size in np.linspace(0.25*pitch,0.75*pitch,num=num_fsizes):
-        for sigma in np.linspace(1e-9,(pitch-feature_size)/4.,num=num_sigmas):
-            add_to_P(sigma,pitch,feature_size,number))
+num_pitches = 64
+num_fsizes = 64
+num_sigmas = 64
+for pitch in np.linspace(64, 512, num=num_pitches):
+    for feature_size in np.linspace(0.25*pitch, 0.75*pitch, num=num_fsizes):
+        for sigma in np.linspace(1e-9, (pitch-feature_size)/4, num=num_sigmas):
+            add_to_P(sigma, pitch, feature_size, number))
 \end{lstlisting}
-\caption{Umsetzung der Wertebereiche mit Hilfe drei verschachtelter Schleifen, welche voneinander Abhängig sind}
+\caption{Umsetzung der Definitionsbereiche mit Hilfe drei verschachtelter Schleifen, welche voneinander Abhängig sind}
 \end{figure}
 
-\section{Trainings-, Validierungs- und Testdatensatz}
 
-\chapter{Neuronal Network }
-\section{Architektur}
-\section{Lossfunction}
-\section{Optimizer}
+\section{Performance}
+Die Erstellung der Datenbasis wurde auf dem Rechencluster Hypnos des Helmholtz Zentrums Dresden Rossendorf auf 64 AMD 16-Kern Opteron Prozessoren ausgeführt. Die Parallelisierung der Simulation hat einen großen Speedup zur Folge, so dass 100.000 Bilder in knapp zwei Stunden anstatt in ca. 50 h Stunden(* lineare Regression aus Rechenzeiten kleinerer Datensätze) generiert werden können. Diese kurze Rechendauer ermöglicht ein schnelleres Validieren und Korrigieren des erstellten Datensatzes. Die Rechenzeiten für kleinere Datensätze sind der Tabelle \ref{tab:generator} zu sehen. Bei kleineren Datensätzen ist der Speedup nicht signifikant, da durch die Parallelisierung ein Kommunikationsoverhead entsteht.
+\begin{table}[hh]
+\centering
+\begin{tabular}{|l|l|l|l|l|}
+\hline
+            & 1 Bild    & 100 Bilder  & 1000 Bilder  & 100.000 Bilder   \\ \hline
+sequentiell & 1,889 sek & 187,613 sek & 1870,095 sek & 186940,286 sek * \\
+Generator   & 1,917 sek & 4,531 sek   & 42,831 sek   & 6900,243 sek   \\ \hline
+\end{tabular}
+\caption{\label{tab:generator} Vergleich der Berechnungsdauer für verschieden große Datensätze}
+\end{table}
+
+\section{Trainings-, Validierungs- und Testdatensatz}\label{Database}
+Für das Training von Pitch, Feature-Size und Sigma stehen zwei verschiedene Datenbasen zur Verfügung. Der erste Datensatz wurde für das Training des Neuronal Networks erstellt, welches Pitch schätzen soll.  Dieser Datensatz hat die Besonderheit, dass die Folge vom minimalen Pitch-Wert bis zum maximalen Pitch-Wert deutlich höher abgetastet ist, um dem Neuronal Network eine möglichst aussagekräftige Verteilung von Pitch-Werten und deren Auswirkung auf das Detektorbild zu geben. Die Feature-Size- und Sigma-Folgen wurden deutlich geringer abgetastet, jedoch steht aufgrund der verschachtelten Schleifen zur Generierung (Abbildung\ref{code:P}) der Startparameter eine ausreichend große Verteilung von Sigma und Feature-Size-Werten für das Training von Pitch zur Verfügung. 
+
+\chapter{Lösungsansatz}
+In diesem Kapitel wird der Lösungsansatz für die Parameterrekonstruktion beschrieben. Dabei wird auf die Gesamtarchitektur, der konzeptionelle Aufbau der einzelnen Komponenten und auf den Aufbau der Neuronal Networks und deren Training eingegangen. 
+
+\section{Gesamtarchitektur}
+Wie in Kapitel \ref{Simulation} beschrieben, ergibt sich die Gitterstruktur des Targets aus einer Faltung von Impulsfunktion, Gauss-Verteilung und Rechteckfunktion. Laut Faltungstheorem, welches besagt, dass die Faltung zweier Funktionen durch die Fouriertransformation $\mathcal { F }$ in ein Produkt überführt wird, sind die Fouriertransformationen der einzelnen Komponenten der Faltung im Fourierbild vorhanden.
+Aufgrund des Faltungstheorems wurde die Parameterkonstruktion als Zweischrittverfahren konstruiert. Die Architektur besteht aus zwei Neuronal Networks. Das erste Neuronal Network ist ein Convolutional Neuronal Network, welches versucht anhand des Detektorbildes den Pitch-Wert zu schätzen. Der geschätzte Pitch-Wert wird anschließend dafür genutzt die Impulsverteilung zu rekonstruieren. Dafür wird folgender funktionaler Zusammenhang verwendet: 
+
+\begin{equation}
+\delta_{pitch}(x) = \begin{cases}
+1 & \text{\ für \ } x \text{\ mod \ } pitch = 0 \\
+0 &  \text{\ sonst} 
+\end{cases}
+\end{equation}
+
+Die generierte Impulsverteilung dient als Support für das zweite Neuronal Network (Fully Connected Neuronal Network), um eine genauere Schätzung des Feature-Size- und Sigma-Wertes zu ermöglichen. Dabei wird der durch das CNN erstellte Support mit dem Detektorbild konkateniert. Die Konkatenation zwischen Detekorbild und Support wird als Input für das Fully Connected Neuronal Network gegeben. In Abbildung \ref{img:complete_architecture} ist ein schematischer Aufbau des gesamten Architektur zu sehen. Der Output ist dabei nicht als Komponente zu betrachten, sondern nur als Verbindungsstück der Schätzungen der beiden Neuronal Networks. Aufgrund lokaler Änderung im Detektorbild bei verschiedenen Pitch-Werten wurde für die Schätzung des Pitch-Wertes ein CNN gewählt. Das Gegenteil ist bei unterschiedlichen Feature-Size- und Sigma-Werten der Fall, diese haben globale Auswirkung auf das Detektorbild. Deshalb wurde für die Schätzung des Feature-Size und Sigma-Wertes ein Fully Connected Neuronal Network gewählt.
+
+
+\begin{figure}[hh]
+\centering
+\includegraphics[scale=0.5]{images/complete_architecture.png} 
+\caption{Schematische Beschreibung der Gesamtarchitektur}
+\label{img:complete_architecture}
+\end{figure}
+\section{Convolutional Neuronal Network}
+\subsection{Bayes'sche Optimierung}
+Das Finden der geeigneten Hyperparameter für ein Neuronales Netz ist eine große Herausforderung. Der Suchraum wird durch Zahlreiche Parameter wie Tiefe des Netzes, Anzahl der Filter, Größe der Filter usw. sehr groß. Ansätze wie Random- oder Gridsearch sind bekannte Ansätze für das Finden geeigneter Hyperparameter. Jedoch beziehen diese Ansätze die bisher evaluierten Hyperparameter nicht für die Wahl des als nächstes zu evaluierten Hyperparameters ein. In diesem Bezug ist eine Evaluierung das Training eines Neuronalen Netzes, welches unter festgelegten Hyperparametern erstellt wurde und dieses nach einem festgelegten Qualitätsmaß bewertet wurde. Im Gegensatz zu den eben erwähnten Optimierungsverfahren verfolgt die Bayes'sche Optimierung den Ansatz bereits evaluierte Hyperparametersätze in die Optimierung mit einzubeziehen. Die Grundidee der Bayes'schen Optimierung ist das Erstellen einer Wahrscheinlichkeitverteilung $p(L | \theta)$ mit $L$ derQualität eines Neuronal Networks, dass in Abhängigkeit eines Hyperparamtersatzes $\theta$ erstellt wurde. Zu Beginn der Bayes'schen Optimierung werden bereits bekannte Evaluierungspunkte verwendet oder ein festgelegter Hyperparametersatz evaluiert, um ein erstes Wahscheinlichkeitsmodell mit Hilfe der Maximum Likelihood-Methode \cite{Likelihood} zu erstellen. Das erstellte Wahrscheinlichkeitsmodell wird dann benutzt, um den nächsten Evaluierungspunkt aus dem definierten Suchraum zu bestimmen. Nach dessen Evaluierung wird erneut das Wahrscheinlichkeitsmodell angepasst und ein neuer Evaluierungspunkt gefunden. Dieser Prozess wird solange durchgeführt, bis eine bestimmt Anzahl von Iterationen erreicht wurde. Die genauere Beschreibung des Algorithmus kann \cite{BayesOptimization} entnommen. Um eine Bayes'sche Optimierung für das CNN vorzunehmen, wurde die Implementierung von Scikit-learn verwendet. Dabei wurden die Hyperparameter: Anzahl der Convolutional Layer, Anzahl der Filter pro Convolutional Layer, Filtergröße und die Learning-Rate des Optimizers über die Bayes'scher Optimierung gefunden. Die Bayes'sche Optmierung wurde durch den  Suchraum aus Tabelle \ref{tab:bayes} eingeschränkt. Ein Evaluierungschritt ist die Erstellung des CNN anhand des festgelegten Hyperparametersatzes, das Trainieren des CNNs mit 1024 Bildern über 3000 Epochen und die Bestimmung der Qualität. Als Qualitätsmaß wurde der beste erreichte Mean-Squared-Error auf dem Validationdatensatz verwendet. Insgesamt wurden 50 Evaluierungsschritte ausgeführt. Zusätzlich wurden Residual Strukturen mit einer Sprungweite von 2 dem erstellten CNN hinzugefügt. 
+
+\begin{table}[]
+\centering 
+\begin{tabular}{|l|l|l|}
+\hline
+Variable   & Minimum & Maximum  \\ \hline
+Learning-Rate               & 1e-15   & 1e-5    \\
+Anzahl Convolutional Layer  & 3       & 12      \\
+Filtergröße                 & 4       & 20      \\
+Anzahl der Filter pro Layer & 16      & 64    \\ \hline
+\end{tabular}
+\caption{\label{tab:bayes} Definition des Suchraums für die Bayes'sche Optimierung}
+\end{table}
+
+\subsection{Architektur}
+
+Das Ergebnis der Bayes'schen Optimierung ist ein CNN mit einem Block von Convolutional Layer. Die Größe des Blockes, die Anzahl der Filter und die Größe der Filter pro Convolutional Layer wurden durch die Bayes'sche Optmierung bestimmt. Nach dem Block von Convolutional Layers wurde zusätzlich ein Convolutional-Layer mit einem Filter und der Filtergröße 1 hinzugefügt. Dieser Layer hat eine Dimensionreduktion zu folge, um beim anschließenden Dense-Layer( Fully Connected Layer) nicht zu viele Verbindungen zu erzeugen. Zwischen dem Regressions-Layer und dem ersten Dense-Layer befindet sich ein weiterer Hidden-Layer, der eine weitere Dimensionreduktion erzeugt. Als letzte Layer wurde eine weitere Dense-Layer mit linearer Aktivierungsfunktion hinzugefügt. Die Entscheidung für eine lineare Aktivierungsfunktion wurde aus den Erfahrungen vorheriger Experimente getroffen. Wurde die Ausgabe-Layer mit einer ReLu-Aktivierungsfunktion versehen, starb das Output-Neuron während des Trainings frühzeitig und es wurden ausschließlich Pitch-Werte mit dem Wert 0 geschätzt. In Tabelle \ref{tab:cnn} ist die komplette Architektur des CNN's dargestellt. 
+
+\begin{table}[hht]
+
+\begin{tabular}{|l|l|c|c|c|l|}
+\hline
+Layer           & Input            & \multicolumn{1}{l|}{Anzahl Filter} & \multicolumn{1}{l|}{Filtergröße} & \multicolumn{1}{l|}{Anzahl der Neuronen} & Aktivierungssf. \\ \hline
+1DConv          & Detektorbild     & 32                                 & 16                               & -                                        & ReLU                 \\
+1DConv          & Layer 1          & 32                                 & 16                               & -                                        & ReLU                 \\
+1DConv          & Layer 2 + Layer1 & 32                                 & 16                               & -                                        & ReLU                 \\
+1DConv          & Layer3           & 32                                 & 16                               & -                                        & ReLU                 \\
+1DConv          & Layer4 + Layer3  & 32                                 & 16                               & -                                        & ReLU                 \\
+1DConv          & Layer5           & 32                                 & 16                               & -                                        & ReLU                 \\
+1DConv          & Layer6 + Layer5  & 32                                 & 16                               & -                                        & ReLU                 \\
+1DConv          & Layer7           & 32                                 & 16                               & -                                        & ReLU                 \\
+1DConv          & Layer8 + Layer7  & 32                                 & 16                               & -                                        & ReLU                 \\
+1DConv          & Layer9           & 32                                 & 16                               & -                                        & ReLU                 \\
+1DConv          & Layer10          & 1                                  & 1                                & -                                        & ReLU                 \\
+Dense           & Layer11          & -                                  & -                                & 64                                       & ReLU                 \\
+Regression-Layer & Layer12          & -                                  & -                                & 1                                        & Linear            \\ \hline  
+\end{tabular}
+\caption{\label{tab:cnn} Architektur des Convolutionl Neuronal Networks}
+\end{table}
+
+\newpage
+\section{Fully-Connected Neuronal Network}
+Das Fully-Connected Neuronal Network besteht ausschließlich aus Dense-Layern. Die Aufgabe des Fully-Connected Neuronal Networks ist die Schätzung des Sigma- und Feature-Size-Wertes. Der erste Layer bekommt die Konkatenation des Detektorbildes und der Impulsverteilung, welche aus dem vom CNN geschätzten Pitch-Wert erstellt wurde, als Input. Die Architektur des  Fully-Connected Neuronal Networks wurde aus Zeitgründen nicht mit der Bayes'schen Optimierung optimiert, sondern aus Erkenntnissen mehrerer Experimenten gebildet. In Tabelle ist die Architektur des Fully-Connected Neuronal Networks dargestellt.
+
+\begin{table}[hh]
+\centering
+\begin{tabular}{|l|c|c|c|}
+\hline
+Layer            & Input                            & Anzahl Neuronen & Aktivierungsfunktion \\ \hline
+Dense-Layer      & (Detektorbild, Impulsverteilung) & 4096            & ReLu                 \\
+Dense-Layer      & Layer1                           & 2048            & ReLu                 \\
+Dense-Layer      & Layer2                           & 2048            & Relu                 \\
+Dense-Layer      & Layer3                           & 64              & ReLu                 \\
+Regression-Layer & Layer4                           & 2               & Linear              \\ \hline
+\end{tabular}
+\end{table}
+\section{Training}
+%TODO
+
+% 2 Experimente für das Fully-Connected Neuronal Network 
+% Tablle für die Experimente 
+% Anzahl der Trainingsdaten
+% Anzahl der Iterationen
+% Validierung des Trainings 
+% Umsetzung mit Tensorflow 
+
+Das Training der beiden beschriebenen Neuronal Networks erfolgt getrennt. Als erstes wird der Schätzer des Pitch-Wertes trainiert(CNN), da dieser die Grundlage für das Training des Fully-Connected Neuronal Networks bildet. Anschließend wird der Schätzer für den Sigma- und Feature-Size-Wert trainiert. Für die Generierung der Impulsverteilung, welche für das Training des Fully-Connected Neuronal Networks benötigt wird, wird ein festes CNN verwendet. Das heißt, dass sich die Architektur bzw. die Gewichte des CNN's während des Trainings des Fully-Connected Neuronal Networks nicht verändern.
+
+Für das Training beider Neuronal Networks wurde der Adam-Optimizer verwendet. Der Adam-Optimizer ist eine Erweiterung des klassischen Gradientenabstiegsverfahren. Der Adam-Optimizer verknüpft die Vorteile zwei weiterer bekannter Optimierungsverfahren: Adaptive Gradient Algorithm (AdaGrad) und Root Mean Square Propagation (RMSProp) \cite{AdamOptimizer}. Der Adaptive Gradient Algorithmus hat den Vorteil, dass er für jeden Parameter eine unterschiedliche Learning-Rate festlegt, dadurch ist es möglich kleinen Gradienten entgegenzuwirken \cite{Optimizer}\cite{AdamOptimizer}. Die Root Mean Square Propagation stellt ebenfalls für jede Variable unterschiedliche Learning-Rates bereit, jedoch werden diese Learning-Rates hinsichtlich des Trainingsverlaufs angepasst. Zum Beispiel können zu schnell propagierende Variablen durch eine geringere Learning-Rate ausgebremst werden \cite{Optimizer}\cite{AdamOptimizer}. 
+
+Für jedes Neuronal Network steht wie in Kapitel \ref{Database} eine eigene Datenbasis zu Verfügung, welche mit Hilfe von Batch-Processing trainiert wurde. Beim Batch-Processing werden dem Neuronal Network mehrere Inputdaten gleichzeitig zur Verfügung gestellt und durch das Netz propagiert \cite{Kriesel2007NeuralNetworks}.
+
+ Um die Qualität der Gesamtarchitektur zu überprüfen, wurde der Pitch- und Feature-Size-Schätzer auf zwei verschiedene Weisen trainiert. Der erste Trainingsansatz ist das Training des Netzwerk mit Hilfe der Impulsverteilungen, welche durch die Pitch-Werte des CNN's generiert wurden. Im zweiten Trainingsansatz werden die Impulsverteilungen durch das Pitch-Label generiert. Für beide Neuronal Networks wurde MSE \eqref{eq:mse} als Errorfunktion verwendet.
+ 
+ Der gesamte Trainingsprozess wurde mit Tensorflow realisiert und mit Hilfe des Tracking-Tools Tensorboard überwacht und aller 50 Epochen mit Hilfe des Validierung-Datensatzes evaluiert. 
+
 
 \chapter{Ergebnisse und Diskussion}
-	\section{Lernprozess}
-	\section{Ergebnisse und statistische Auswertung}
+	\section{Evaluation}
 	\section{Fazit}
+	
+
 	
 \end{document}
