@@ -1,5 +1,6 @@
 \documentclass[hyperref,german,beleg]{cgvpub}
 \usepackage{subfigure}
+
 \usepackage{array}
 \usepackage{listings}
 %weitere Optionen zum Ergänzen (in eckigen Klammern):
@@ -43,7 +44,7 @@ Die Kleinwinkelstreuung in Englisch Small Angle X-Ray Scattering (SAXS) ist eine
 	\label{fig:saxssetup}
 \end{figure}
 
-\subsection{Experimentbeschreibung}
+\subsection{Experimentbeschreibung} \label{Experiment}
 
 Das in \cite{SAXS18} beschriebene Experiment besteht aus vier Hauptkomponenten (siehe Abbildung \ref{fig:saxssetup} links): Dem Target(Mitte), dem Hochintensitätslasern (UHI) (Links), dem Röntgen-Freie-Elektronen-Laser (XFEL) (Links Unten) und dem Detektor (Rechts Oben). Der Hauptbestandteil des Targets ist Kupfer. Um eine analytische Beschreibung des Experimentausgangs zu ermöglichen, wurde eine Gitterstruktur in das Kupfertarget eingraviert. Zusätzlich wurde das Taget mit einer 2 $\mu$m breiten Siliziumschicht überzogen. Durch die eingravierte Gitterstruktur besitzt das Target einen eindimensionalen Informationsgehalt und kann somit durch drei Parameter vollständig beschrieben werden. Die drei Paramter sind Pitch, Feature-Size und die Aufweichungsbreite Sigma($ \sigma $). Dabei beschreiben Pitch und Feature-Size die Struktur des Targets und Sigma($ \sigma $) den Aufweichungseffekt des Hochintensitätslasers (siehe Abbildung \ref{fig:grating_structure}). Die Gesamtheit des Targets wird auch als Grating bezeichnet. Erhebungen des Gratings werden als Features bezeichnet. Im weiteren Verlauf dieser Arbeit wird der Begriff Elektronendichteverteilung $\eta$ verwendet, welcher oft im Zusammenfang des SAXS-Ansatzes fällt. Der Begriff Elektronendichteverteilung $\eta$ wird in dieser Arbeit als Synonym für das Grating verwendet. 
 
@@ -138,7 +139,7 @@ f(x)= max(0,x)
 Die ReLu-Aktivierungsfunktion ist im Vergleich anderen Aktivierungsfunktionen schneller zu berechnen und bietet größere Gradienten. Jedoch können Neuronen, welche einen negativen Input bekommen nur noch 0 Ausgeben. Es wird in diesem Zusammenhang von einem gestorbenen Neuron gesprochen. Ein weiterer Nachteil der ReLu-Aktivierungsfunktion ist der Wertebereich, denn dieser ist nach oben nicht eingeschränkt. Somit können in einem Neuronalen Netz sehr große Werte entstehen, welche den Wertebereich von Zahlenstandards wie zum Beispiel IEEE 754 (Single Precision Float 32-Bit) \cite{IEEE754} überschreiten, womit kein valider Datenfluss im Neuronalen Netz gegeben ist. 
 
 \subsection{Feed-Forward Neuronal  Networks}
-Für ein Neuronal Network können verschiedene Netzwerktopologien werden. Ein Beispiel dafür sind Feed Forward Neuronal Networks (Abbildung \ref{fig:ffnn}).Bei einem Feed Forward Neuronal Network werden die Neuronen als Schichten (Layer) angeordnet. Diese Layer sind miteinander verbunden. Die erste Layer, welche die Input Daten bekommt, wird als Input-Layer bezeichnet. Die letzte Schicht, welche die Netzberechnung ausgibt, wird als Output-Layer bezeichnet. Schichten, welche sich zwischen Input- und Output-Layer befinden und somit keinen Kontakt nach Außen haben, werden als Hidden Layer bezeichnet. Ein wichtiges Merkmal von Feed-Forward Neuronal Networks ist, dass der Datenfluss geradlinig  vom Input-Layer über die Hidden-Layer zum Output-Layer ohne Rückkopplung verläuft. 
+Für ein Neuronal Network können verschiedene Netzwerktopologien werden. Ein Beispiel dafür sind Feed Forward Neuronal Networks (Abbildung \ref{fig:ffnn}).Bei einem Feed Forward Neuronal Network werden die Neuronen als Schichten (Layer) angeordnet. Diese Layer sind miteinander verbunden. Die erste Layer, welche die Input Daten bekommt, wird als Input-Layer bezeichnet. Die letzte Schicht, welche die Netzberechnung ausgibt, wird als Output-Layer bezeichnet. Schichten, welche sich zwischen Input- und Output-Layer befinden und somit keinen Kontakt nach Außen haben, werden als Hidden Layer bezeichnet. Ein wichtiges Merkmal von Feed-Forward Neuronal Networks ist, dass der Datenfluss geradlinig  vom Input-Layer über die Hidden-Layer zum Output-Layer ohne Rückkopplung verläuft. Eine wichtige Komponente von Feed-Forward Neuronal Networks sind die Fully-Connected Layer. Bei einem Fully-Connected Layer ist jedes Neuron des Fullyconnected Layer mit jedem Neuron des vorherigen Layers verbunden. In Abbildung \ref{fig:ffnn} sind die Verbindungen eines Fully-Connected Layer dargestellt.  
 
 \begin{figure}[hh]
 \centering
@@ -155,7 +156,7 @@ Das Anlernen von Neuronalen Netzen wird in den meisten Fällen durch überwachtes 
 \mathrm { MSE } = \frac { 1 } { n } \sum _ { i = 1 } ^ { n } \left( Y _ { i } - \hat { Y } _ { i } \right) ^ { 2 }
 \end{equation}
 
-Im dritten Schritt, dem Backward-Pass, kommt es zur Optimierung des Neuronalen Netzes. Mithilfe des Fehlers, welcher bis zur Eingabeschicht zurück propagiert wird, werden die Gewichte entsprechend ihres Einflusses auf den Net-Output \eqref{eq:gradient} mittels Gradientenabstiegsverfahrens angepasst. Für die Anwendung des Gradientenabstiegsverfahrens werden die partiellen Ableitungen des Fehlerterms benötigt. Die Gewichtsveränderung $\Delta w _ { i j }$ des Gewichts zwischen Neuron $i$ und Neuron $j$  ergibt sich durch folgenden unktionalen Zusammenhang : 
+Im dritten Schritt, dem Backward-Pass, kommt es zur Optimierung des Neuronalen Netzes. Mithilfe des Fehlers, welcher bis zur Eingabeschicht zurück propagiert wird, werden die Gewichte entsprechend ihres Einflusses auf den Net-Output \eqref{eq:gradient} mittels Gradientenabstiegsverfahrens angepasst. Für die Anwendung des Gradientenabstiegsverfahrens werden die partiellen Ableitungen des Fehlerterms benötigt. Die Gewichtsveränderung $\Delta w _ { i j }$ des Gewichts zwischen Neuron $i$ und Neuron $j$  ergibt sich durch folgenden funktionalen Zusammenhang : 
 
 \begin{equation}\label{eq: deltaw}
 \Delta w _ { i j } = - \eta \frac { \partial E } { \partial w _ { i j } } = - \eta \delta _ { j } o _ { i }
@@ -194,6 +195,8 @@ Nach Ausführung der Faltung wird die errechnete Feature-Map durch eine ausgewähl
 \caption{Beispielhafte Darstellung eines Convolutional Neuronal Networks. Bildquelle: \cite{ZeroPadding}}
 \label{fig:cnn_archtitecture}
 \end{figure}
+
+Für diesen Beleg sind aufgrund der Eindimensionalität der Input-Daten 1D-Convolutional-Layer relevant. Bei einem 1D-Convolutional Layer sind die Filter eindimensional, das heißt, dass die Filter eine Höhe ($H$) von 1 besitzen und der Filter nur entlang einer Dimension verschoben werden. 
 
 \subsection{Residual Strukturen}
 Wie in Kapitel \ref{CNN} beschrieben, können beliebig viele Convolutional Layers hintereinander platziert werden. Je mehr Layer verwendet werden, desto tiefer wird das Netz. Mit steigender Tiefe des Netzes erhöht sich das Problem kleiner werdender Gradienten  (Vanishing-Gradient Problem). Das Vanishing Gradient Problem ist auf die Eigenschaft der Backpropagation zurückzuführen, dass die Gradienten Neuronen-Gewichte in Abhängigkeit zu dessen Einfluss auf den Net-Output stehen. Bei tieferen Netzstrukturen verringert sich dieser Einfluss. Um den Einfluss der Neuronen auf den Net-Output zu erhöhen, werden Skip-Connections, auch Residual Strukturen, genannt. Dazu wird der Output eines Layers auf den Input z.B. der übernächsten Schicht addiert. Es sind auch Skip-Connections mit einer höheren Schrittweite möglich \cite{ResNet}.
@@ -272,7 +275,7 @@ Das entstandene Produkt der Fouriertransformation ist im Raum der Komplexen Zahl
 \end{figure}
 
 \subsection{Auswirkung der Startparameter auf das Simulationsergebnis}
-Die Startparameter des Simulation haben ebenfalls Auswirkung auf das Endprodukt der Simulation. Betrachtet man zunächst die Auswirkungen des Startparameters Pitch (Abbildung \ref{img:pitch_detector}), kann man erkennen, dass mit steigendem Pitch sich das Intensitätsmaximum verringert wird. Zusätzlich kommen noch mehr Peaks hinzu. Das hängt damit zusammen, dass sich mit steigenden Pitch  die Anzahl der Features verringert und somit mehr Frequenzen benötigt werden, um die Gitterstruktur zu modellieren. 
+Die Startparameter des Simulation haben ebenfalls Auswirkungen auf das Endprodukt der Simulation. Betrachtet man zunächst die Auswirkungen des Startparameters Pitch (Abbildung \ref{img:pitch_detector}), ist zu erkennen, dass mit steigendem Pitch sich das Intensitätsmaximum verringert. Zusätzlich kommen noch mehr Peaks hinzu. Das hängt damit zusammen, dass sich mit steigenden Pitch die Anzahl der Features verringert und somit mehr Frequenzen benötigt werden, um die Gitterstruktur zu modellieren. 
 
 \begin{figure}[hh]
 \centering
@@ -286,11 +289,11 @@ Der Startparamter Feature-Size verhält sich invers zum Parameter Pitch. Mit stei
 \begin{figure}[hh]
 \centering
 \includegraphics[scale=0.25]{images/fsize_endproduct.png} 
-\caption{Verhalten der Detektoraufnahme in Abhängigkeit des Parameters Fsize}
+\caption{Verhalten der Detektoraufnahme in Abhängigkeit des Parameters Feature-Size}
 \label{img:fsize_detector}
 \end{figure}
 
-Der letzte Startparameter Sigma hat mit steigenden Wert ähnliche Auswirkungen auf die Detektoraufnahmen wie Feature-Size. Bei steigendem Sigma-Wert steigt das Intensitätsmaximum und die Anzahl der Peaks verringert sich (Abbildung \. Jedoch skaliert der Parameter Sigma anders als Feature-Size. Kleinere Unterschiede im Sigma-Wert können größere Auswirkungen auf die Anzahl der Peaks haben. Auch der Anstieg des Intensitätsmaximums in Abhängigkeit zu Sigma ist geringer im Vergleich zur Abhängigkeit zu Fsize. 
+Der letzte Startparameter Sigma hat mit steigenden Wert ähnliche Auswirkungen auf die Detektoraufnahmen wie Feature-Size. Bei steigendem Sigma-Wert steigt das Intensitätsmaximum und die Anzahl der Peaks verringert sich (Abbildung \ref{img:sigma_detector}. Jedoch skaliert der Parameter Sigma anders als Feature-Size. Kleinere Unterschiede im Sigma-Wert können größere Auswirkungen auf die Anzahl der Peaks haben. Auch der Anstieg des Intensitätsmaximums in Abhängigkeit zu Sigma ist geringer im Vergleich zur Abhängigkeit zu Feature-Size. 
 
 \begin{figure}[hh]
 \centering
@@ -299,15 +302,77 @@ Der letzte Startparameter Sigma hat mit steigenden Wert ähnliche Auswirkungen au
 \label{img:sigma_detector}
 \end{figure}
 
+\subsubsection{Fraunhofer-Beugung}
+Grundlage für die Simulation und des Experimentes ist die Fraunhofer-Beugung. Die Fraunhofer-Beugung ermöglicht die Berechnung des Intensitätswertes an jedem Punkt des Detektors. Dabei geht die Fraunhofer-Beugung von einer idealen Lichtquelle und von einem kontinuierlichen Detektor aus (unendlich viele Abtastpunkte des Intensitätssignals), jedoch sind die Anzahl der Detektorzellen im Experiment sowie die Anzahl der Pixel in der Simulation limitiert, deshalb können die Simulation und das Experiment als diskrete Abtastung der Fraunhofer-Beugung betrachtet werden. In diesem Kapitel wird die Fraunhofer Beugung dazu genutzt die Effekte der Startparameter, welche im vorherigen Kapitel dargestellt wurden, physikalisch zu begründen. Bei der Fraunhofer-Beugung werden ein oder mehrere Öffnungen in einem undurchsichtigem Schirm mit einer ebenen Lichtwelle beleuchtet. Hinter dem Spalt liegt eine Bildebene, um die Beugungseffekte zu beobachten \cite{FraunhoferDiffraction}. In Abbildung \ref{img:fraunhofer_diffraction} ist eine vereinfachte Darstellung des Experimentaufbaus der Fraunhofer-Beugung zu sehen. 
+
+\begin{figure}[hh]
+\centering
+\includegraphics[scale=0.75]{images/fraunhofer_diffraction.png} 
+\caption{Vereinfachte Darstellung der Fraunhofer-Beugung. Bildquelle: \cite{DiffractionExperiment}}
+\label{img:fraunhofer_diffraction}
+\end{figure}
+
+Die Assoziation zwischen dem Experiment und der Fraunhofer-Beugung liegt darin, dass die Beugung am Spalt nahezu die selben Effekte aufweist, wie die Streuung des Röntgenlasers an den Features des Gratings. Wird die Anzahl der Spalte $N$ erhöht, ist dies mit einer Senkung des Pitch-Wertes gleichzusetzen. Wird die Spaltbreite  $ a $ erhöht, ist dies mit einer Erhöhung des Feature-Size-Wertes gleichzusetzen. Der funktionale Zusammenhang für die N-Spalten Fraunhofer-Beugung ist in Formel \ref{eq:diffraction} dargestellt. Dabei kann für jeden Detektorpunkt $ \theta $ die ankommende Intensität berechnet werden. Weitere Parameter der Formel \ref{eq:diffraction} sind $\lambda$ die Wellenlänge des Lichtes und $I_{0}$ ein Skalierungsfaktor für die maximal zu messende Intensität. Beide Parameter sind für die Erklärung der Effekte der Startparameter irrelevant.
+
+\begin{equation}\label{eq:diffraction}
+I ( \theta ) = I _ { 0 } \left( \frac { \sin \beta } { \beta } \right) ^ { 2 } \left( \frac { \sin N \alpha } { \sin \alpha } \right) ^ { 2 }  \text{\ mit\ } \\
+\alpha \equiv ( \pi a / \lambda ) \sin \theta  \text{\ und\ }\beta = ( \pi b / \lambda ) \sin \theta
+\end{equation}
+
+\subsubsection{Effekt von Pitch}
+In Abbildung 3.8  ist die Bildebene der Fraunhofer-Beugung bei unterschiedlicher Spaltanzahl zu sehen. Erhöht man die Spaltanzahl, ist zu erkennen, dass sich das Bild, welches bei einem Spalt zu sehen ist, bei mehreren Spalten auf mehrere Peaks aufteilt. Dieser Effekt ist auch bei der Senkung des Pitch-Wertes zu sehen (Abbildung \ref{img:pitch_detector}). Dennoch gibt einen großen Unterschied zur Simulation. Ein wichtiger Unterschied ist, dass Aufgrund der Diskretisierung des Detekorsignals, kleinere Peaks zwischen den größeren Peaks verloren gehen. Diese kleineren Peaks erzeugen Minima. Anhand der Anzahl der Minima $M$ kann die Anzahl der Spalten im Target abgelesen werden. Der Zusammenhang ist dass die Anzahl der Spalten $N$ durch $M + 1$ errechnen lässt. Befinden sich zwischen den größeren Peaks 4 Minima, hat das Target 5 Spalten \cite{Multiple_Slits}.
+\begin{figure}[hh]
+\centering
+\begin{subfigure}{}
+\includegraphics[scale=1.0]{images/single_slit.png} 
+\end{subfigure}
+\begin{subfigure}{}
+\includegraphics[scale=1.0]{images/double_slit.png} 
+\end{subfigure}
+\begin{subfigure}{}
+\includegraphics[scale=1.0]{images/five_slit.png} 
+\end{subfigure}
+\label{img:multislit}
+\caption{Vergleich der Bildebene bei unterschiedlich Anzahl von Spalten. Bildquelle: \cite{Multiple_Slits}}
+\end{figure}
+
+\subsubsection{Effekt von Feature-Size}
+Erhöht man die Größe des Spalts, kommt es zu geringerer Beugung am Spalt bzw. das Licht kann den Spalt geradliniger durchdringen . Das hat zufolge, dass weniger Licht die Ränder der Bildebene erreicht und somit weniger Intensität am Rand gemessen werden kann (Siehe Abbildung \ref{img:slit_sizes}). Dieser Effekt ist auch bei der Erhöhung des Feature-Size-Wertes in der Simulation erkennen(Siehe Abbildung \ref{img:fsize_detector}. Die Peaks im Zentrum des Detektors werden verstärkt und die Detektorzellen am Rand bekommen weniger Lichtintensität bzw. gar keine Lichtintensität ab \cite{Diffraction_Book}. 
+
+\begin{figure}[hh]
+\centering
+\includegraphics[scale=0.25]{images/slit_size.png} 
+\caption{Stärke der Beugung in Abhängigkeit der Spaltgröße. Bildquelle: \cite{Diffraction_Book}}
+\label{img:slit_sizes}
+\end{figure}
+
+
+\subsubsection{Effekt von Sigma}
+Wie in Kapitel \ref{Simulation} beschrieben ergibt sich die Gitterstruktur des Gratings aus einer Faltung aus Gauss-Verteilung, Impulsverteilung und Rechteckimpuls. Diese Faltung wird dann Fourier-transformiert um das Detektorbild. Eine wichtige Eigenschaft der Fouriertransformation $F$ ist, dass Fourier-Faltungs-Theorem, welches besagt, dass die Fouriertransformation einer Faltung äquivalent zum Produkt der Fouriertransformationen der Faltungsfunktionen ist (Gleichung \eqref{eq:fft_convolve})\cite{FOURIERDEF} .
+
+\begin{equation}\label{eq:fft_convolve}
+ F( f * g) = F(f) \cdot F(g)
+\end{equation}
+
+Das Fourier-Faltungs-Theorem kann dazu genutzt werden, den Effekt von Sigma auf das Detektorbild zu erklären. In Abbildung \ref{img:gaussian_fft} sind verschiedene Gauss-Verteilungen (linke Seite) und deren zugehörige Fouriertransformationen(rechte Seite) dargestellt. Hinweis: Alle Werte im FFT-Bild sind über 0.  Aufgrund des Fourier-Faltungstheorems kommt es zu einer Multiplikation mit den Gaussverteilungen. Die Multiplikation stärkt die   Intensitäten im zentralen Bereich und glättet die Intensitäten am Rand. Dieser Effekt ist ebenfalls in der Simulation zu beobachten (siehe Abbildung \ref{img:sigma_detector}). 
+
+\begin{figure}[hh]
+\centering
+\includegraphics[width=\textwidth]{images/fft_gauss.png} 
+\caption{Linke Seite: Gauss-Verteilungen mit unterschiedlichen Sigma-Werten Rechte Seite: Fouriertransformationen der Gauss-Verteilungen}
+\label{img:gaussian_fft}
+\end{figure}
+
+
+
 \chapter{Datenbasis}
 \section{Generator}
 Um einen Machine-Learning-Ansatz auszuführen, muss eine ausreichend große Datenbasis existieren. Dazu wurde im Rahmen dieser Arbeit ein  Generator entwickelt, welcher mit Hilfe der vorher beschriebenen Simulation ausreichend viele Trainings-, Validierungs- und Testsdaten produzieren kann. Der erste Schritt der Genierierung der Datenbasis ist die Festlegung der Menge $P$ von Startparametern, wobei ein Startparamter ein Tripel (Feature-Size, Pitch, Sigma) ist. Um die Berechung der Simulationsdaten, welche aus P resultieren, zu beschleunigen wurde die Simulation aus Kapitel \ref{Simulation} mit Hilfe des Message Parsing Interfaces (MPI) parallisiert. MPI dupliziert auszuführenden Code auf N beliebige Prozesse, welche mit Hilfe von vordefinierten Routinen miteinander kommunizieren können \cite{MPI}. Wurde die Menge von Startparametern festgelegt, wird diese Menge über MPI-Routinen auf $N$ Prozesse aufgeteilt. Jeder Prozess führt für seine zugewiesene Menge von Startparametern die In Kapitel \ref{Simulation} beschriebene Simulation aus und schreibt deren Ausgabe als Dateien in den Speicher des Rechenclusters. Zusätzlich zum Simulationsergebnis wird die Menge der Startparameter, welche als Labels für das Training des Neuronal Networks vorgesehen sind, gespeichert. 
-
 \begin{figure}[hh]
 \centering
 \includegraphics[scale=0.4]{images/generator_schema.png} 
 \caption{Schematischer Aufbau des Generators}
-\label{img:sigma_detector}
+\label{img:generator}
 \end{figure}
 
 \section{Wahl der Eingangsparameter}
@@ -342,8 +407,31 @@ Generator   & 1,917 sek & 4,531 sek   & 42,831 sek   & 6900,243 sek   \\ \hline
 \end{table}
 
 \section{Trainings-, Validierungs- und Testdatensatz}\label{Database}
-Für das Training von Pitch, Feature-Size und Sigma stehen zwei verschiedene Datenbasen zur Verfügung. Der erste Datensatz wurde für das Training des Neuronal Networks erstellt, welches Pitch schätzen soll.  Dieser Datensatz hat die Besonderheit, dass die Folge vom minimalen Pitch-Wert bis zum maximalen Pitch-Wert deutlich höher abgetastet ist, um dem Neuronal Network eine möglichst aussagekräftige Verteilung von Pitch-Werten und deren Auswirkung auf das Detektorbild zu geben. Die Feature-Size- und Sigma-Folgen wurden deutlich geringer abgetastet, jedoch steht aufgrund der verschachtelten Schleifen zur Generierung (Abbildung\ref{code:P}) der Startparameter eine ausreichend große Verteilung von Sigma und Feature-Size-Werten für das Training von Pitch zur Verfügung. 
+Für das Training von Pitch, Feature-Size und Sigma stehen zwei verschiedene Datensätze zur Verfügung. Der erste Datensatz wurde für das Training des Neuronal Networks erstellt, welches Pitch schätzen soll.  Dieser Datensatz hat die Besonderheit, dass die Folge vom minimalen Pitch-Wert bis zum maximalen Pitch-Wert deutlich höher abgetastet ist, um dem Neuronal Network eine möglichst aussagekräftige Verteilung von Pitch-Werten und deren Auswirkung auf das Detektorbild zu geben. Die Feature-Size- und Sigma-Folgen wurden deutlich geringer abgetastet, jedoch steht aufgrund der verschachtelten Schleifen zur Generierung der Startparameter (Abbildung \ref{code:P}) eine ausreichend große Verteilung von Sigma und Feature-Size-Werten für das Training von Pitch zur Verfügung (Tabelle \ref{tab:label-distribution}). 
 
+\begin{table}[ht]
+\centering
+\begin{tabular}{|l|c|c|c|}
+\hline
+Dataset                & Anzahl Pitch & Anzahl Feature-Size & Anzahl Sigma \\ \hline
+Pitch                  & 368          & 23                  & 23           \\
+Feature-Size und Sigma & 46           & 46                  & 46  \\ \hline
+\end{tabular}
+\caption{\label{tab:label-distribution} Abtastwerte für die jeweiligen Startparameter. Diese Werte werden wie in Abbildung \ref{code:P} verarbeitet}
+\end{table}
+
+Der Datensatz für das Training des Neuronal Networks weißt eine andere Verteilung wie der Pitch-Datensatz auf. In diesem Datensatz wurden die Folgen für Pitch, Sigma und Feature-Size gleich abgetastet, jedoch ist die Verteilung der Sigma- und Feature-Size-Werte aufgrund der Implementierung der Parametergenerierung deutlich ausgeprägter. In der Tabelle \ref{tab:label-distribution} sind die Abtastwerte der jeweiligen Folgen zu sehen. Für das Training, die Validierung des Trainingsprozesses und die Evaluierung des Neuronal Networks wurde der jeweilige Datensatz geshuffled und in Trainings, Validation und Test- Datensatz aufgespaltet. Um die Länge nicht zu groß zu gestalten, wurde der Trainingsdatensatz bei beiden Datensätzen auf 16384 Detektorbilder beschränkt. Für die Validierung stehen jedem Neuronal Network 64 Bilder zur Verfügung. Die restlichen Bilder wurde komplett für eine aussagekräftige Evaluierung verwendet. In Tabelle \ref{tab:traintestval} ist die Verteilung der Samples auf Trainings-, Validierungs- und Testdatensatz zu sehen. Aufgrund der höheren Abtastung von Pitch im Pitch-Datensatz (siehe Tabelle \ref{tab:label-distribution}) besitzt dieser mehr Detektorbilder und somit mehr Samples zum evaluieren. 
+
+\begin{table}[hh]
+\centering 
+\begin{tabular}{|l|c|c|c|}
+\hline
+Datensatz              & \multicolumn{1}{l|}{Training} & \multicolumn{1}{l|}{Validation} & \multicolumn{1}{l|}{Test} \\\hline
+Pitch                  & 16384                         & 64                              & 178224                    \\
+Feature-Size und Sigma & 16384                         & 64                              & 80888      \\ \hline              
+\end{tabular}
+\caption{\label{tab:traintestval} Verteilung der Samples auf Trainings, Validierungs- und Testdatensatz}
+\end{table}
 \chapter{Lösungsansatz}
 In diesem Kapitel wird der Lösungsansatz für die Parameterrekonstruktion beschrieben. Dabei wird auf die Gesamtarchitektur, der konzeptionelle Aufbau der einzelnen Komponenten und auf den Aufbau der Neuronal Networks und deren Training eingegangen. 
 
@@ -444,12 +532,14 @@ Für jedes Neuronal Network steht wie in Kapitel \ref{Database} eine eigene Daten
 
  Um die Qualität der Gesamtarchitektur zu überprüfen, wurde der Pitch- und Feature-Size-Schätzer auf zwei verschiedene Weisen trainiert. Der erste Trainingsansatz ist das Training des Netzwerk mit Hilfe der Impulsverteilungen, welche durch die Pitch-Werte des CNN's generiert wurden. Im zweiten Trainingsansatz werden die Impulsverteilungen durch das Pitch-Label generiert. Für beide Neuronal Networks wurde MSE \eqref{eq:mse} als Errorfunktion verwendet.
  
- Der gesamte Trainingsprozess wurde mit Tensorflow realisiert und mit Hilfe des Tracking-Tools Tensorboard überwacht und aller 50 Epochen mit Hilfe des Validierung-Datensatzes evaluiert. 
+ Der gesamte Trainingsprozess, wurde mit Tensorflow realisiert und mit Hilfe des Tracking-Tools Tensorboard überwacht und aller 50 Epochen mit Hilfe des Validierung-Datensatzes evaluiert. 
 
 
 \chapter{Ergebnisse und Diskussion}
-	\section{Evaluation}
+	\section{Trainingsprozess}
+	\section{Evaluierung}
 	\section{Fazit}
+	\section{Ausblick}
 	
 
 	
