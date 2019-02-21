@@ -348,7 +348,7 @@ Erhöht man die Größe des Spalts, kommt es zu geringerer Beugung am Spalt bzw. da
 
 
 \subsubsection{Effekt von Sigma}
-Wie in Kapitel \ref{Simulation} beschrieben ergibt sich die Gitterstruktur des Gratings aus einer Faltung aus Gauss-Verteilung, Impulsverteilung und Rechteckimpuls. Diese Faltung wird dann Fourier-transformiert um das Detektorbild. Eine wichtige Eigenschaft der Fouriertransformation $F$ ist, dass Fourier-Faltungs-Theorem, welches besagt, dass die Fouriertransformation einer Faltung äquivalent zum Produkt der Fouriertransformationen der Faltungsfunktionen ist (Gleichung \eqref{eq:fft_convolve})\cite{FOURIERDEF} .
+Wie in Kapitel \ref{Simulation} beschrieben, ergibt sich die Gitterstruktur des Gratings aus einer Faltung aus Gauss-Verteilung, Impulsverteilung und Rechteckimpuls. Diese Faltung wird dann fouriertransformiert um das Detektorbild. Eine wichtige Eigenschaft der Fouriertransformation $F$ ist, dass Fourier-Faltungs-Theorem, welches besagt, dass die Fouriertransformation einer Faltung äquivalent zum Produkt der Fouriertransformationen der Faltungsfunktionen ist (Gleichung \eqref{eq:fft_convolve})\cite{FOURIERDEF} .
 
 \begin{equation}\label{eq:fft_convolve}
  F( f * g) = F(f) \cdot F(g)
@@ -432,7 +432,7 @@ Feature-Size und Sigma & 16384                         & 64                     
 \end{tabular}
 \caption{\label{tab:traintestval} Verteilung der Samples auf Trainings, Validierungs- und Testdatensatz}
 \end{table}
-\chapter{Lösungsansatz}
+\chapter{Lösungsansatz}\label{Ansatz}
 In diesem Kapitel wird der Lösungsansatz für die Parameterrekonstruktion beschrieben. Dabei wird auf die Gesamtarchitektur, der konzeptionelle Aufbau der einzelnen Komponenten und auf den Aufbau der Neuronal Networks und deren Training eingegangen. 
 
 \section{Gesamtarchitektur}
@@ -536,8 +536,51 @@ Für jedes Neuronal Network steht wie in Kapitel \ref{Database} eine eigene Daten
 
 
 \chapter{Ergebnisse und Diskussion}
-	\section{Trainingsprozess}
+\section{Trainingsprozess}
+\subsection{Convolutional Neuronal Network}
+Der Trainingsverlauf des Convolutional Neuronal Networks wurde mit Hilfe der Tensorboard-Bibliothek überwacht. Parallel zum Trainingsprozess 		wurde, in einem Abstand von 50 Epochen, der Trainingsprozess mit Hilfe des Validierungsdatensatzes evaluiert. Um die Qualität des CNNs zu bestimmen, wurde Mean Squared Error als Qualitätsmaß eingesetzt (Gleichung \eqref{eq:mse}). Das CNN wurde über 3000 Epochen trainiert. Der Verlauf des Trainings- und Validierungsfehlers während des Trainingsprozesses ist in Abbildung \ref{img:train_cnn} dargestellt.
+
+	
+	\begin{figure}[hh]
+	\centering
+	\includegraphics[width=.75\textwidth]{images/learn_curve_cnn.png} 
+	\caption{Verlauf des Trainings- und Validierungsfehlers des CNNs in Anhängigkeit der Epoche}
+	\label{img:train_cnn}
+	\end{figure}
+
+In Abbildung \ref{img:train_cnn} sieht man bis zur tausendsten Epoche ein starker Abfall des Fehlers zu erkennen. Ab der tausendsten Epoche ist ein schwächeres Konvergenzverhalten zu beobachten. Der Verlauf des Trainings- und des Validierungsfehlers ist sehr ähnlich. Somit können nicht trainierte Samples mit nahezu gleicher Qualität wie trainierte Samples geschätzt werden. Während des Trainings konnte ein minimalerTrainingsfehler von 20910.45 und ein minimaler Validierungsfehler 23247.19 von erreicht werden.
+\subsection{Fully-Connected Neuronal Network}
+In Kapitel \ref{Ansatz} wurde beschrieben, dass das Fully-Connected Neuronal Network auf zwei verschiedene Weisen trainiert wurde. Im ersten Experiment wurde das Fully-Connected Neuronal Network mit der Impulsverteilung ,welche aus dem Pitch-Wert des CNNs generiert wurde, trainiert. Im zweiten Experiment wurde die Impulsverteilung aus dem Pitch-Label generiert. In beiden Experimenten wurde das Network 500 Epochen trainiert. Die kleinere Epochenanzahl resultiert aus dem schnelleren Konvergenzverhalten des Fully-Connected Neuronal Networks. Für das Fully-Connected Neuronal Network wurde ebenfalls Mean Squared Error als Qualitätsmaß verwendet. 
+
+\subsubsection{ CNN-Input}
+In Abbildung \ref{img:train_fc1} ist die Lernkurve des ersten Experimentes dargestellt. Während des Trainings konnte ein minimaler Trainingfehler von 75.80 und ein minimaler Validierungssfehler von 163.74 erreicht werden. Der Verlauf des Training- und des Validierungsfehlers zeigt ähnliches Konvergenzverhalten, das für Generalisierung spricht. Dennoch gibt es im minimal erreichten Trainings und Validierungsfehlers einen Unterschied von einem Faktor zwei. Somit ist die Qualität des Fully-Connected Neuronal Networks auf den Trainingsdaten deutlich höher als die der Validierungsdaten. 
+
+	\begin{figure}[hh]
+	\centering
+	\includegraphics[width=.75\textwidth]{images/learn_curve_fc1.png} 
+	\caption{Verlauf des Trainings- und Validierungsfehlers in Anhängigkeit der Epoche im ersten Experiment}
+	\label{img:train_fc1}
+	\end{figure}
+\subsubsection{ Label-Input}
+Das zweite Experiment (Abbildung \ref{img:train_fc2}) zeigt ähnliches Konvergenzverhalten wie beim ersten Experiment. Jedoch kommt es bei einer höheren  Epochenzahl zu weniger oszillation des Fehlers. Der minimale Trainingsfehler liegt bei 100.98 und der minimale Validierungsfehler liegt bei 190.72. Somit konnte eine ähnliche Qualität auf den Trainings- und Validierungsdaten erreicht werden wie beim ersten Experiment. 
+	\begin{figure}[hh]
+	\centering
+	\includegraphics[width=.75\textwidth]{images/learn_curve_fc2.png} 
+	\caption{Verlauf des Trainings- und Validierungsfehlers in Anhängigkeit der Epoche im zweiten Experiment}
+	\label{img:train_fc2}
+	\end{figure}
 	\section{Evaluierung}
+	\subsection{Convolutional Neuronal Network}
+	Um die Qualität des CNNs zu evaluieren, wurden die nicht trainierten Samples des Testdatensatzes verwendet. Für die Qualitätsanalyse wurde die Absolute Abweichung zwischen dem Pitch-Label und der Pitch-Schätzung in Abhängigkeit der Parameter Sigma und Feature-Size dargestellt. Der erste Plot (Abbildung ) wurde die Abhängigkeit der Absoluten Abweichung zwischen dem Pitch-Label und der Pitch-Schätzung in Abhängigkeit des Startparameters Feature-Size untersucht. 
+
+	\begin{figure}[hh]
+	\centering
+	\includegraphics[width=.75\textwidth]{images/experiment1.png} 
+	\caption{Qualität der Pitch-Schätzung in Abhängigkeit des Startparameters Feature-Size}
+	\label{img:experiment1}
+	\end{figure}
+	
+	\subsection{Fully Connected Neuronal Network}
 	\section{Fazit}
 	\section{Ausblick}
 	
