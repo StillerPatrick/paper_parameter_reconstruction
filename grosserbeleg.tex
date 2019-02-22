@@ -571,14 +571,29 @@ Das zweite Experiment (Abbildung \ref{img:train_fc2}) zeigt ähnliches Konvergenz
 	\end{figure}
 	\section{Evaluierung}
 	\subsection{Convolutional Neuronal Network}
-	Um die Qualität des CNNs zu evaluieren, wurden die nicht trainierten Samples des Testdatensatzes verwendet. Für die Qualitätsanalyse wurde die Absolute Abweichung zwischen dem Pitch-Label und der Pitch-Schätzung in Abhängigkeit der Parameter Sigma und Feature-Size dargestellt. Der erste Plot (Abbildung ) wurde die Abhängigkeit der Absoluten Abweichung zwischen dem Pitch-Label und der Pitch-Schätzung in Abhängigkeit des Startparameters Feature-Size untersucht. 
+	Um die Qualität des CNNs zu evaluieren, wurden die nicht trainierten Samples des Testdatensatzes verwendet. Für die Qualitätsanalyse wurde die Absolute Abweichung zwischen dem Pitch-Label und der Pitch-Schätzung in Abhängigkeit der Parameter Sigma und Feature-Size dargestellt. Der erste Plot (Abbildung \ref{img:experiment1}) wurde die Abhängigkeit der Absoluten Abweichung zwischen dem Pitch-Label und der Pitch-Schätzung in Abhängigkeit des Startparameters Feature-Size untersucht. 
 
-	\begin{figure}[hh]
+	\begin{figure}[hh!]
 	\centering
 	\includegraphics[width=.75\textwidth]{images/experiment1.png} 
 	\caption{Qualität der Pitch-Schätzung in Abhängigkeit des Startparameters Feature-Size}
 	\label{img:experiment1}
 	\end{figure}
+	
+	\begin{figure}[hh!]
+	\centering
+	\includegraphics[width=.75\textwidth]{images/experiment1_good_predictions.png} 
+	\caption{Detektorbilder zu guten Schätzungen}
+	\label{img:good_experiment1}
+	\end{figure}
+	
+		\begin{figure}[hh!]
+	\centering
+	\includegraphics[width=.75\textwidth]{images/experiment1_bad_predictions.png} 
+	\caption{Detektorbilder zu schlechten Schätzungen}
+	\label{img:bad_experiment1}
+	\end{figure}
+	
 	
 	\subsection{Fully Connected Neuronal Network}
 	\section{Fazit}
