@@ -275,14 +275,23 @@ Das entstandene Produkt der Fouriertransformation ist im Raum der Komplexen Zahl
 \end{figure}
 
 \subsection{Auswirkung der Startparameter auf das Simulationsergebnis}
-Die Startparameter des Simulation haben ebenfalls Auswirkungen auf das Endprodukt der Simulation. Betrachtet man zunächst die Auswirkungen des Startparameters Pitch (Abbildung \ref{img:pitch_detector}), ist zu erkennen, dass mit steigendem Pitch sich das Intensitätsmaximum verringert. Zusätzlich kommen noch mehr Peaks hinzu. Das hängt damit zusammen, dass sich mit steigenden Pitch die Anzahl der Features verringert und somit mehr Frequenzen benötigt werden, um die Gitterstruktur zu modellieren. 
+Die Startparameter des Simulation haben ebenfalls Auswirkungen auf das Endprodukt der Simulation. In der Abbildung \ref{img:pitch_fsize_ratio} ist der Einfluss der Parameter Pitch und Feature-Size auf das Detektorbild dargestellt. Es ist zu erkennen, dass die Anzahl der Peaks ( Intensitäten größer 0) maßgeblich durch das Verhältnis von Pitch und Feature-Size bestimmt werden. Auch die maximale Intensität wird durch das Verhältnis von Pitch und Feature-Size beeinflusst. Des Weiteren ist zu beobachten, dass mit steigendem Pitch-Wert (zeilenweise) sich die Abstände der Peaks vergrößert. Erhöht man den Feature-Size-Wert ist zu erkennen, dass die Anzahl der Peaks sich verringert und die maximale Intensität steigt. Der Effekt des Feature-Size-Wertes kann ebenfalls im Plot in Abbildung \ref{img:fsize-max} beobachtet werden. 
 
 \begin{figure}[hh]
 \centering
-\includegraphics[scale=0.25]{images/pitch_endproduct.png} 
-\caption{Verhalten der Detektoraufnahme in Abhängigkeit des Parameters Pitch }
-\label{img:pitch_detector}
+\includegraphics[width=0.7\textwidth]{images/fsize_maxintensity.png} 
+\caption{Auswirkung des Feature-Size-Wertes auf die maximale Intensität im Detektorbild.}
+\label{img:fsize-max}
 \end{figure}
+
+\newpage
+\begin{figure}[hh]
+\centering
+\includegraphics[width=0.9\textwidth]{images/pitch_fsize_ratio.png} 
+\caption{Auswirkung der Parameter Pitch und Feature-Size auf das Detektorbild. In der Tabelle wurde der Pitch-Wert zeilenweise erhöht. In jeder Spalte wurde der Feature-Size-Wert in Relation zum Pitch-Wert geändert. 1.Spalte: $\frac{1}{8} $ Pitch, 2.Spalte: $\frac{1}{4} $ Pitch, 3.Spalte: $\frac{1}{2} $ Pitch}
+\label{img:pitch_fsize_ratio}
+\end{figure}
+\newpage
 
 Der Startparamter Feature-Size verhält sich invers zum Parameter Pitch. Mit steigendem Feature-Size Wert kommt es zu einer Erhöhung des Intensitätsmaximums und es werden weniger Frequenzen benötigt, um die Gitterstruktur zu modellieren, somit sind auch weniger Peaks im Detektorsignal vorhanden(Abbildung \ref{img:fsize_detector}). 
 
@@ -420,7 +429,7 @@ Feature-Size und Sigma & 46           & 46                  & 46  \\ \hline
 \caption{\label{tab:label-distribution} Abtastwerte für die jeweiligen Startparameter. Diese Werte werden wie in Abbildung \ref{code:P} verarbeitet}
 \end{table}
 
-Der Datensatz für das Training des Neuronal Networks weißt eine andere Verteilung wie der Pitch-Datensatz auf. In diesem Datensatz wurden die Folgen für Pitch, Sigma und Feature-Size gleich abgetastet, jedoch ist die Verteilung der Sigma- und Feature-Size-Werte aufgrund der Implementierung der Parametergenerierung deutlich ausgeprägter. In der Tabelle \ref{tab:label-distribution} sind die Abtastwerte der jeweiligen Folgen zu sehen. Für das Training, die Validierung des Trainingsprozesses und die Evaluierung des Neuronal Networks wurde der jeweilige Datensatz geshuffled und in Trainings, Validation und Test- Datensatz aufgespaltet. Um die Länge nicht zu groß zu gestalten, wurde der Trainingsdatensatz bei beiden Datensätzen auf 16384 Detektorbilder beschränkt. Für die Validierung stehen jedem Neuronal Network 64 Bilder zur Verfügung. Die restlichen Bilder wurde komplett für eine aussagekräftige Evaluierung verwendet. In Tabelle \ref{tab:traintestval} ist die Verteilung der Samples auf Trainings-, Validierungs- und Testdatensatz zu sehen. Aufgrund der höheren Abtastung von Pitch im Pitch-Datensatz (siehe Tabelle \ref{tab:label-distribution}) besitzt dieser mehr Detektorbilder und somit mehr Samples zum evaluieren. 
+Der Datensatz für das Training des Neuronal Networks weißt eine andere Verteilung wie der Pitch-Datensatz auf. In diesem Datensatz wurden die Folgen für Pitch, Sigma und Feature-Size gleich abgetastet, jedoch ist die Verteilung der Sigma- und Feature-Size-Werte aufgrund der Implementierung der Parametergenerierung deutlich ausgeprägter. In der Tabelle \ref{tab:label-distribution} sind die Abtastwerte der jeweiligen Folgen zu sehen. Für das Training, die Validierung des Trainingsprozesses und die Evaluierung des Neuronal Networks wurde der jeweilige Datensatz geshuffled und in Trainings, Validierung- und Test- Datensatz aufgespaltet. Um die Länge nicht zu groß zu gestalten, wurde der Trainingsdatensatz bei beiden Datensätzen auf 16384 Detektorbilder beschränkt. Für die Validierung stehen jedem Neuronal Network 64 Bilder zur Verfügung. Die restlichen Bilder wurde komplett für eine aussagekräftige Evaluierung verwendet. In Tabelle \ref{tab:traintestval} ist die Verteilung der Samples auf Trainings-, Validierungs- und Testdatensatz zu sehen. Aufgrund der höheren Abtastung von Pitch im Pitch-Datensatz (siehe Tabelle \ref{tab:label-distribution}) besitzt dieser mehr Detektorbilder und somit mehr Samples zum evaluieren. 
 
 \begin{table}[hh]
 \centering 
@@ -572,6 +581,7 @@ Das zweite Experiment (Abbildung \ref{img:train_fc2}) zeigt ähnliches Konvergenz
 	\section{Evaluierung}
 	\subsection{Convolutional Neuronal Network}
 	Um die Qualität des CNNs zu evaluieren, wurden die nicht trainierten Samples des Testdatensatzes verwendet. Für die Qualitätsanalyse wurde die Absolute Abweichung zwischen dem Pitch-Label und der Pitch-Schätzung in Abhängigkeit der Parameter Sigma und Feature-Size dargestellt. Der erste Plot (Abbildung \ref{img:experiment1}) wurde die Abhängigkeit der Absoluten Abweichung zwischen dem Pitch-Label und der Pitch-Schätzung in Abhängigkeit des Startparameters Feature-Size untersucht. 
+\newpage
 
 	\begin{figure}[hh!]
 	\centering
@@ -579,6 +589,9 @@ Das zweite Experiment (Abbildung \ref{img:train_fc2}) zeigt ähnliches Konvergenz
 	\caption{Qualität der Pitch-Schätzung in Abhängigkeit des Startparameters Feature-Size}
 	\label{img:experiment1}
 	\end{figure}
+	
+Anhand des Diagramms in Abbildung \ref{img:experiment1} ist festzustellen, dass mit steigendem Pitch-Wert die Qualität der Pitch-Schätzung sinkt. Außerdem ist in der Darstellung ein Qualitätsabfall erkennbar, wenn die Feature-Size im Verhältnis zu Pitch sehr klein ist. 
+	
 	
 	\begin{figure}[hh!]
 	\centering
