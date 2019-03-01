@@ -696,11 +696,6 @@
 \else
   \if@noproblem
   \else
-  	\ifx\@haupseminartrue\@proseminar
-  		\section*{Aufgabenstellung}
-  	\else
-    	\chapter*{Aufgabenstellung}
-    \fi
   	\@problem
   \fi
 \fi
