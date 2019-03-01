@@ -275,7 +275,22 @@ Das entstandene Produkt der Fouriertransformation ist im Raum der Komplexen Zahl
 \end{figure}
 
 \subsection{Auswirkung der Startparameter auf das Simulationsergebnis}
-Die Startparameter des Simulation haben ebenfalls Auswirkungen auf das Endprodukt der Simulation. In der Abbildung \ref{img:pitch_fsize_ratio} ist der Einfluss der Parameter Pitch und Feature-Size auf das Detektorbild dargestellt. Es ist zu erkennen, dass die Anzahl der Peaks ( Intensitäten größer 0) maßgeblich durch das Verhältnis von Pitch und Feature-Size bestimmt werden. Auch die maximale Intensität wird durch das Verhältnis von Pitch und Feature-Size beeinflusst. Des Weiteren ist zu beobachten, dass mit steigendem Pitch-Wert (zeilenweise) sich die Abstände der Peaks vergrößert. Erhöht man den Feature-Size-Wert ist zu erkennen, dass die Anzahl der Peaks sich verringert und die maximale Intensität steigt. Der Effekt des Feature-Size-Wertes kann ebenfalls im Plot in Abbildung \ref{img:fsize-max} beobachtet werden. 
+Die Startparameter des Simulation haben ebenfalls Auswirkungen auf das Endprodukt der Simulation. In der Abbildung \ref{img:pitch_fsize_ratio} ist der Einfluss der Parameter Pitch und Feature-Size auf das Detektorbild dargestellt. Es ist zu erkennen, dass die Anzahl der Peaks ( Intensitäten größer 0) maßgeblich durch das Verhältnis von Pitch und Feature-Size bestimmt werden. Auch die maximale Intensität wird durch das Verhältnis von Pitch und Feature-Size beeinflusst. Des Weiteren ist zu beobachten, dass mit steigendem Pitch-Wert (zeilenweise) sich die Abstände der Peaks vergrößert. Erhöht man den Feature-Size-Wert ist zu erkennen, dass die Anzahl der Peaks sich verringert und die maximale Intensität steigt. Der Effekt des Feature-Size-Wertes kann ebenfalls im Plot in Abbildung \ref{img:fsize-max} beobachtet werden. Der letzte Startparameter Sigma hat mit steigenden Wert ähnliche Auswirkungen auf die Detektoraufnahmen wie Feature-Size. Bei steigendem Sigma-Wert steigt das Intensitätsmaximum und die Anzahl der Peaks verringert sich. Jedoch skaliert der Parameter Sigma anders als Feature-Size. Kleinere Unterschiede im Sigma-Wert können größere Auswirkungen auf die Anzahl der Peaks haben. Auch der Anstieg des Intensitätsmaximums in Abhängigkeit zu Sigma ist geringer im Vergleich zur Abhängigkeit zu Feature-Size. Zusätzlich ist zu bemerken, dass es einen Schwellwert gibt, bis der Effekt von Sigma Auswirkungen auf die inneren Peaks hat.  Der Effekt von Sigma ist in Abbildung \ref{img:pitch_fsize_ratio} zu sehen. 
+
+\begin{figure}[]
+\centering
+\includegraphics[width=0.85\textwidth]{images/pitch_fsize_ratio.png} 
+\caption{Auswirkung der Parameter Pitch und Feature-Size auf das Detektorbild. In der Tabelle wurde der Pitch-Wert zeilenweise erhöht. In jeder Spalte wurde der Feature-Size-Wert in Relation zum Pitch-Wert geändert. 1.Spalte: $\frac{1}{8} $ Pitch, 2.Spalte: $\frac{1}{4} $ Pitch, 3.Spalte: $\frac{1}{2} $ Pitch}
+\label{img:pitch_fsize_ratio}
+\end{figure}
+
+\begin{figure}[]
+\centering
+\includegraphics[width=0.85\textwidth]{images/sigma_fsize_ratio.png} 
+\caption{Auswirkung der Parameter Feature-Size und Sigma auf das Detektorbild. In der Tabelle wurde der Feature-Size-Wert zeilenweise erhöht. In jeder Spalte wurde der Sigma-Wert in Relation zum Feature-Size-Wertt geändert. 1.Spalte: $\frac{1}{8} $ Feature-Size, 2.Spalte: $\frac{1}{4} $ Feature-Size 3.Spalte: $\frac{1}{2} $ Feature-Size}
+\label{img:pitch_fsize_ratio}
+\end{figure}\newpage
+
 
 \begin{figure}[hh]
 \centering
@@ -284,39 +299,13 @@ Die Startparameter des Simulation haben ebenfalls Auswirkungen auf das Endproduk
 \label{img:fsize-max}
 \end{figure}
 
-\newpage
-\begin{figure}[hh]
-\centering
-\includegraphics[width=0.9\textwidth]{images/pitch_fsize_ratio.png} 
-\caption{Auswirkung der Parameter Pitch und Feature-Size auf das Detektorbild. In der Tabelle wurde der Pitch-Wert zeilenweise erhöht. In jeder Spalte wurde der Feature-Size-Wert in Relation zum Pitch-Wert geändert. 1.Spalte: $\frac{1}{8} $ Pitch, 2.Spalte: $\frac{1}{4} $ Pitch, 3.Spalte: $\frac{1}{2} $ Pitch}
-\label{img:pitch_fsize_ratio}
-\end{figure}
-\newpage
-
-Der Startparamter Feature-Size verhält sich invers zum Parameter Pitch. Mit steigendem Feature-Size Wert kommt es zu einer Erhöhung des Intensitätsmaximums und es werden weniger Frequenzen benötigt, um die Gitterstruktur zu modellieren, somit sind auch weniger Peaks im Detektorsignal vorhanden(Abbildung \ref{img:fsize_detector}). 
-
-\begin{figure}[hh]
-\centering
-\includegraphics[scale=0.25]{images/fsize_endproduct.png} 
-\caption{Verhalten der Detektoraufnahme in Abhängigkeit des Parameters Feature-Size}
-\label{img:fsize_detector}
-\end{figure}
-
-Der letzte Startparameter Sigma hat mit steigenden Wert ähnliche Auswirkungen auf die Detektoraufnahmen wie Feature-Size. Bei steigendem Sigma-Wert steigt das Intensitätsmaximum und die Anzahl der Peaks verringert sich (Abbildung \ref{img:sigma_detector}. Jedoch skaliert der Parameter Sigma anders als Feature-Size. Kleinere Unterschiede im Sigma-Wert können größere Auswirkungen auf die Anzahl der Peaks haben. Auch der Anstieg des Intensitätsmaximums in Abhängigkeit zu Sigma ist geringer im Vergleich zur Abhängigkeit zu Feature-Size. 
-
-\begin{figure}[hh]
-\centering
-\includegraphics[scale=0.25]{images/sigma_endproduct.png} 
-\caption{Verhalten der Detektoraufnahme in Abhängigkeit des Parameters Sigma}
-\label{img:sigma_detector}
-\end{figure}
 
 \subsubsection{Fraunhofer-Beugung}
 Grundlage für die Simulation und des Experimentes ist die Fraunhofer-Beugung. Die Fraunhofer-Beugung ermöglicht die Berechnung des Intensitätswertes an jedem Punkt des Detektors. Dabei geht die Fraunhofer-Beugung von einer idealen Lichtquelle und von einem kontinuierlichen Detektor aus (unendlich viele Abtastpunkte des Intensitätssignals), jedoch sind die Anzahl der Detektorzellen im Experiment sowie die Anzahl der Pixel in der Simulation limitiert, deshalb können die Simulation und das Experiment als diskrete Abtastung der Fraunhofer-Beugung betrachtet werden. In diesem Kapitel wird die Fraunhofer Beugung dazu genutzt die Effekte der Startparameter, welche im vorherigen Kapitel dargestellt wurden, physikalisch zu begründen. Bei der Fraunhofer-Beugung werden ein oder mehrere Öffnungen in einem undurchsichtigem Schirm mit einer ebenen Lichtwelle beleuchtet. Hinter dem Spalt liegt eine Bildebene, um die Beugungseffekte zu beobachten \cite{FraunhoferDiffraction}. In Abbildung \ref{img:fraunhofer_diffraction} ist eine vereinfachte Darstellung des Experimentaufbaus der Fraunhofer-Beugung zu sehen. 
 
 \begin{figure}[hh]
 \centering
-\includegraphics[scale=0.75]{images/fraunhofer_diffraction.png} 
+\includegraphics[scale=0.6]{images/fraunhofer_diffraction.png} 
 \caption{Vereinfachte Darstellung der Fraunhofer-Beugung. Bildquelle: \cite{DiffractionExperiment}}
 \label{img:fraunhofer_diffraction}
 \end{figure}
@@ -330,29 +319,16 @@ I ( \theta ) = I _ { 0 } \left( \frac { \sin \beta } { \beta } \right) ^ { 2 } \
 
 \subsubsection{Effekt von Pitch}
 In Abbildung 3.8  ist die Bildebene der Fraunhofer-Beugung bei unterschiedlicher Spaltanzahl zu sehen. Erhöht man die Spaltanzahl, ist zu erkennen, dass sich das Bild, welches bei einem Spalt zu sehen ist, bei mehreren Spalten auf mehrere Peaks aufteilt. Dieser Effekt ist auch bei der Senkung des Pitch-Wertes zu sehen (Abbildung \ref{img:pitch_detector}). Dennoch gibt einen großen Unterschied zur Simulation. Ein wichtiger Unterschied ist, dass Aufgrund der Diskretisierung des Detekorsignals, kleinere Peaks zwischen den größeren Peaks verloren gehen. Diese kleineren Peaks erzeugen Minima. Anhand der Anzahl der Minima $M$ kann die Anzahl der Spalten im Target abgelesen werden. Der Zusammenhang ist dass die Anzahl der Spalten $N$ durch $M + 1$ errechnen lässt. Befinden sich zwischen den größeren Peaks 4 Minima, hat das Target 5 Spalten \cite{Multiple_Slits}.
-\begin{figure}[hh]
-\centering
-\begin{subfigure}{}
-\includegraphics[scale=1.0]{images/single_slit.png} 
-\end{subfigure}
-\begin{subfigure}{}
-\includegraphics[scale=1.0]{images/double_slit.png} 
-\end{subfigure}
-\begin{subfigure}{}
-\includegraphics[scale=1.0]{images/five_slit.png} 
-\end{subfigure}
-\label{img:multislit}
-\caption{Vergleich der Bildebene bei unterschiedlich Anzahl von Spalten. Bildquelle: \cite{Multiple_Slits}}
-\end{figure}
 
 \subsubsection{Effekt von Feature-Size}
 Erhöht man die Größe des Spalts, kommt es zu geringerer Beugung am Spalt bzw. das Licht kann den Spalt geradliniger durchdringen . Das hat zufolge, dass weniger Licht die Ränder der Bildebene erreicht und somit weniger Intensität am Rand gemessen werden kann (Siehe Abbildung \ref{img:slit_sizes}). Dieser Effekt ist auch bei der Erhöhung des Feature-Size-Wertes in der Simulation erkennen(Siehe Abbildung \ref{img:fsize_detector}. Die Peaks im Zentrum des Detektors werden verstärkt und die Detektorzellen am Rand bekommen weniger Lichtintensität bzw. gar keine Lichtintensität ab \cite{Diffraction_Book}. 
 
-\begin{figure}[hh]
+\newpage
+\begin{figure}[]
 \centering
-\includegraphics[scale=0.25]{images/slit_size.png} 
-\caption{Stärke der Beugung in Abhängigkeit der Spaltgröße. Bildquelle: \cite{Diffraction_Book}}
-\label{img:slit_sizes}
+\includegraphics[width=0.85\textwidth]{images/fraunhofer_pitch_fsize_ratio.png} 
+\caption{Auswirkung der Parameter Pitch und Feature-Size auf die Bildebene. In der Tabelle wurde der Pitch-Wert zeilenweise erhöht. In jeder Spalte wurde der Feature-Size-Wert in Relation zum Pitch-Wert geändert. 1.Spalte: $\frac{1}{8} $ Pitch, 2.Spalte: $\frac{1}{4} $ Pitch, 3.Spalte: $\frac{1}{2} $ Pitch}
+\label{img:fd_pitch_fsize_ratio}
 \end{figure}
 
 
@@ -607,8 +583,76 @@ Anhand des Diagramms in Abbildung \ref{img:experiment1} ist festzustellen, dass 
 	\label{img:bad_experiment1}
 	\end{figure}
 	
+	\begin{figure}[hh!]
+	\centering
+	\includegraphics[width=.75\textwidth]{images/experiment2.png} 
+	\caption{Qualität der Pitch-Schätzung in Abhängigkeit des Startparameters Sigma}
+	\label{img:experiment2}
+	\end{figure}
+	
+	
+	
+	
 	
 	\subsection{Fully Connected Neuronal Network}
+	\begin{figure}[hh!]
+	\centering
+	\includegraphics[width=.75\textwidth]{images/experiment3_1.png} 
+	\caption{Qualität der Feature-Size in Abhängigkeit des Startparameters Pitch des Fully-Connected Neuronal Networks mit CNN-Input}
+	\label{img:experiment3_1}
+	\end{figure}
+	
+	\begin{figure}[hh!]
+	\centering
+	\includegraphics[width=.75\textwidth]{images/experiment3_2.png} 
+	\caption{Qualität der Feature-Size in Abhängigkeit des Startparameters Pitch des Fully-Connected Neuronal Networks mit Pitch-Label-Input}
+	\label{img:experiment3_1}
+	\end{figure}
+	
+	\begin{figure}[hh!]
+	\centering
+	\includegraphics[width=.75\textwidth]{images/experiment4_1.png} 
+	\caption{Qualität der Feature-Size in Abhängigkeit des Startparameters Sigma des Fully-Connected Neuronal Networks mit CNN-Input}
+	\label{img:experiment4_1}
+	\end{figure}
+	
+	\begin{figure}[hh!]
+	\centering
+	\includegraphics[width=.75\textwidth]{images/experiment4_2.png} 
+	\caption{Qualität der Feature-Size in Abhängigkeit des Startparameters Sigma des Fully-Connected Neuronal Networks mit Pitch-Label-Input}
+	\label{img:experiment4_2}
+	\end{figure}
+	
+	\begin{figure}[hh!]
+	\centering
+	\includegraphics[width=.75\textwidth]{images/experiment5_1.png} 
+	\caption{Qualität des Sigmas  in Abhängigkeit des Startparameters Pitch des Fully-Connected Neuronal Networks mit mit CNN-Input}
+	\label{img:experiment4_1}
+	\end{figure}
+	
+	\begin{figure}[hh!]
+	\centering
+	\includegraphics[width=.75\textwidth]{images/experiment5_2.png} 
+	\caption{Qualität des Sigmas in Abhängigkeit des Startparameters Pitch des Fully-Connected Neuronal Networks mit Pitch-Label-Input}
+	\label{img:experiment4_2}
+	\end{figure}
+	
+	\begin{figure}[hh!]
+	\centering
+	\includegraphics[width=.75\textwidth]{images/experiment6_1.png} 
+	\caption{Qualität des Sigmas  in Abhängigkeit des Startparameters Feature-Size des Fully-Connected Neuronal Networks mit mit CNN-Input}
+	\label{img:experiment4_1}
+	\end{figure}
+	
+	\begin{figure}[hh!]
+	\centering
+	\includegraphics[width=.75\textwidth]{images/experiment6_2.png} 
+	\caption{Qualität des Sigmas in Abhängigkeit des Startparameters Feature-Size des Fully-Connected Neuronal Networks mit Pitch-Label-Input}
+	\label{img:experiment4_2}
+	\end{figure}
+	
+	
+	
 	\section{Fazit}
 	\section{Ausblick}
 	
