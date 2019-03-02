@@ -300,7 +300,6 @@ Die Startparameter des Simulation haben ebenfalls Auswirkungen auf das Endproduk
 \end{figure}
 
 
-
 \subsubsection{Effekt von Sigma}
 Wie in Kapitel \ref{Simulation} beschrieben, ergibt sich die Gitterstruktur des Gratings aus einer Faltung aus Gauss-Verteilung, Impulsverteilung und Rechteckimpuls. Diese Faltung wird dann fouriertransformiert um das Detektorbild. Eine wichtige Eigenschaft der Fouriertransformation $F$ ist, dass Fourier-Faltungs-Theorem, welches besagt, dass die Fouriertransformation einer Faltung äquivalent zum Produkt der Fouriertransformationen der Faltungsfunktionen ist (Gleichung \eqref{eq:fft_convolve})\cite{FOURIERDEF} .
 
@@ -524,45 +523,37 @@ Das zweite Experiment (Abbildung \ref{img:train_fc2}) zeigt ähnliches Konvergenz
 	\label{img:train_fc2}
 	\end{figure}
 	\section{Evaluierung}
+	
 	\subsection{Convolutional Neuronal Network}
-	Um die Qualität des CNNs zu evaluieren, wurden die nicht trainierten Samples des Testdatensatzes verwendet. Für die Qualitätsanalyse wurde die Absolute Abweichung zwischen dem Pitch-Label und der Pitch-Schätzung in Abhängigkeit der Parameter Sigma und Feature-Size dargestellt. Der erste Plot (Abbildung \ref{img:experiment1}) wurde die Abhängigkeit der Absoluten Abweichung zwischen dem Pitch-Label und der Pitch-Schätzung in Abhängigkeit des Startparameters Feature-Size untersucht. 
-\newpage
+Um die Qualität des CNNs zu evaluieren, wurden die nicht trainierten Samples des Testdatensatzes zur Qualitätsbestimmung genutzt. Es konnte eine durchschnittliche absolute Abweichung von 109.73 und eine durchschnittliche relative Abweichung von 37\% erreicht werden. Aus der durchschnittlichen relativen und absoluten Abweichung kann eine schlechte Qualität des CNNs geschlussfolgert werden.
+	
+ Eine wichtige Beobachtung der Analyse des CNNs ist, dass mit steigendem Pitch-Label die Qualität der Pitch-Schätzung sich verringert (siehe Abbildung \ref{img:experiment1}).Im Kapitel \ref{Simulation} wurde bereits analysiert, dass mit steigendem Pitch-Wert die Abstände der Peaks kleiner werden und somit ein dichteres Detektorbild entsteht.
 
 	\begin{figure}[hh!]
 	\centering
-	\includegraphics[width=.75\textwidth]{images/experiment1.png} 
+	\includegraphics[width=0.85\textwidth]{images/experiment1.png} 
 	\caption{Qualität der Pitch-Schätzung in Abhängigkeit des Startparameters Feature-Size}
 	\label{img:experiment1}
-	\end{figure}
-	
-Anhand des Diagramms in Abbildung \ref{img:experiment1} ist festzustellen, dass mit steigendem Pitch-Wert die Qualität der Pitch-Schätzung sinkt. Außerdem ist in der Darstellung ein Qualitätsabfall erkennbar, wenn die Feature-Size im Verhältnis zu Pitch sehr klein ist. 
-	
-	
-	\begin{figure}[hh!]
+	\end{figure} 
+ 
+Eine wichtige Eigenschaft von CNNs bzw der Convolutional-Layer ist, dass sie Lokalität der Input-Daten nicht berücksichtigen, somit können globale Änderungen, wie zum Beispiel eine Verdichtung des Detekorbildes durch ein CNN schwerer erfasst werden. Dies spiegelt sich auch in den Detektorbildern in Abbildung \ref{img:bad_experiment1} wieder, welche alle im Zentrum des Bildes sehr dicht besetzt sind. 
+
+	\begin{figure}[hh]
 	\centering
-	\includegraphics[width=.75\textwidth]{images/experiment1_good_predictions.png} 
-	\caption{Detektorbilder zu guten Schätzungen}
-	\label{img:good_experiment1}
-	\end{figure}
-	
-		\begin{figure}[hh!]
-	\centering
-	\includegraphics[width=.75\textwidth]{images/experiment1_bad_predictions.png} 
-	\caption{Detektorbilder zu schlechten Schätzungen}
+	\includegraphics[width=0.75\textwidth]{images/experiment1_bad_predictions.png} 
+	\caption{Detektorbilder zu schlechten Schätzungen. Alle drei Detektorbilder weisen mit einer Absolute Abweichung über 100 eine überdurchschnittliche schlechte Qualität auf. }
 	\label{img:bad_experiment1}
 	\end{figure}
 	
-	\begin{figure}[hh!]
-	\centering
-	\includegraphics[width=.75\textwidth]{images/experiment2.png} 
-	\caption{Qualität der Pitch-Schätzung in Abhängigkeit des Startparameters Sigma}
-	\label{img:experiment2}
+Bilder mit niedrigerem Pitch-Wert können besser geschätzt werden,wie die Detektorbilder in Abbildung \ref{img:good_experiment1}. Sie weisen eine geringere Peak-Dichte auf, womit das CNN scheinbar besser umgehen kann. Eine weitere Begrünung für die schlechte Qualität des CNNs ist das Sampling der Fouriertransformation in der Simulation. In der Simulation wurde das 2048 Pixel große Grating mit einer Fouriertransformation mit 2048 Stützstellen implementiert. Das hat zur Folge, dass Peaks im Detektorbild nur durch einen Wert dargestellt werden und Zwischenwerte komplett verloren gehen. 
+
+	\begin{figure}[hh]
+		\centering
+	\includegraphics[width=0.75\textwidth]{images/experiment1_good_predictions.png} 
+	\caption{Detektorbilder zu guten Schätzungen}
+	\label{img:good_experiment1}
 	\end{figure}
-	
-	
-	
-	
-	
+
 	\subsection{Fully Connected Neuronal Network}
 	\begin{figure}[hh!]
 	\centering
