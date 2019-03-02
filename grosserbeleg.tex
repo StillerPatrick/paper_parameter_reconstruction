@@ -29,7 +29,9 @@ Bild"ubernahmen zitieren.}
 \begin{document}
 
 \chapter{Einleitung}
-
+Deep Learning erlaubt mathematischen Modellen, welche aus mehreren Verarbeitungsschichten bestehen, die Repräsentation von Daten auf verschiedenen Abstraktionsniveaus zu lernen. Deep Learning hat den Stand der Technik in Spracherkennung, Objekterkennung und in vielen anderen Bereichen wie der Genetik stark verbessert. [...] Deep Convolutional Neuronal Networks gelang der Durchbruch in der Verarbeitung von Text, Bild und Video. (Übesetzung des Autors)
+%TODO CITE einfügen
+In diesem Beleg wird geprüft, ob Deep Learning ein möglicher Ansatz für die Rekonstruktion von Information, welche während der Kleinwinkelstreuung verloren gegangen sind, ist. 
 \chapter{Grundlagen}
 
 \section{Physikalischer Hintergrund}
@@ -536,83 +538,34 @@ Um die Qualität des CNNs zu evaluieren, wurden die nicht trainierten Samples des
 	\label{img:experiment1}
 	\end{figure} 
  
-Eine wichtige Eigenschaft von CNNs bzw der Convolutional-Layer ist, dass sie Lokalität der Input-Daten nicht berücksichtigen, somit können globale Änderungen, wie zum Beispiel eine Verdichtung des Detekorbildes durch ein CNN schwerer erfasst werden. Dies spiegelt sich auch in den Detektorbildern in Abbildung \ref{img:bad_experiment1} wieder, welche alle im Zentrum des Bildes sehr dicht besetzt sind. 
+Eine wichtige Eigenschaft von CNNs bzw der Convolutional-Layer ist, dass sie Lokalität der Input-Daten nicht berücksichtigen, somit können globale Änderungen, wie zum Beispiel eine Verdichtung des Detekorbildes durch ein CNN schwerer erfasst werden. Dies spiegelt sich auch in den Detektorbildern in Abbildung \ref{img:bad_experiment1} wieder, welche alle im Zentrum des Bildes sehr dicht besetzt sind. Bilder mit niedrigerem Pitch-Wert können besser geschätzt werden,wie die Detektorbilder in Abbildung \ref{img:good_experiment1}. Sie weisen eine geringere Peak-Dichte auf, womit das CNN scheinbar besser umgehen kann. 
 
 	\begin{figure}[hh]
 	\centering
-	\includegraphics[width=0.75\textwidth]{images/experiment1_bad_predictions.png} 
-	\caption{Detektorbilder zu schlechten Schätzungen. Alle drei Detektorbilder weisen mit einer Absolute Abweichung über 100 eine überdurchschnittliche schlechte Qualität auf. }
+	\includegraphics[width=0.78\textwidth]{images/experiment1_bad_predictions.png} 
+	\caption{Detektorbilder zu schlechten Pitch-Schätzungen. Alle drei Detektorbilder weisen mit einer Absolute Abweichung über 100 eine überdurchschnittliche schlechte Qualität auf. }
 	\label{img:bad_experiment1}
 	\end{figure}
 	
-Bilder mit niedrigerem Pitch-Wert können besser geschätzt werden,wie die Detektorbilder in Abbildung \ref{img:good_experiment1}. Sie weisen eine geringere Peak-Dichte auf, womit das CNN scheinbar besser umgehen kann. Eine weitere Begrünung für die schlechte Qualität des CNNs ist das Sampling der Fouriertransformation in der Simulation. In der Simulation wurde das 2048 Pixel große Grating mit einer Fouriertransformation mit 2048 Stützstellen implementiert. Das hat zur Folge, dass Peaks im Detektorbild nur durch einen Wert dargestellt werden und Zwischenwerte komplett verloren gehen. 
-
 	\begin{figure}[hh]
-		\centering
+	\centering
 	\includegraphics[width=0.75\textwidth]{images/experiment1_good_predictions.png} 
-	\caption{Detektorbilder zu guten Schätzungen}
+	\caption{Detektorbilder zu guten Pitch-Schätzungen}
 	\label{img:good_experiment1}
 	\end{figure}
+Eine weitere Begrünung für die schlechte Qualität des CNNs ist das Sampling der Fouriertransformation in der Simulation. In der Simulation wurde das 2048 Pixel große Grating mit einer Fouriertransformation mit 2048 Stützstellen (Sampling) implementiert. Das hat zur Folge, dass Peaks im Detektorbild nur durch einen Wert dargestellt werden und Zwischenwerte komplett verloren gehen. In Abbildung \ref{img:oversampling} ist ein Vergleich der Simulation mit höherer Sampling-Rate(links) und einem Sampling von 1:1. Die Abbildung zeigt außerdem, dass zwischen den höheren Peaks im Zentrum noch kleinere Peaks sind, welche durch die niedrigere Sampling-Rate nicht gemessen werden können. Diese Peaks können laut Fraunhofer-Diffraction, welche eine theoretische Anlehnung an die Streuung ist, dazu genutzt werden die Anzahl der Features  und im Umkehrschluss Pitch zu bestimmen \cite{Multiple_Slits}. Denn die Anzahl der Minima zwischen dem Intensitäsmaximum und dem nächsten höheren Peak entspricht der Anzahl der Features plus eins \cite{Multiple_Slits}. Somit können nur Parameter des Detektorbildes wie Intensitäten, Peakabstände und Anzahl der Peaks benutzt werden, um Pitch zu schätzen. Jedoch werden die genannten Parameter des Detektorbildes, wie bereits in Kapitel \ref{Simulation} beschrieben, durch die anderen beiden Startparameter Sigma und Feature-Size beeinflusst.
+
+	\begin{figure}[hh]
+	\centering
+	\includegraphics[width=0.75\textwidth]{images/oversampling.png} 
+	\caption{Unterschied des Detektorbildes bei einem höheren Sampling(links) und einem Sampling von 1:1 (rechts). Die gelben Punkte signalisieren die jeweiligen Sampling-Punkte}
+	\label{img:oversampling}
+	\end{figure}
+
+
 
 	\subsection{Fully Connected Neuronal Network}
-	\begin{figure}[hh!]
-	\centering
-	\includegraphics[width=.75\textwidth]{images/experiment3_1.png} 
-	\caption{Qualität der Feature-Size in Abhängigkeit des Startparameters Pitch des Fully-Connected Neuronal Networks mit CNN-Input}
-	\label{img:experiment3_1}
-	\end{figure}
-	
-	\begin{figure}[hh!]
-	\centering
-	\includegraphics[width=.75\textwidth]{images/experiment3_2.png} 
-	\caption{Qualität der Feature-Size in Abhängigkeit des Startparameters Pitch des Fully-Connected Neuronal Networks mit Pitch-Label-Input}
-	\label{img:experiment3_1}
-	\end{figure}
-	
-	\begin{figure}[hh!]
-	\centering
-	\includegraphics[width=.75\textwidth]{images/experiment4_1.png} 
-	\caption{Qualität der Feature-Size in Abhängigkeit des Startparameters Sigma des Fully-Connected Neuronal Networks mit CNN-Input}
-	\label{img:experiment4_1}
-	\end{figure}
-	
-	\begin{figure}[hh!]
-	\centering
-	\includegraphics[width=.75\textwidth]{images/experiment4_2.png} 
-	\caption{Qualität der Feature-Size in Abhängigkeit des Startparameters Sigma des Fully-Connected Neuronal Networks mit Pitch-Label-Input}
-	\label{img:experiment4_2}
-	\end{figure}
-	
-	\begin{figure}[hh!]
-	\centering
-	\includegraphics[width=.75\textwidth]{images/experiment5_1.png} 
-	\caption{Qualität des Sigmas  in Abhängigkeit des Startparameters Pitch des Fully-Connected Neuronal Networks mit mit CNN-Input}
-	\label{img:experiment4_1}
-	\end{figure}
-	
-	\begin{figure}[hh!]
-	\centering
-	\includegraphics[width=.75\textwidth]{images/experiment5_2.png} 
-	\caption{Qualität des Sigmas in Abhängigkeit des Startparameters Pitch des Fully-Connected Neuronal Networks mit Pitch-Label-Input}
-	\label{img:experiment4_2}
-	\end{figure}
-	
-	\begin{figure}[hh!]
-	\centering
-	\includegraphics[width=.75\textwidth]{images/experiment6_1.png} 
-	\caption{Qualität des Sigmas  in Abhängigkeit des Startparameters Feature-Size des Fully-Connected Neuronal Networks mit mit CNN-Input}
-	\label{img:experiment4_1}
-	\end{figure}
-	
-	\begin{figure}[hh!]
-	\centering
-	\includegraphics[width=.75\textwidth]{images/experiment6_2.png} 
-	\caption{Qualität des Sigmas in Abhängigkeit des Startparameters Feature-Size des Fully-Connected Neuronal Networks mit Pitch-Label-Input}
-	\label{img:experiment4_2}
-	\end{figure}
-	
-	
-	
+	test
 	\section{Fazit}
 	\section{Ausblick}
 	
