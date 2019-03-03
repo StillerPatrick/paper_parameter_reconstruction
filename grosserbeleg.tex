@@ -450,7 +450,7 @@ Layer           & Input            & \multicolumn{1}{l|}{Anzahl Filter} & \multi
 Dense           & Layer11          & -                                  & -                                & 64                                       & ReLU                 \\
 Regression-Layer & Layer12          & -                                  & -                                & 1                                        & Linear            \\ \hline  
 \end{tabular}
-\caption{\label{tab:cnn} Architektur des Convolutionl Neuronal Networks}
+\caption{\label{tab:cnn} Architektur des Convolutional Neuronal Networks}
 \end{table}
 
 \newpage
@@ -468,6 +468,7 @@ Dense-Layer      & Layer2                           & 2048            & Relu    
 Dense-Layer      & Layer3                           & 64              & ReLu                 \\
 Regression-Layer & Layer4                           & 2               & Linear              \\ \hline
 \end{tabular}
+\caption{\label{tab:cnn} Architektur des Fully-Connected Neuronal Networks}
 \end{table}
 \section{Training}
 %TODO
@@ -529,7 +530,7 @@ Das zweite Experiment (Abbildung \ref{img:train_fc2}) zeigt ähnliches Konvergenz
 	\subsection{Convolutional Neuronal Network}
 Um die Qualität des CNNs zu evaluieren, wurden die nicht trainierten Samples des Testdatensatzes zur Qualitätsbestimmung genutzt. Es konnte eine durchschnittliche absolute Abweichung von 109.73 und eine durchschnittliche relative Abweichung von 37\% erreicht werden. Aus der durchschnittlichen relativen und absoluten Abweichung kann eine schlechte Qualität des CNNs geschlussfolgert werden.
 	
- Eine wichtige Beobachtung der Analyse des CNNs ist, dass mit steigendem Pitch-Label die Qualität der Pitch-Schätzung sich verringert (siehe Abbildung \ref{img:experiment1}).Im Kapitel \ref{Simulation} wurde bereits analysiert, dass mit steigendem Pitch-Wert die Abstände der Peaks kleiner werden und somit ein dichteres Detektorbild entsteht.
+ Eine wichtige Beobachtung der Analyse des CNNs ist, dass mit steigendem Pitch-Label die Qualität der Pitch-Schätzung sich verringert (siehe Abbildung \ref{img:experiment1}).Im Kapitel \ref{Simulation} wurde bereits analysiert, dass mit steigendem Pitch-Wert die Abstände der Peaks kleiner werden und somit ein dichteres Detektorbild entsteht. Zusätzlich ist  in Abbildung \ref{img:experiment1} zu erkennen, dass bei höheren Feature-Size-Werten Pitch besser geschätzt werden kann.  
 
 	\begin{figure}[hh!]
 	\centering
@@ -553,8 +554,8 @@ Eine wichtige Eigenschaft von CNNs bzw der Convolutional-Layer ist, dass sie Lok
 	\caption{Detektorbilder zu guten Pitch-Schätzungen}
 	\label{img:good_experiment1}
 	\end{figure}
-Eine weitere Begrünung für die schlechte Qualität des CNNs ist das Sampling der Fouriertransformation in der Simulation. In der Simulation wurde das 2048 Pixel große Grating mit einer Fouriertransformation mit 2048 Stützstellen (Sampling) implementiert. Das hat zur Folge, dass Peaks im Detektorbild nur durch einen Wert dargestellt werden und Zwischenwerte komplett verloren gehen. In Abbildung \ref{img:oversampling} ist ein Vergleich der Simulation mit höherer Sampling-Rate(links) und einem Sampling von 1:1. Die Abbildung zeigt außerdem, dass zwischen den höheren Peaks im Zentrum noch kleinere Peaks sind, welche durch die niedrigere Sampling-Rate nicht gemessen werden können. Diese Peaks können laut Fraunhofer-Diffraction, welche eine theoretische Anlehnung an die Streuung ist, dazu genutzt werden die Anzahl der Features  und im Umkehrschluss Pitch zu bestimmen \cite{Multiple_Slits}. Denn die Anzahl der Minima zwischen dem Intensitäsmaximum und dem nächsten höheren Peak entspricht der Anzahl der Features plus eins \cite{Multiple_Slits}. Somit können nur Parameter des Detektorbildes wie Intensitäten, Peakabstände und Anzahl der Peaks benutzt werden, um Pitch zu schätzen. Jedoch werden die genannten Parameter des Detektorbildes, wie bereits in Kapitel \ref{Simulation} beschrieben, durch die anderen beiden Startparameter Sigma und Feature-Size beeinflusst.
-
+Eine weitere Begrünung für die schlechte Qualität des CNNs könnte das Sampling der Fouriertransformation in der Simulation sein. In der Simulation wurde das 2048 Pixel große Grating mit einer Fouriertransformation mit 2048 Stützstellen (Sampling) implementiert. Das hat zur Folge, dass Peaks im Detektorbild nur durch einen Wert dargestellt werden und Zwischenwerte komplett verloren gehen. In Abbildung \ref{img:oversampling} ist ein Vergleich der Simulation mit höherer Sampling-Rate(links) und einem Sampling von 1:1. Die Abbildung zeigt außerdem, dass zwischen den höheren Peaks im Zentrum noch kleinere Peaks sind, welche durch die niedrigere Sampling-Rate nicht gemessen werden können. Diese Peaks können laut Fraunhofer-Diffraction, welche eine theoretische Anlehnung an die Streuung ist, dazu genutzt werden die Anzahl der Features  und im Umkehrschluss Pitch zu bestimmen \cite{Multiple_Slits}. Denn die Anzahl der Minima zwischen dem Intensitäsmaximum und dem nächsten höheren Peak entspricht der Anzahl der Features plus eins \cite{Multiple_Slits}. Somit können nur Parameter des Detektorbildes wie Intensitäten, Peakabstände und Anzahl der Peaks benutzt werden, um Pitch zu schätzen. Jedoch werden die genannten Parameter des Detektorbildes, wie bereits in Kapitel \ref{Simulation} beschrieben, durch die anderen beiden Startparameter Sigma und Feature-Size beeinflusst.
+ \newpage
 	\begin{figure}[hh]
 	\centering
 	\includegraphics[width=0.75\textwidth]{images/oversampling.png} 
@@ -562,10 +563,28 @@ Eine weitere Begrünung für die schlechte Qualität des CNNs ist das Sampling der 
 	\label{img:oversampling}
 	\end{figure}
 
-
-
 	\subsection{Fully Connected Neuronal Network}
-	test
+	\begin{table}[]
+	\centering 
+\begin{tabular}{|l|l|l|}
+\hline
+                        & Feature-Size & Sigma   \\ \hline
+Fully-Connected (CNN)   & 13,043       & 13,1740 \\ 
+Fully-Connected (Label) & 13,713       & 12,641 \\ \hline
+\end{tabular}
+\caption{\label{tab:relative_results} Absolute Abweichung  bei der Schätzung von Sigma und Feature-Size}
+\end{table}
+
+\begin{table}[]
+\centering 
+\begin{tabular}{|l|ll|}
+\hline
+                         & Feature-Size & Sigma \textgreater 1 \\ \hline
+Fully-Connected (CNN)    & 12,46 \%     & 184,43 \%            \\
+Fully-Connected. (Label) & 13,50 \%     & 176,75 \%       \\ \hline    
+\end{tabular}
+\caption{\label{tab:relative_results} Relativer Fehler bei der Schätzung von Sigma und Feature-Size}
+\end{table}
 	\section{Fazit}
 	\section{Ausblick}
 	
