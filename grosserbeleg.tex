@@ -30,6 +30,8 @@ Bild"ubernahmen zitieren.}
 \begin{document}
 
 \chapter{Einleitung}
+
+
 Deep Learning erlaubt mathematischen Modellen, welche aus mehreren Verarbeitungsschichten bestehen, die Repräsentation von Daten auf verschiedenen Abstraktionsniveaus zu lernen. Deep Learning hat den Stand der Technik in Spracherkennung, Objekterkennung und in vielen anderen Bereichen wie der Genetik stark verbessert. [...] Deep Convolutional Neuronal Networks gelang der Durchbruch in der Verarbeitung von Text, Bild und Video. (Übesetzung des Autors)
 
 - MOTIVATION PLASMA 
@@ -624,7 +626,7 @@ Aus diesen Zahlen kann geschlussfolgert werden, dass Feature-Size mit einer rela
 \label{img:experiment_fsize}
 \end{figure}
 
-Der Startparameter Sigma kann vom Fully-Connected Neuronal Network deutlich schlechter geschätzt werden wie Feature-Size. Es konnte eine durchschnittliche Absolute Abweichung 13,174 (CNN) und 12,641 erreicht werden. Da der Wertebereich von Sigma deutlich kleinere ist, zeigt sich der Qualitätsunterschied zur Feature-Size-Schätzung in der prozentualen Abweichung. Es konnte eine prozentuale Abweichung von 184,43 Prozent (CNN) und 176,75 Prozent für Sigma größer 0 erreicht werden. Aus den Abweichungszahlen kann geschlussfolgert werden, dass eine bessere Pitch-Schätzung zu einer besseren Sigma-Schätzung beiträgt In Abbildung \ref{img:experiment_sigma} ist die absolute Abweichung in Abhängikeit von Sigma und Feature-Size dargestellt. In dieser Abbildung ist zu erkennen, dass die Abweichung nahe zu linear mit höheren Sigma-Wert steigt. Außerdem ist zu erkennen, dass der Sigma-Wert besser geschätzt werden kann, wenn der Feature-Size-Wert höher ist. Dieser Zusammenhang kann damit begründet werden, dass bei größeren Features Sigma größer sein muss, um einen Informationsverlust zu erzeugen. 
+Der Startparameter Sigma kann vom Fully-Connected Neuronal Network deutlich schlechter geschätzt werden wie Feature-Size. Es konnte eine durchschnittliche Absolute Abweichung 13,174 (CNN) und 12,641 erreicht werden. Da der Wertebereich von Sigma deutlich kleinere ist, zeigt sich der Qualitätsunterschied zur Feature-Size-Schätzung in der prozentualen Abweichung. Es konnte eine prozentuale Abweichung von 184,43 Prozent (CNN) und 176,75 Prozent für Sigma größer 0 erreicht werden. Aus den Abweichungszahlen kann geschlussfolgert werden, dass eine bessere Pitch-Schätzung zu einer besseren Sigma-Schätzung beiträgt In Abbildung \ref{img:experiment_sigma} ist die absolute Abweichung in Abhängikeit von Sigma und Feature-Size dargestellt. In dieser Abbildung ist zu erkennen, dass die Abweichung nahe zu linear mit höheren Sigma-Wert steigt. Außerdem ist zu erkennen, dass der Sigma-Wert besser geschätzt werden kann, wenn der Feature-Size-Wert höher ist. Dieser Zusammenhang kann damit begründet werden, dass bei größeren Features Sigma größer sein muss, um einen Informationsverlust zu erzeugen. Ein weiterer erschwerender Punkt ist, dass Sigma und Feature-Size gleiche Effekte auf das Detektorbild haben. Beide erhöhen das Intensitätsmaximums und verringern die Anzahl der Peaks im Detektorbild. Jedoch erkennt das Network eher den Effekt der Feature-Size auf das Detekorbild und erreicht eine höhere Qu
 
 \begin{figure}[h]
 \centering
@@ -634,6 +636,7 @@ Der Startparameter Sigma kann vom Fully-Connected Neuronal Network deutlich schl
 \end{figure}
 
 \section{Fazit}
+In dieser Arbeit wurde ein Prototyp entwickelt, der die Beschreibungsparameter der Gitterstruktur anhand der zugehörigen Detektorbild schätzen soll. Es wurde eine umfangreiche Datenanalyse vorgenommen, um die Effekte der Startparameter auf das Detektorbild und auf die Network-Schätzungen zu verstehen. Aus den Ergebnissen kann bisher leider nur die Schlussfolgerung gezogen werden, dass die in diesem Beleg benutze Technik den keinen Erfolg bringt. Nur der Startparameter Feature-Size konnte mit einer besseren Qualität geschätzt werden. Die Parameter Sigma und Pitch können nur mit einer unzureichenden Qualität geschätzt werden. Eine große Schwierigkeit sind die Effekte der Parameter auf das Detektorbild. Parameter wie Feature-Size und Sigma zeigen die gleichen Effekte auf das Detektorbild, nur unterschiedlich skaliert. Und auch der Parameter Pitch legt im Zusammenspiel mit dem Parameter die Grundstruktur des Detektorbildes fest. Die Erkenntnisse dieser Arbeit können dafür genutzt werden den Deep-Learning-Ansatz zu verbessern, um in Zukunft vielleicht bessere Ergebnisse zu erzielen. 
 \section{Ausblick}
 	
 
