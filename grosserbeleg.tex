@@ -3,6 +3,7 @@
 \usepackage{pdfpages}
 \usepackage{array}
 \usepackage{listings}
+\usepackage{placeins}
 %weitere Optionen zum Ergänzen (in eckigen Klammern):
 % 
 % female	weibliche Titelbezeichnung bei Diplom
@@ -470,7 +471,7 @@ Regression-Layer & Layer4                           & 2               & Linear  
 \end{tabular}
 \caption{\label{tab:cnn} Architektur des Fully-Connected Neuronal Networks}
 \end{table}
-\section{Training}
+\section{Training} \label{Training}
 %TODO
 
 % 2 Experimente für das Fully-Connected Neuronal Network 
@@ -555,21 +556,23 @@ Eine wichtige Eigenschaft von CNNs bzw der Convolutional-Layer ist, dass sie Lok
 	\label{img:good_experiment1}
 	\end{figure}
 Eine weitere Begrünung für die schlechte Qualität des CNNs könnte das Sampling der Fouriertransformation in der Simulation sein. In der Simulation wurde das 2048 Pixel große Grating mit einer Fouriertransformation mit 2048 Stützstellen (Sampling) implementiert. Das hat zur Folge, dass Peaks im Detektorbild nur durch einen Wert dargestellt werden und Zwischenwerte komplett verloren gehen. In Abbildung \ref{img:oversampling} ist ein Vergleich der Simulation mit höherer Sampling-Rate(links) und einem Sampling von 1:1. Die Abbildung zeigt außerdem, dass zwischen den höheren Peaks im Zentrum noch kleinere Peaks sind, welche durch die niedrigere Sampling-Rate nicht gemessen werden können. Diese Peaks können laut Fraunhofer-Diffraction, welche eine theoretische Anlehnung an die Streuung ist, dazu genutzt werden die Anzahl der Features  und im Umkehrschluss Pitch zu bestimmen \cite{Multiple_Slits}. Denn die Anzahl der Minima zwischen dem Intensitäsmaximum und dem nächsten höheren Peak entspricht der Anzahl der Features plus eins \cite{Multiple_Slits}. Somit können nur Parameter des Detektorbildes wie Intensitäten, Peakabstände und Anzahl der Peaks benutzt werden, um Pitch zu schätzen. Jedoch werden die genannten Parameter des Detektorbildes, wie bereits in Kapitel \ref{Simulation} beschrieben, durch die anderen beiden Startparameter Sigma und Feature-Size beeinflusst.
- \newpage
-	\begin{figure}[hh]
+	\begin{figure}[]
 	\centering
 	\includegraphics[width=0.75\textwidth]{images/oversampling.png} 
 	\caption{Unterschied des Detektorbildes bei einem höheren Sampling(links) und einem Sampling von 1:1 (rechts). Die gelben Punkte signalisieren die jeweiligen Sampling-Punkte}
 	\label{img:oversampling}
-	\end{figure}
+	\end{figure}	
+	\FloatBarrier
 
 	\subsection{Fully Connected Neuronal Network}
-	\begin{table}[]
-	\centering 
+Für das Fully-Connected Neuronal Network wurde ebenfalls der Testdatensatz zur Evaluierung genutzt. Wie bereits im Trainings-Kapitel (Kapitel \ref{Training})	beschrieben, wurde das Fully-Connected Neuronal Network aus zwei verschiedene Weisen trainiert. Wie in Kapitel \ref{Ansatz} beschrieben, wurde mit Hilfe des geschätzten Pitch-Wertes des CNNs eine Intensitätsverteilung bestimmt, welche die Schätzung des Feature-Size- und Pitch-Wertes verbessern soll.  Um diesen Ansatz zu evaluieren, wurde das gleiche Fully-Connected Neuronal Network mit Impulsverteilungen, welche vom Pitch-Label generiert wurden, trainiert. Der Parameter Feature-Size konnte mit beiden Netzen mit einer durchschnittlichen absoluten Abweichung von 13.043 (CNN) und 13,743(Label) geschätzt werden. Die prozentualen Abweichung liegen 12,46 Prozent (CNN) und 13,713 (Label). 
+
+\begin{table}[]
+\centering 
 \begin{tabular}{|l|l|l|}
 \hline
                         & Feature-Size & Sigma   \\ \hline
-Fully-Connected (CNN)   & 13,043       & 13,1740 \\ 
+Fully-Connected (CNN)   & 13,043       & 13,174 \\ 
 Fully-Connected (Label) & 13,713       & 12,641 \\ \hline
 \end{tabular}
 \caption{\label{tab:relative_results} Absolute Abweichung  bei der Schätzung von Sigma und Feature-Size}
@@ -577,7 +580,7 @@ Fully-Connected (Label) & 13,713       & 12,641 \\ \hline
 
 \begin{table}[]
 \centering 
-\begin{tabular}{|l|ll|}
+\begin{tabular}{|l|l|l|}
 \hline
                          & Feature-Size & Sigma \textgreater 1 \\ \hline
 Fully-Connected (CNN)    & 12,46 \%     & 184,43 \%            \\
@@ -585,8 +588,29 @@ Fully-Connected. (Label) & 13,50 \%     & 176,75 \%       \\ \hline
 \end{tabular}
 \caption{\label{tab:relative_results} Relativer Fehler bei der Schätzung von Sigma und Feature-Size}
 \end{table}
-	\section{Fazit}
-	\section{Ausblick}
+
+
+Aus diesen Zahlen kann geschlussfolgert werden, dass Feature-Size mit einer relativ guten Qualität geschätzt werden kann. Des Weiteren kann geschlussfolgert werden, dass der Parameter Pitch und die generierte Impulsverteilung keinen großen Einfluss auf die Schätzung des Feature-Size-Wertes hat. Dies spiegelt sich auch in der Abbildung \ref{img:experiment_fsize} wieder. In dieser Abbildung ist zu erkennen, dass die Qualität der Feature-Size-Schätzung bei unterschiedlichen Pitch-Werten sehr ähnlich ist. Des Weiteren ist zu erkennen, dass mit steigendem Feature-Size-Wert bis zu einem bestimmten Schwellwert die Qualität gleichbleibend ist. Ab diesem Schwellwert kommt es zu einem starken Qualitätsabfall. Das hängt damit zusammen, dass der Abstand zwischen Pitch und Feature-Size sehr klein ist und somit weniger Peaks vorhanden sind, welche für die Schätzung des Feature-Size-Wertes genutzt werden können. 
+
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.9\textwidth]{images/experiment3_1.png} 
+\caption{Absolute Abweichung der Feature-Size-Schätzung des Fully-Connected Neuronal Network (CNN) in Abhängigkeit von Pitch}
+\label{img:experiment_fsize}
+\end{figure}
+
+Der Startparameter Sigma kann vom Fully-Connected Neuronal Network deutlich schlechter geschätzt werden wie Feature-Size. Es konnte eine durchschnittliche Absolute Abweichung 13,174 (CNN) und 12,641 erreicht werden. Da der Wertebereich von Sigma deutlich kleinere ist, zeigt sich der Qualitätsunterschied zur Feature-Size-Schätzung in der prozentualen Abweichung. Es konnte eine prozentuale Abweichung von 184,43 Prozent (CNN) und 176,75 Prozent für Sigma größer 0 erreicht werden. Aus den Abweichungszahlen kann geschlussfolgert werden, dass eine bessere Pitch-Schätzung zu einer besseren Sigma-Schätzung beiträgt In Abbildung \ref{img:experiment_sigma} ist die absolute Abweichung in Abhängikeit von Sigma und Feature-Size dargestellt. In dieser Abbildung ist zu erkennen, dass die Abweichung nahe zu linear mit höheren Sigma-Wert steigt. Außerdem ist zu erkennen, dass der Sigma-Wert besser geschätzt werden kann, wenn der Feature-Size-Wert höher ist. Dieser Zusammenhang kann damit begründet werden, dass bei größeren Features Sigma größer sein muss, um einen Informationsverlust zu erzeugen. 
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.9\textwidth]{images/experiment6_1.png} 
+\caption{Absolute Abweichung der Sigma-Schätzung des Fully-Connected Neuronal Network (CNN) in Abhängigkeit von Feature-Size}
+\label{img:experiment_sigma}
+\end{figure}
+
+\section{Fazit}
+\section{Ausblick}
 	
 
 	
