@@ -1,4 +1,4 @@
-\documentclass[hyperref,german,beleg]{cgvpub}
+\documentclass[hyperref,german,beleg,final]{cgvpub}
 \usepackage{subfigure}
 \usepackage{pdfpages}
 \usepackage{array}
@@ -30,36 +30,14 @@ Bild"ubernahmen zitieren.}
 \begin{document}
 
 \chapter{Einleitung}
+Die Erforschung des Plasmazustandes ist einer der Forschungsschwerpunkte des Helmholtz-Zentrums Dresden -- Rossendorf. Im Jahr 2018 wurde von Thomas Kluge ein Paper mit dem Titel:  \glqq Observation of ultrafast solid-density plasma dynamics using femtosecond X-ray pulses from a free-electron laser \grqq \  \cite{SAXS18} veröffentlicht, welches die Charakterisierung von Plasma anhand des Streubildes der Kleinwinklelstreuung beschreibt. Das Experiment, welches in \cite{SAXS18} beschrieben wurde, nutzt ein Gitterförmiges Target, welches durch wenige Parameter beschreibbar ist. Um Plasma zu erzeugen, wird das Target mit einem Hochintentisätslaser beschossen. Für die Charkateriseirung des entstandenen Plasmas wird zusätzlich ein Röntgenlaser verwendet. Während des Beschusses durch den Röntgenlaser kommt es zu Streueffekten, welche durch einen Detektor, der hinter dem Target platziert ist, aufgenommen werden. Dabei Detektor ist zeitintegrierend, dass heißt dass ankommende Wellen summiert werden und somit die Positionsinformationen der Teilchen im Target verloren gehen. 
 
+Um die Struktur des Targets (Beschreibungsparameter) zu rekonstruieren, werden im Allgemeinen Phase-Retrieval-Algorithmen angewendet. Diese Algorithmen sind meistens iterativ und unterliegen Limitierungen. In diesem Beleg soll, anstatt iterativer Verfahren, Deep-Learning verwendet werden, um die Charakterisierung des Plasmas zu unterstützen. \glqq Deep Learning erlaubt mathematischen Modellen, welche aus mehreren Verarbeitungsschichten bestehen, die Repräsentation von Daten auf verschiedenen Abstraktionsniveaus zu lernen. Deep Learning hat den Stand der Technik in Spracherkennung, Objekterkennung und in vielen anderen Bereichen wie der Genetik stark verbessert. [...] Deep Convolutional Neuronal Networks gelang der Durchbruch in der Verarbeitung von Text, Bild und Video.\grqq \  (\cite{deep_learning_cite}, Seite 1, Übersetzung des Autors). 
 
-Deep Learning erlaubt mathematischen Modellen, welche aus mehreren Verarbeitungsschichten bestehen, die Repräsentation von Daten auf verschiedenen Abstraktionsniveaus zu lernen. Deep Learning hat den Stand der Technik in Spracherkennung, Objekterkennung und in vielen anderen Bereichen wie der Genetik stark verbessert. [...] Deep Convolutional Neuronal Networks gelang der Durchbruch in der Verarbeitung von Text, Bild und Video. (Übesetzung des Autors)
-
-- MOTIVATION PLASMA 
-	- bessere Verstanden werden
-	- Überleitung zu X-Ray Scattering 
-	
-
-- XRAY SCATTERING
-	- universelle Technik 
-	- Fourier Betragsquadrat 
-	- Phasenverlust 
-	
-- ITERATIVE VERFAHREN
--  LIMITIERUNG 
-
-
-- DEEP LEARNING
-- PROTOTYP
-
-- Datenanalyse 
-
-- GERINGE EXPERIMENT DATEN 
-- GENERATOR 
-
-- EVALUIERUNG
-
-
-
+In diesem Beleg wurde eine umfangreiche Datenanalyse der Detekorbilder vorgenommen, um aus deren Erkenntnissen einen Protoyp eines Deep Learning Models zu entwickeln. Um das Deep-Learning Model zu trainieren, wurde mit Hilfe einer Simulation eine Datenbasis  aus synthetisch erzeugten Detektorbildern erstellt. Das trainierte Deep-Learning-Model wurde anschließend auf seine Qualität getestet und auf seine Tauglichkeit als Ersatz für iterative Verfahren geprüft. 
+ 
+ 
+\chapter{Grundlagen}
 
 \section{Physikalischer Hintergrund}
 
@@ -363,7 +341,7 @@ ursprünglichen Dirac-Kamm verhält \cite{SpringerFFT}:
 \mathcal { F } \{ \operatorname { comb } ( t ) \} = \operatorname { COMB } ( f ) = \frac { 1 } { \Delta t } \sum _ { n = - \infty } ^ { + \infty } \delta ( f - n / \Delta t )
 \end{equation}
 
-Diese Eigenschaft spiegelt sich auch bei der Erhöhung des Pitch-Wertes wieder (siehe Abbildung \ref{img:pitch_fsize_ratio}. Durch die Erhöhung des Pitch-Wertes kommen es zu einer Erhöhung der Peaks und die Abstände zwischen den Peaks verringert sich. Der letzte Bestandteil der Faltung ist die Faltung mit der Gauss-Verteilung. Eine Erhöhung des Sigma-Wertes führt zu einer Steigerung der maximalen Intensität und einer Glättung der Randpeaks. Betrachtet man die Fouriertransformation einer Gauss-Verteilung \eqref{fftgauss}, dann ist zu erkennen, dass die Abweichtung $\sigma$ im Zähler des Exponenten steht. Daraus kann ein reziprokes Verhalten der Abweichung in der Fouriertransformation geschlussfolgert werden. Für das Detektorbild bedeutet dies mit Hinblick auf das Fourier-Faltungs-Theorem, dass mit steigendem Sigma-Wert die Intensitäten im Zentrum erhöht werden und Peaks am Rand geglättet werden. 
+Diese Eigenschaft spiegelt sich auch bei der Erhöhung des Pitch-Wertes wieder (siehe Abbildung \ref{img:pitch_fsize_ratio}. Durch die Erhöhung des Pitch-Wertes kommen es zu einer Erhöhung der Peaks und die Abstände zwischen den Peaks verringert sich. Der letzte Bestandteil der Faltung ist die Faltung mit der Gauss-Verteilung. Eine Erhöhung des Sigma-Wertes führt zu einer Steigerung der maximalen Intensität und einer Glättung der Randpeaks. Betrachtet man die Fouriertransformation einer Gauss-Verteilung \eqref{fftgauss}(Berechnung nach \cite{GaussFFT}), dann ist zu erkennen, dass die Abweichung $\sigma$ im Zähler des Exponenten steht. Daraus kann ein reziprokes Verhalten der Abweichung in der Fouriertransformation geschlussfolgert werden. Für das Detektorbild bedeutet dies mit Hinblick auf das Fourier-Faltungs-Theorem, dass mit steigendem Sigma-Wert die Intensitäten im Zentrum erhöht werden und Peaks am Rand geglättet werden. 
 
 \begin{equation}\label{fftgauss}
 G ( \omega ) = e ^ { - \frac { \omega ^ { 2 } \sigma ^ { 2 } } { 2 } }
@@ -659,7 +637,7 @@ Der Startparameter Sigma kann vom Fully-Connected Neuronal Network deutlich schl
 \end{figure}
 
 \section{Fazit}
-In dieser Arbeit wurde ein Prototyp entwickelt, der die Beschreibungsparameter der Gitterstruktur anhand der zugehörigen Detektorbild schätzen soll. Es wurde eine umfangreiche Datenanalyse vorgenommen, um die Effekte der Startparameter auf das Detektorbild und auf die Network-Schätzungen zu verstehen. Aus den Ergebnissen kann bisher leider nur die Schlussfolgerung gezogen werden, dass die in diesem Beleg benutze Technik den keinen Erfolg bringt. Nur der Startparameter Feature-Size konnte mit einer besseren Qualität geschätzt werden. Die Parameter Sigma und Pitch können nur mit einer unzureichenden Qualität geschätzt werden. Eine große Schwierigkeit sind die Effekte der Parameter auf das Detektorbild. Parameter wie Feature-Size und Sigma zeigen die gleichen Effekte auf das Detektorbild, nur unterschiedlich skaliert. Und auch der Parameter Pitch legt im Zusammenspiel mit dem Parameter die Grundstruktur des Detektorbildes fest. Die Erkenntnisse dieser Arbeit können dafür genutzt werden den Deep-Learning-Ansatz zu verbessern, um in Zukunft vielleicht bessere Ergebnisse zu erzielen. 
+In dieser Arbeit wurde ein Prototyp entwickelt, der die Beschreibungsparameter der Gitterstruktur anhand der zugehörigen Detektorbild schätzen soll. Es wurde eine umfangreiche Datenanalyse vorgenommen, um die Effekte der Startparameter auf das Detektorbild und auf die Network-Schätzungen zu verstehen. Aus den Ergebnissen kann bisher leider nur die Schlussfolgerung gezogen werden, dass die in diesem Beleg benutze Technik den keinen Erfolg bringt und keine Alternative zu iterativen Ansätzen darstellt. Nur der Startparameter Feature-Size konnte mit einer besseren Qualität geschätzt werden. Die Parameter Sigma und Pitch können nur mit einer unzureichenden Qualität geschätzt werden. Eine große Schwierigkeit sind die Effekte der Parameter auf das Detektorbild. Parameter wie Feature-Size und Sigma zeigen die gleichen Effekte auf das Detektorbild, nur unterschiedlich skaliert. Und auch der Parameter Pitch legt im Zusammenspiel mit dem Parameter die Grundstruktur des Detektorbildes fest. Die Erkenntnisse dieser Arbeit können dafür genutzt werden den Deep-Learning-Ansatz zu verbessern, um in Zukunft vielleicht bessere Ergebnisse zu erzielen. 
 \section{Ausblick}
 	
 
