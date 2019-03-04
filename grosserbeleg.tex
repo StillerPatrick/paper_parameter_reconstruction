@@ -304,7 +304,7 @@ Das entstandene Produkt der Fouriertransformation ist im Raum der Komplexen Zahl
 \end{figure}
 
 \subsection{Auswirkung der Startparameter auf das Simulationsergebnis}
-In diesem Kapitel werden die Auswirkungen der Startparameter auf das Detektorbild untersucht. In der Abbildung \ref{img:pitch_fsize_ratio} ist der Einfluss der Parameter Pitch und Feature-Size auf das Detektorbild dargestellt. Es ist zu erkennen, dass die Anzahl der Peaks ( Intensitäten größer 0) maßgeblich durch das Verhältnis von Pitch und Feature-Size bestimmt werden. Auch die maximale Intensität wird durch das Verhältnis von Pitch und Feature-Size beeinflusst. Des Weiteren ist zu beobachten, dass mit steigendem Pitch-Wert sich die Abstände der Peaks verkleinert. Erhöht man den Feature-Size-Wert ist zu erkennen, dass die Anzahl der Peaks sich verringert und die maximale Intensität steigt. Der Effekt des Feature-Size-Wertes kann ebenfalls im Plot in Abbildung \ref{img:fsize-max} beobachtet werden. Der letzte Startparameter Sigma hat mit steigenden Wert ähnliche Auswirkungen  auf die Detektoraufnahmen wie Feature-Size. Bei steigendem Sigma-Wert steigt das Intensitätsmaximum und die Anzahl der Peaks verringert sich. Jedoch skaliert der Parameter Sigma anders als Feature-Size. Kleinere Unterschiede im Sigma-Wert können größere Auswirkungen auf die Anzahl der Peaks haben. Auch der Anstieg des Intensitätsmaximums in Abhängigkeit zu Sigma ist geringer im Vergleich zur Abhängigkeit zu Feature-Size. Zusätzlich ist zu bemerken, dass es einen Schwellwert gibt, bis der Effekt von Sigma Auswirkungen auf die inneren Peaks hat.  Der Effekt von Sigma ist in Abbildung \ref{img:pitch_fsize_ratio} zu sehen. 
+In diesem Kapitel werden die Auswirkungen der Startparameter auf das Detektorbild untersucht. In der Abbildung \ref{img:pitch_fsize_ratio} ist der Einfluss der Parameter Pitch und Feature-Size auf das Detektorbild dargestellt. Es ist zu erkennen, dass die Anzahl der Peaks ( Intensitäten größer 0) maßgeblich durch das Verhältnis von Pitch und Feature-Size bestimmt werden. Auch die maximale Intensität wird durch das Verhältnis von Pitch und Feature-Size beeinflusst. Des Weiteren ist zu beobachten, dass mit steigendem Pitch-Wert sich die Abstände der Peaks verkleinert. Erhöht man den Feature-Size-Wert ist zu erkennen, dass die Anzahl der Peaks sich verringert und die maximale Intensität steigt. Der Effekt des Feature-Size-Wertes kann ebenfalls im Plot in Abbildung \ref{img:fsize-max} beobachtet werden. Der letzte Startparameter Sigma hat mit steigenden Wert ähnliche Auswirkungen  auf die Detektoraufnahmen wie Feature-Size. Bei steigendem Sigma-Wert steigt das Intensitätsmaximum und die Anzahl der Peaks verringert sich. Jedoch skaliert der Parameter Sigma anders als Feature-Size. Kleinere Unterschiede im Sigma-Wert können größere Auswirkungen auf die Anzahl der Peaks haben. Auch der Anstieg des Intensitätsmaximums in Abhängigkeit zu Sigma ist geringer im Vergleich zur Abhängigkeit zu Feature-Size. Zusätzlich ist zu bemerken, dass es einen Schwellwert gibt, bis der Effekt von Sigma Auswirkungen auf die inneren Peaks hat.  Der Effekt von Sigma auf die maximale Intensität im Detektorbild ist in Abbildung \ref{sigma-max} zu sehen. 
 
 \begin{figure}[]
 \centering
@@ -313,14 +313,14 @@ In diesem Kapitel werden die Auswirkungen der Startparameter auf das Detektorbil
 \label{img:pitch_fsize_ratio}
 \end{figure}
 
+%TODO Image Effekt von Sigma 
 \begin{figure}[]
 \centering
-\includegraphics[width=0.85\textwidth]{images/sigma_fsize_ratio.png} 
-\caption{Auswirkung der Parameter Feature-Size und Sigma auf das Detektorbild. In der Tabelle wurde der Feature-Size-Wert zeilenweise erhöht. In jeder Spalte wurde der Sigma-Wert in Relation zum Feature-Size-Wertt geändert. 1.Spalte: $\frac{1}{8} $ Feature-Size, 2.Spalte: $\frac{1}{4} $ Feature-Size 3.Spalte: $\frac{1}{2} $ Feature-Size}
-\label{img:pitch_fsize_ratio}
-\end{figure}\newpage
-
-
+\includegraphics[width=0.85\textwidth]{images/sigma_maxintensity.png} 
+\caption{Auswirkung des Parameter Sigma auf die maximale Intensität im Detektorbild} 
+\label{img:sigma-max}
+\end{figure}
+ 
 \begin{figure}[hh]
 \centering
 \includegraphics[width=0.7\textwidth]{images/fsize_maxintensity.png} 
@@ -336,21 +336,38 @@ Wie in Kapitel \ref{Simulation} beschrieben, ergibt sich die Gitterstruktur des 
  F( f * g) = F(f) \cdot F(g)
 \end{equation}
 
-Das Fourier-Faltungs-Theorem kann dazu genutzt werden, die Effekte der Startparameter zu erklären. Der erste Teil der Faltung ist der Rechteckimpuls. Die Fouriertransformation einer Rechteckimpulses der Breite $2T$ wird laut (Quelle) folgend beschrieben:
-Als Fourier-Transformierte ergibt sich eine oszillierende Funktion in ?. Die ersten Nulldurchga?nge liegen bei
-$\omega = \pm \pi / T$ , deren Abstand bei $\Delta \omega = 2 \pi / T$. Die Breite des urspru?nglichen Impulses war
-$\Delta t = 2 T$. Damit ergibt sich eine Relation:
-$\Delta \omega \sim 1 / \Delta t$. Je schmaler der Rechteckimpuls - desto breiter die Frequenzverteilung $g(\omega)$ und
-umgekehrt.
+Das Fourier-Faltungs-Theorem kann dazu genutzt werden, die Effekte der Startparameter zu erklären. Der erste Teil der Faltung ist der Rechteckimpuls. Die Fouriertransformation einer Rechteckimpulses der Breite $2T$ wird laut \cite{Rectangle_FFT} folgend beschrieben:
+\glqq Als Fourier-Transformierte ergibt sich eine oszillierende Funktion in $\omega$. Die ersten Nulldurchgänge liegen bei
+$\omega = \pm \pi / T$ , deren Abstand bei $\Delta \omega = 2 \pi / T$. Die Breite des ursprünglichen Impulses war
+$\Delta t = 2 T$. Damit ergibt sich eine Relation: $\Delta \omega \sim 1 / \Delta t$. Je schmaler der Rechteckimpuls - desto breiter die Frequenzverteilung $g(\omega)$ und umgekehrt.\grqq \  Aus diesen Eigenschaften kann man schließen, dass bei steigendem Feature-Size-Wert die Frequenzverteilung der Fouriertransformation schmaler wird. Unter Zuhilfenahme der Fourier-Faltungs-Theorems folgt, dass durch ein erhöhten Feature-Size-Wert das Zentrum des Detektorbildes verstärkt wird und Randpeaks schwächer werden. 
 
-\begin{figure}[hh]
+\begin{figure}[h]
 \centering
-\includegraphics[width=\textwidth]{images/fft_gauss.png} 
-\caption{Linke Seite: Gauss-Verteilungen mit unterschiedlichen Sigma-Werten Rechte Seite: Fouriertransformationen der Gauss-Verteilungen}
-\label{img:gaussian_fft}
+\includegraphics[width=0.5 \textwidth]{images/fft_rectangle.png} 
+\caption{Fourier-Transformation des Rechteckimpules. Bildquelle: \cite{Rectangle_FFT}}
+\label{img:rectangle_fft}
 \end{figure}
 
+Die zweite Komponente der Faltung ist die Impulsverteilung oder Dirac-Kamm. \glqq Unter einem Dirac-Kamm versteht man [...]
+eine Folge von äquidistanten Deltafunktionen \grqq ( \cite{SpringerFFT}, Seite 18). 
 
+\begin{equation}
+\operatorname { comb } ( t ) = \sum _ { n = - \infty } ^ { + \infty } \delta ( t - n \Delta t )\  mit \ 
+\delta(t) = 1
+\end{equation}
+
+Das Ergebnis der Fouriertransformation $\mathcal { F }$ des Dirac-Kamms ist ebenfalls ein Dirac-Kamm, dessen Periodizität sich reziprok zum
+ursprünglichen Dirac-Kamm verhält \cite{SpringerFFT}:
+
+\begin{equation}
+\mathcal { F } \{ \operatorname { comb } ( t ) \} = \operatorname { COMB } ( f ) = \frac { 1 } { \Delta t } \sum _ { n = - \infty } ^ { + \infty } \delta ( f - n / \Delta t )
+\end{equation}
+
+Diese Eigenschaft spiegelt sich auch bei der Erhöhung des Pitch-Wertes wieder (siehe Abbildung \ref{img:pitch_fsize_ratio}. Durch die Erhöhung des Pitch-Wertes kommen es zu einer Erhöhung der Peaks und die Abstände zwischen den Peaks verringert sich. Der letzte Bestandteil der Faltung ist die Faltung mit der Gauss-Verteilung. Eine Erhöhung des Sigma-Wertes führt zu einer Steigerung der maximalen Intensität und einer Glättung der Randpeaks. Betrachtet man die Fouriertransformation einer Gauss-Verteilung \eqref{fftgauss}, dann ist zu erkennen, dass die Abweichtung $\sigma$ im Zähler des Exponenten steht. Daraus kann ein reziprokes Verhalten der Abweichung in der Fouriertransformation geschlussfolgert werden. Für das Detektorbild bedeutet dies mit Hinblick auf das Fourier-Faltungs-Theorem, dass mit steigendem Sigma-Wert die Intensitäten im Zentrum erhöht werden und Peaks am Rand geglättet werden. 
+
+\begin{equation}\label{fftgauss}
+G ( \omega ) = e ^ { - \frac { \omega ^ { 2 } \sigma ^ { 2 } } { 2 } }
+\end{equation}
 
 \chapter{Datenbasis}
 \section{Generator}
@@ -359,6 +376,7 @@ Um einen Machine-Learning-Ansatz auszuführen, muss eine ausreichend große Datenb
 \centering
 \includegraphics[scale=0.4]{images/generator_schema.png} 
 \caption{Schematischer Aufbau des Generators}
+
 \label{img:generator}
 \end{figure}
 
@@ -615,9 +633,9 @@ Fully-Connected (Label) & 13,713       & 12,641 \\ \hline
 \hline
                          & Feature-Size & Sigma \textgreater 1 \\ \hline
 Fully-Connected (CNN)    & 12,46 \%     & 184,43 \%            \\
-Fully-Connected. (Label) & 13,50 \%     & 176,75 \%       \\ \hline    
+Fully-Connected (Label) & 13,50 \%     & 176,75 \%       \\ \hline    
 \end{tabular}
-\caption{\label{tab:relative_results} Relativer Fehler bei der Schätzung von Sigma und Feature-Size}
+\caption{\label{tab:relative_results} Prozentuale Abweichung bei der Schätzung von Sigma und Feature-Size}
 \end{table}
 
 
