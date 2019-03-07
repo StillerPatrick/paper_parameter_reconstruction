@@ -19,9 +19,24 @@
 \birthday{8. Januar 1994}
 \placeofbirth{Dresden}
 \matno{3951290}
-\betreuer{Dr. Dmitrij Schlesinger (TU Dresden), Dr. Heide Meißner (HZDR), Dr. Michael Bussmann (HZDR)}
+\betreuer{Dr. Dmytro Schlesinger (TU Dresden), Dr. Heide Meißner (HZDR), Dr. Michael Bussmann (HZDR)}
 \bibfiles{literatur}
 \problem{\includepdf[pages=-]{Aufgabenstellung.pdf}}
+\acknowledgments{Das Erstellen einer so umfangreichen Studienarbeit ist keineswegs nur die Leistung einer Person. Deswegen möchte ich mich bei all denjenigen bedanken, die mich bei der Erstellung dieses großen Belegs unterstützt haben
+
+Als Erstes möchte ich mich bei meinen beiden Betreuern Heide Meißner und Dmytro Schlesinger bedanken. Vielen Dank für die Geduld, konstruktive Kritik und vielen Ratschläge.  
+
+Des Weiteren möchte ich mich bei meinem Kollegen Max Glaser bedanken, der immer für eine fachliche Diskussion zur Verfügung stand und die Arbeit Korrektur gelesen hat. 
+
+Außerdem möchte ich mich bedanken bei: 
+\\
+\begin{itemize} 
+\item Michael Bussmann (Betreuung)
+\item Malte Zacharias (Hilfe bei der Simulation)
+\item Matthias Werner (Motivation)
+\item Thomas Kluge (Hilfestellung SAXS)
+\end{itemize}
+ }
 
 \begin{document}
 
@@ -38,7 +53,7 @@ In diesem Beleg wurde eine umfangreiche Datenanalyse der Detekorbilder vorgenomm
 \section{Physikalischer Hintergrund}
 
 \subsection{Kleinwinkelstreuung}
-Die Kleinwinkelstreuung, in Englisch Small Angle X-Ray Scattering (SAXS), ist eine universelle Technik zur Untersuchung von Feststoffen. Dabei kann SAXS Informationen über die kristalline Struktur, chemische Komposition und die physikalische Eigenschaften eines untersuchten Feststoffes liefern \cite{THEORYSAXS}. Die Untersuchung von Feststoffen unter Einfluss von Hochintensitätslasern ist ein Schwerpunkt der heutigen Physik. Wissen über das Verhalten von Feststoffen unter Einfluss von Hochintensitätslasern kann offene Fragen in der Krebsforschung und in der Astrophysik beantworten. Dieser große Beleg bezieht sich auf die Publikation von Thomas Kluge, welche 2018 mit dem Titel:\ \grqq Observation of ultrafast solid-density plasma dynamics using femtosecond X-ray pulses from a free-electron laser\grqq veröffentlicht wurde. In der angesprochenen Publikation wurde SAXS für die Untersuchung von Plasma eingesetzt \cite{SAXS18}. Bisher konnte die Plasmadynamik, welche bei der Interaktion eines Feststoffes und eines Hochintensitätslasern entsteht, nur durch Simulationen modelliert werden. Mit Hilfe von SAXS gibt es neue Möglichkeiten, das entstehende Plasma zu charakterisieren. SAXS erreicht außerdem eine räumliche Auflösung im Femtosekunden-Bereich und eine zeitliche Auflösung im Nanosekunden-Bereich. Mit SAXS ist es möglich anhand der Einstrahlung auf den Detektor mit Hilfe von SAXS-Vorwärtssimulationen Aussagen über die Elektronendynamik im Plasma zu treffen \cite{SAXS18}.
+Die Kleinwinkelstreuung, in Englisch Small Angle X-Ray Scattering (SAXS), ist eine universelle Technik zur Untersuchung von Feststoffen. Dabei kann SAXS Informationen über die kristalline Struktur, chemische Komposition und die physikalische Eigenschaften eines untersuchten Feststoffes liefern \cite{THEORYSAXS}. Die Untersuchung von Feststoffen unter Einfluss von Hochintensitätslasern ist ein Schwerpunkt der heutigen Physik. Wissen über das Verhalten von Feststoffen unter Einfluss von Hochintensitätslasern kann offene Fragen in der Krebsforschung und in der Astrophysik beantworten. Dieser große Beleg bezieht sich auf die Publikation von Thomas Kluge, welche 2018 mit dem Titel:\ \grqq Observation of ultrafast solid-density plasma dynamics using femtosecond X-ray pulses from a free-electron laser\grqq \ veröffentlicht wurde. In der angesprochenen Publikation wurde SAXS für die Untersuchung von Plasma eingesetzt \cite{SAXS18}. Bisher konnte die Plasmadynamik, welche bei der Interaktion eines Feststoffes und eines Hochintensitätslasern entsteht, nur durch Simulationen modelliert werden. Mit Hilfe von SAXS gibt es neue Möglichkeiten, das entstehende Plasma zu charakterisieren. SAXS erreicht außerdem eine räumliche Auflösung im Femtosekunden-Bereich und eine zeitliche Auflösung im Nanosekunden-Bereich. Mit SAXS ist es möglich anhand der Einstrahlung auf den Detektor mit Hilfe von SAXS-Vorwärtssimulationen Aussagen über die Elektronendynamik im Plasma zu treffen \cite{SAXS18}.
  
 \begin{figure}[ht]
 	\centering
@@ -49,15 +64,15 @@ Die Kleinwinkelstreuung, in Englisch Small Angle X-Ray Scattering (SAXS), ist ei
 
 \subsection{Experimentbeschreibung} \label{Experiment}
 
-Das in \cite{SAXS18} beschriebene Experiment besteht aus vier Hauptkomponenten (siehe Abbildung \ref{fig:saxssetup} links): dem Target(Mitte), dem Hochintensitätslasern (UHI) (Links), dem Röntgen-Freie-Elektronen-Laser (XFEL) (links unten) und dem Detektor (rechts oben). Der Hauptbestandteil des Targets ist Kupfer. Um eine analytische Beschreibung des Experimentausgangs zu ermöglichen, wurde eine Gitterstruktur in das Kupfertarget eingraviert. Zusätzlich wurde das Taget mit einer 2 $\mu$m breiten Siliziumschicht überzogen. Durch die eingravierte Gitterstruktur besitzt das Target einen eindimensionalen Informationsgehalt und kann somit durch drei Parameter vollständig beschrieben werden. Die drei Paramter sind Pitch, Feature-Size und die Aufweichungsbreite Sigma($ \sigma $). Dabei beschreiben Pitch und Feature-Size die Struktur des Targets und Sigma($ \sigma $) den Aufweichungseffekt des Hochintensitätslasers (siehe Abbildung \ref{fig:grating_structure}). Die Gesamtheit des Targets wird auch als Grating bezeichnet. Erhebungen des Gratings werden als Features bezeichnet. Im weiteren Verlauf dieser Arbeit wird der Begriff Streudichte $\eta$ verwendet, welcher oft im Zusammenfang des SAXS-Ansatzes fällt. Der Begriff Streudichte $\eta$ wird in dieser Arbeit als Synonym für das Gitter verwendet. 
+Das in \cite{SAXS18} beschriebene Experiment besteht aus vier Hauptkomponenten (siehe Abbildung \ref{fig:saxssetup} links): dem Target (Mitte), dem Hochintensitätslasern (UHI) (Links), dem Röntgen-Freie-Elektronen-Laser (XFEL) (links unten) und dem Detektor (rechts oben). Der Hauptbestandteil des Targets ist Kupfer. Um eine analytische Beschreibung des Experimentausgangs zu ermöglichen, wurde eine Gitterstruktur in das Kupfertarget eingraviert. Zusätzlich wurde das Taget mit einer 2 $\mu$m breiten Siliziumschicht überzogen. Durch die eingravierte Gitterstruktur besitzt das Target einen eindimensionalen Informationsgehalt und kann somit durch drei Parameter vollständig beschrieben werden. Die drei Paramter sind Pitch, Feature-Size und die Aufweichungsbreite Sigma($ \sigma $). Dabei beschreiben Pitch und Feature-Size die Struktur des Targets und Sigma($ \sigma $) den Aufweichungseffekt des Hochintensitätslasers (siehe Abbildung \ref{fig:grating_structure}). Die Gesamtheit des Targets wird auch als Grating bezeichnet. Erhebungen des Gratings werden als Features bezeichnet. Im weiteren Verlauf dieser Arbeit wird der Begriff Streudichte $\eta$ verwendet, welcher oft im Zusammenfang des SAXS-Ansatzes fällt. Der Begriff Streudichte $\eta$ wird in dieser Arbeit als Synonym für das Gitter verwendet. 
 
 \begin{figure}[hh]
 	\centering
 		\includegraphics [scale=0.5]{images/grating_structure.png}
 	\caption{Analytische Beschreibung des Querschnittes des Targets. Dabei ist das Grating zu erkennen und dass es durch drei Parameter: Pitch, Feature-Size und Sigma beschrieben werden kann. Bildquelle: \cite{Zach17}}
-	
 	\label{fig:grating_structure}
 \end{figure}
+
 Während des Experiments wird das Target durch einen Hochintensitätslasers in einem Winkel von 90° beschossen. Aufgrund des elektrischen Feldes des Lasers entsteht Plasma. Bei Plasma handelt es sich um ein Gemisch aus freien Elektronen, positiven Ionen und neutralen Teilchen, welche unter ständiger Wechselwirkung miteinander und mit Photonen stehen. Dadurch kann es zu unterschiedlichen Energie- bzw. Anregungszuständen kommen. Der Plasmazustand eines Stoffes wird auch als vierter Aggregatzustand bezeichnet \cite{PLASMADEF}. Während des Beschusses durch den Hochintensitätslasers ist außerdem ein Schmelzprozess und somit eine Aufweichung der Gitterstruktur des Targets wahrzunehmen (siehe Abbildung \ref{fig:melting_grating}). Das durch den Hochintensitätslasers erzeugte Plasma soll auf seine Struktur und Elektrodynamik mit Hilfe von SAXS untersucht werden. Dafür wird leicht zeitversetzt ein zweiter Laser benutzt. Dabei handelt es sich um einen Röntgen-Freie-Elektronen-Laser, welcher in einem Winkel von 45° mit einer Pulsdauer von 40 Femtosekunden auf das Target schießt. Bei diesem Vorgang kommt es zu einer Streuung des Lichts des Röntgenlasers an den Elektronen des Targets. Die Lichtintensitäten des gestreuten Röntgenlasers werden durch einen Detektor, welches hinter dem Target platziert ist, gemessen (Abbildung \ref{fig:saxssetup} links). 
 
 \begin{figure}[hh]
@@ -76,7 +91,7 @@ Beim Detektor handelt es sich um ein Raster von Lichtdetektoren, welche die anko
 \label{fig:electron_scattering}
 \end{figure}
 
-Durch die Zeitintegration des Detektors, gehen die zeitlichen Abstände der Wellen verloren (Phase). Das entstandene Detektorsignal skaliert mit dem  Betragsquadrat der Fouriertransformation der Gitterstruktur $\eta $ (siehe Gleichung \eqref{eq:xrayscattering}) \cite{SAXS18}.
+Durch die Zeitintegration des Detektors gehen die zeitlichen Abstände der Wellen verloren (Phase). Das entstandene Detektorsignal skaliert mit dem  Betragsquadrat der Fouriertransformation der Gitterstruktur $\eta $ (siehe Gleichung \eqref{eq:xrayscattering}) \cite{SAXS18}.
 
 
 \begin{equation}\label{eq:xrayscattering}
