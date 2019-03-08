@@ -232,35 +232,34 @@ Wie in Kapitel \ref{CNN} beschrieben, können beliebig viele Convolutional-Layers
 
 \chapter{Simulation} \label{Simulation}
 \section{Motivation}
-Um das Ergebnis des SAXS-Experiments bestmöglich zu verstehen und aufgrund einer geringen Anzahl von Experimentdaten, wurde im Rahmen der Master-Arbeit von Malte Zacharias mit dem Titel \grqq Model-Driven Parameter Reconstruction from Small Angle X-Ray Scattering Images\grqq \  eine Modellierung entwickelt. Die Modellierung beinhaltet das Design der Gitterstruktur (Elektronendichteverteilung), die Modellierung des Hochenergielasereinflusses, die Modellierung des Streuvorgangs und die Modellierung des Detektorbildes. Das ganze Kapitel bezieht sich auf die Master-Arbeit von Malte Zacharias \cite{Zach17}. 
+Um das Ergebnis des SAXS-Experiments bestmöglich zu verstehen und aufgrund einer geringen Anzahl von Experimentdaten, wurde im Rahmen der Master-Arbeit von Malte Zacharias mit dem Titel \grqq Model-Driven Parameter Reconstruction from Small Angle X-Ray Scattering Images\grqq \  eine Modellierung entwickelt. Die Modellierung beinhaltet das Design der Gitterstruktur (Elektronendichteverteilung), die Modellierung des Hochenergielasereinflusses, die Modellierung des Streuvorgangs und die Modellierung des Detektorbildes. Die durch Malte Zacharias erstellte Simulation wurde für diese Arbeit zur Generierung der Datenbasis genutzt. 
 
 \section{Simulationsbeschreibung}
 \subsection{Design der Gitterstruktur und Simulation des Hochenergielasereinflusses}
-Wie in Kapitel 2 beschrieben sind die Targets des SAXS-Experiments als Gitter strukturiert, um eine analytische Beschreibung des Targets zu ermöglichen. Der erste Simulationsschritt ist die Bestimmung der Gitterstruktur. Die Breite des Gratings ist auf N Pixel beschränkt. Die Struktur des Gratings ist über die drei Startparameter Pitch, Feature-Size und Sigma definiert. Der Parameter Feature-Size legt die Breite eines Features fest und der Parameter Pitch bestimmt die Periodizität eines Features, womit beide Parameter für die Struktur des Gratings ohne Einfluss des Hochintensitätslasers verantwortlich sind. Der Parameter Sigma  $\sigma$ bestimmt die Aufweichungsbreite des Gratings und modelliert den Einfluss des Hochenenintensitätslasers. 
+Wie in Kapitel 2 beschrieben sind die Targets des SAXS-Experiments als Gitter strukturiert, um eine analytische Beschreibung des Experiments zu ermöglichen. Der erste Simulationsschritt ist die Bestimmung der Gitterstruktur. Die Breite des Gratings ist auf N Pixel beschränkt. Die Struktur des Gratings ist über die drei Startparameter Pitch, Feature-Size und Sigma definiert. Der Parameter Feature-Size legt die Breite eines Features fest und der Parameter Pitch bestimmt die Periodizität eines Features, womit beide Parameter für die Struktur des Gratings ohne Einfluss des Hochintensitätslasers verantwortlich sind. Der Parameter Sigma  $\sigma$ bestimmt die Aufweichungsbreite des Gratings und modelliert den Einfluss des Hochenenintensitätslasers. 
 
-Der erste Schritt der Simulation ist die Modellierung eines Features mit Hochintensitätslasereinfluss. Dazu wird eine Rechteckfunktion (\( 1_{[0,\text{Feature-Size}]} \)), welche die Breite eines Features festlegt mit einer Gaussverteilung (\(\exp \left( - x ^ { 2 } / 2 \sigma ^ { 2 } \right) \)) gefaltet \cite{SAXS18}. Das Ergebnis der Faltung wird mit Hilfe der Errorfunktion (Gleichung \eqref{eq:erf}) dargestellt. 
+Zur Modellierung eines Features mit Hochintensitätslasereinfluss. Dazu wird eine Rechteckfunktion (\( 1_{[0,\text{Feature-Size}]} \)), welche die Breite eines Features festlegt mit einer Gaussverteilung (\(\exp \left( - x ^ { 2 } / 2 \sigma ^ { 2 } \right) \)) gefaltet \cite{SAXS18}. Das Ergebnis der Faltung wird mit Hilfe der Errorfunktion (Gleichung \eqref{eq:erf}) dargestellt. 
 
 \begin{equation}\label{eq:erf}
 \text{erf(x)} = \frac{2}{\sqrt{\pi}} \int_{0}^{x} e^{-\xi^{2}}d\xi
 \end{equation}
 
-Das Ergebnis der Faltung des Rechteckimpulses und der Gauss-Verteilung ist die Modellierung eines Features:
 
 \begin{equation}\label{eq:feature}
 	\tilde{\eta} = \frac{\sqrt{\pi}\sigma}{2}(\text{erf}(\frac{x}{\sqrt{2}\sigma}) - \text{erf}(\frac{x - \text{fsize}}{\sqrt{2}\sigma}))
 \end{equation}
 
-Das modellierte Feature wird durch eine weitere Faltung mit mehreren um Pitch verschobenen Impulsen\cite{beucher_2011} periodisch fortgesetzt wird, um die Grating-Struktur zu komplettieren. 
+Das modellierte Feature wird durch eine weitere Faltung mit mehreren um Pitch verschobenen Impulsen periodisch fortgesetzt wird, um die Grating-Struktur zu komplettieren. 
 
-
+\newpage
 \subsection{Effekt der Startparameter auf die Gitterstruktur}
 
 Die drei Startparameter Sigma (\( \sigma\)), Pitch  und Feature-Size, welche die Struktur des Gratings beschreiben, haben unterschiedliche Effekte auf die Gratingstruktur. Sigma ist der Parameter, welcher, wie bereits beschrieben, den Einfluss des Hochenergielasers auf ein Feature modelliert. Je höher Sigma gewählt wird, desto mehr wird die Kantenstruktur des Targets aufgeweicht. In Abbildung \ref{img:edge_sigma} ist dieser Effekt dargestellt. 
 
 \begin{figure}[hh]
 \centering
-\includegraphics[scale=0.30]{images/edge_sigma.png} 
-\caption{Vergleich der Kantenstruktur unter variierenden Sigma-Werten bei gleichbleibenden Pitch- und Feature-Size- Werten}
+\includegraphics[width=0.7\textwidth]{images/edge_sigma.png} 
+\caption{Vergleich der Kantenstruktur unter variierenden Sigma-Werten bei gleichbleibenden Werten für Pitch und Feature-Size}
 \label{img:edge_sigma}
 \end{figure}
 
@@ -279,13 +278,13 @@ Der Parameter Pitch bestimmt die Periodizität der Kantenstruktur.  Daraus folgt,
 
 \subsection{Simulation der Streuung}
 
-Wie im Kapitel zur Experimentbeschreibung beschrieben, ist das aufgenommene Detektorbild äquivalent zum Betragsquadrat der  Fouriertransformation der Elektronendichte $\eta $.  Im Fall der Simulation ist die Elektronendichte eine diskrete eindimensionale Elektronendichteverteilung. Deswegen wird zur Bildung des Detektorbildes eine eindimensionale diskrekte Fouriertransformation  \eqref{eq:fft} verwendet.
+Wie im Kapitel \ref{Experiment} beschrieben, skaliert das aufgenommene Detektorbild zum Betragsquadrat der  Fouriertransformation der Elektronendichte $\eta $.  Im Fall der Simulation ist die Elektronendichte eine diskrete eindimensionale Elektronendichteverteilung. Deswegen wird zur Bildung des Detektorbildes eine eindimensionale diskrekte Fouriertransformation  \eqref{eq:fft} verwendet.
 
 \begin{equation}\label{eq:fft}
 \hat { a } _ { k } = \sum _ { j = 0 } ^ { N - 1 } e ^ { - 2 \pi \mathrm { i } \cdot \frac { j k } { N } } {\eta} _{ k} \text { für } k = 0 , \ldots , N - 1
 \end{equation}
 
-Das entstandene Produkt der Fouriertransformation ist im Raum der Komplexen Zahlen und weist den gleichen Informationsgehalt wie die Elektronendichteverteilung auf. Das heißt die Amplituden- und Phaseninformationen sind nach wie vor vorhanden. Wie in Kapitel 1 beschrieben, ist der Detektor Zeit integrierend und die Phase geht verloren, weswegen wird die Phaseninformation im weiteren Simulationsverlauf nicht weiter verwendet. Um schlussendlich die aufgenommenen Intensitäten des Detektors (siehe Abbildung \ref{img:detector}) zu erhalten, wird das Betragsquadrat des Amplitudenspektrums gebildet ($ \Phi = | \hat { a } _ { k }| ^{2}$)
+Das entstandene Produkt der Fouriertransformation ist im Raum der Komplexen Zahlen und weist den gleichen Informationsgehalt wie die Elektronendichteverteilung auf. Das heißt die Amplituden- und Phaseninformationen sind nach wie vor vorhanden. Wie in Kapitel 1 beschrieben, ist der Detektor Zeit integrierend und die Phase geht verloren, weswegen die Phaseninformation im weiteren Simulationsverlauf nicht weiter verwendet wird. Um schlussendlich die aufgenommenen Intensitäten des Detektors (siehe Abbildung \ref{img:detector}) zu erhalten, wird das Betragsquadrat des Amplitudenspektrums gebildet ($ \Phi = | \hat { a } _ { k }| ^{2}$)
 
 \begin{figure}[hh]
 \centering
@@ -296,7 +295,7 @@ Das entstandene Produkt der Fouriertransformation ist im Raum der Komplexen Zahl
 \FloatBarrier
 
 \subsection{Auswirkung der Startparameter auf das Simulationsergebnis}
-In diesem Kapitel werden die Auswirkungen der Startparameter auf das Detektorbild untersucht. In der Abbildung \ref{img:pitch_fsize_ratio} ist der Einfluss der Parameter Pitch und Feature-Size auf das Detektorbild dargestellt. Es ist zu erkennen, dass die Anzahl der Peaks ( Intensitäten größer 0) maßgeblich durch das Verhältnis von Pitch und Feature-Size bestimmt werden. Auch die maximale Intensität wird durch das Verhältnis von Pitch und Feature-Size beeinflusst. Des Weiteren ist zu beobachten, dass mit steigendem Pitch-Wert sich die Abstände der Peaks verkleinert. Erhöht man den Feature-Size-Wert ist zu erkennen, dass die Anzahl der Peaks sich verringert und die maximale Intensität steigt. Der Effekt des Feature-Size-Wertes kann ebenfalls im Plot in Abbildung \ref{img:fsize-max} beobachtet werden. Der letzte Startparameter Sigma hat mit steigenden Wert ähnliche Auswirkungen auf die Detektorbilder wie Feature-Size. Bei steigendem Sigma-Wert steigt das Intensitätsmaximum und die Anzahl der Peaks verringert sich. Und es kommt zu einer Glättung der Randpeaks(Peaks werden kleiner oder verschwinden). Feature-Size zeigt ähnliche Effekte, jedoch skaliert der Parameter Sigma anders als Feature-Size. Kleinere Unterschiede im Sigma-Wert können größere Auswirkungen auf die Anzahl der Peaks haben. Auch der Anstieg des Intensitätsmaximums in Abhängigkeit zu Sigma ist geringer im Vergleich zur Abhängigkeit zu Feature-Size. Zusätzlich ist zu bemerken, dass es einen Schwellwert gibt, bis der Effekt von Sigma Auswirkungen auf die inneren Peaks hat.  Der Effekt von Sigma auf die maximale Intensität im Detektorbild ist in Abbildung \ref{img:sigma-max} zu sehen. Auswirkungen auf das Detektorbild sind in Abbildung \ref{img:sigma_detektor} dargestellt.
+In diesem Kapitel werden die Auswirkungen der Startparameter auf das Detektorbild untersucht. In der Abbildung \ref{img:pitch_fsize_ratio} ist der Einfluss der Parameter Pitch und Feature-Size auf das Detektorbild dargestellt. Es ist zu erkennen, dass die Anzahl der Peaks (Intensitäten größer 0) maßgeblich durch das Verhältnis von Pitch und Feature-Size bestimmt werden. Auch die maximale Intensität wird durch das Verhältnis von Pitch und Feature-Size beeinflusst. Des Weiteren ist zu beobachten, dass mit steigendem Pitch-Wert sich die Abstände der Peaks verkleinert. Wird der Feature-Size-Wert erhöht, ist zu erkennen, dass die Anzahl der Peaks sich verringert und die maximale Intensität steigt. Der Effekt des Feature-Size-Wertes auf die maximale Intensität kann ebenfalls im Plot in Abbildung \ref{img:fsize-max} beobachtet werden. Der letzte Startparameter Sigma hat mit steigenden Wert ähnliche Auswirkungen auf die Detektorbilder wie Feature-Size. Bei steigendem Sigma-Wert steigt das Intensitätsmaximum und die Anzahl der Peaks verringert sich. Und es kommt zu einer Glättung der Randpeaks(Peaks werden kleiner oder verschwinden). Feature-Size zeigt ähnliche Effekte, jedoch skaliert der Parameter Sigma anders als Feature-Size. Kleinere Unterschiede im Sigma-Wert können große Auswirkungen auf die Anzahl der Peaks haben. Auch der Anstieg des Intensitätsmaximums in Abhängigkeit zu Sigma ist geringer im Vergleich zur Abhängigkeit zu Feature-Size. Zusätzlich ist zu bemerken, dass es einen Schwellwert gibt, bis der Effekt von Sigma Auswirkungen auf die maximale Intensität hat.  Der Effekt von Sigma auf die maximale Intensität im Detektorbild ist in Abbildung \ref{img:sigma-max} zu sehen. Auswirkungen auf das Detektorbild sind in Abbildung \ref{img:sigma_detektor} dargestellt.
 
 \begin{figure}[h]
 \centering
@@ -309,15 +308,15 @@ In diesem Kapitel werden die Auswirkungen der Startparameter auf das Detektorbil
 \begin{figure}[]
 \centering
 \includegraphics[width=0.85\textwidth]{images/sigma_maxintensity.png} 
-\caption{Auswirkung des Parameter Sigma auf die maximale Intensität im Detektorbild} 
+\caption{Auswirkung des Parameters Sigma auf die maximale Intensität im Detektorbild} 
 \label{img:sigma-max}
 \end{figure}
 \FloatBarrier
 
-\begin{figure}[]
+\begin{figure}[ht]
 \centering
-\includegraphics[width=0.85\textwidth]{images/pitch_fsize_ratio.png} 
-\caption{Auswirkung der Parameter Pitch und Feature-Size auf das Detektorbild. In der Tabelle wurde der Pitch-Wert zeilenweise erhöht. In jeder Spalte wurde der Feature-Size-Wert in Relation zum Pitch-Wert geändert. 1.Spalte: $\frac{1}{8} $ Pitch, 2.Spalte: $\frac{1}{4} $ Pitch, 3.Spalte: $\frac{1}{2} $ Pitch}
+\includegraphics[width=.95\textwidth]{images/pitch_fsize_ratio.png} 
+\caption{Auswirkung der Parameter Pitch und Feature-Size auf das Detektorbild. In der Tabelle wurde der Pitch-Wert zeilenweise erhöht. In jeder Spalte wurde der Feature-Size-Wert in Relation zum Pitch-Wert geändert. 1.Spalte: $\frac{1}{2} $ Pitch, 2.Spalte: $\frac{1}{4} $ Pitch, 3.Spalte: $\frac{1}{8} $ Pitch}
 \label{img:pitch_fsize_ratio}
 \end{figure}
 
