@@ -22,7 +22,7 @@
 \betreuer{Dr. Dmytro Schlesinger (TU Dresden), Dr. Heide Meißner (HZDR), Dr. Michael Bussmann (HZDR)}
 \bibfiles{literatur}
 \problem{\includepdf[pages=-]{Aufgabenstellung.pdf}}
-\acknowledgments{Das Erstellen einer so umfangreichen Studienarbeit ist keineswegs nur die Leistung einer Person. Deswegen möchte ich mich bei all denjenigen bedanken, die mich bei der Erstellung dieses großen Belegs unterstützt haben
+\acknowledgments{Das Erstellen einer so umfangreichen Studienarbeit ist keineswegs nur die Leistung einer Person. Deswegen möchte ich mich bei all denjenigen bedanken, die mich bei der Erstellung dieses großen Belegs unterstützt haben.
 
 Als Erstes möchte ich mich bei meinen beiden Betreuern Heide Meißner und Dmytro Schlesinger bedanken. Vielen Dank für die Geduld, konstruktive Kritik und vielen Ratschläge.  
 
@@ -332,16 +332,14 @@ In diesem Kapitel werden die Auswirkungen der Startparameter auf das Detektorbil
 
 
 \subsubsection{Mathematische Erklärung der Starparametereffekte}
-Wie in Kapitel \ref{Simulation} beschrieben, ergibt sich die Gitterstruktur des Gratings aus einer Faltung aus Gauss-Verteilung, Impulsverteilung und Rechteckimpuls. Diese Faltung wird dann fouriertransformiert um das Detektorbild zu erzeugen. Eine wichtige Eigenschaft der Fouriertransformation $F$ ist, dass Fourier-Faltungs-Theorem, welches besagt, dass die Fouriertransformation einer Faltung äquivalent zum Produkt der Fouriertransformationen der Faltungsfunktionen ist (Gleichung \eqref{eq:fft_convolve})\cite{FOURIERDEF} .
+Wie in Kapitel \ref{Simulation} beschrieben, ergibt sich die Gitterstruktur des Gratings aus einer Faltung aus Gauss-Verteilung ($g$), Impulsverteilung ($h$) und Rechteckimpuls($f$). Diese Faltung wird dann fouriertransformiert um das Detektorbild zu erzeugen. Eine wichtige Eigenschaft der Fouriertransformation $F$ ist, dass Fourier-Faltungs-Theorem, welches besagt, das die Fouriertransformation einer Faltung äquivalent zum Produkt der Fouriertransformationen der Faltungsfunktionen ist (Gleichung \eqref{eq:fft_convolve})\cite{FOURIERDEF}. Für die Faltung der drei Faltungskomponenten $f$ , $g$, und $h$ ergibt sich :
 
 \begin{equation}\label{eq:fft_convolve}
- F( f * g) = F(f) \cdot F(g)
+ F( f * g * h) = F(f) \cdot F(g)  \cdot F(h)
 \end{equation}
 
-Das Fourier-Faltungs-Theorem kann dazu genutzt werden, die Effekte der Startparameter zu erklären. Der erste Teil der Faltung ist der Rechteckimpuls. Die Fouriertransformation einer Rechteckimpulses der Breite $2T$ wird laut \cite{Rectangle_FFT} folgend beschrieben:
-\glqq Als Fourier-Transformierte ergibt sich eine oszillierende Funktion in $\omega$. Die ersten Nulldurchgänge liegen bei
-$\omega = \pm \pi / T$ , deren Abstand bei $\Delta \omega = 2 \pi / T$. Die Breite des ursprünglichen Impulses war
-$\Delta t = 2 T$. Damit ergibt sich eine Relation: $\Delta \omega \sim 1 / \Delta t$. Je schmaler der Rechteckimpuls - desto breiter die Frequenzverteilung $g(\omega)$ und umgekehrt.\grqq \  Aus diesen Eigenschaften kann man schließen, dass bei steigendem Feature-Size-Wert die Frequenzverteilung der Fouriertransformation schmaler wird. Unter Zuhilfenahme der Fourier-Faltungs-Theorems folgt, dass durch ein erhöhten Feature-Size-Wert das Zentrum des Detektorbildes verstärkt wird und Randpeaks schwächer werden. 
+Die Fouriertransformation einer Rechteckimpulses der Breite $2T$ wird laut \cite{Rectangle_FFT} folgend beschrieben:
+\glqq Als Fourier-Transformierte ergibt sich eine oszillierende Funktion [...] Je schmaler der Rechteckimpuls - desto breiter die Frequenzverteilung [...] und umgekehrt.\grqq \ Aus dieser Eigenenschaft kann geschlussfolgert werden, dass bei steigendem Feature-Size-Wert die Frequenzverteilung $F(f)$  schmaler wird. Augrund der Muliplikation in \eqref{eq:fft_convolve} kann geschlussfolgert werden, dass durch eine Erhöhung des Feature-Size-Wertes die maximale Intensität und die Intensitäten der Peaks im Zentrum erhöht werden. Dieser Effekt ist auch in Abbildung \ref{img:pitch_fsize_ratio} festzustellen.
 
 \begin{figure}[h]
 \centering
@@ -350,7 +348,7 @@ $\Delta t = 2 T$. Damit ergibt sich eine Relation: $\Delta \omega \sim 1 / \Delt
 \label{img:rectangle_fft}
 \end{figure}
 
-Die zweite Komponente der Faltung ist die Impulsverteilung oder Dirac-Kamm. \glqq Unter einem Dirac-Kamm versteht man [...]
+Die zweite Komponente der Faltung ist die Impulsverteilung $h$ oder Dirac-Kamm. \glqq Unter einem Dirac-Kamm versteht man [...]
 eine Folge von äquidistanten Deltafunktionen \grqq ( \cite{SpringerFFT}, Seite 18). 
 
 \begin{equation}
@@ -365,7 +363,7 @@ ursprünglichen Dirac-Kamm verhält \cite{SpringerFFT}:
 \mathcal { F } \{ \operatorname { comb } ( t ) \} = \operatorname { COMB } ( f ) = \frac { 1 } { \Delta t } \sum _ { n = - \infty } ^ { + \infty } \delta ( f - n / \Delta t )
 \end{equation}
 
-Diese Eigenschaft spiegelt sich auch bei der Erhöhung des Pitch-Wertes wieder (siehe Abbildung \ref{img:pitch_fsize_ratio}. Durch die Erhöhung des Pitch-Wertes kommen es zu einer Erhöhung der Peaks und die Abstände zwischen den Peaks verringert sich. Der letzte Bestandteil der Faltung ist die Faltung mit der Gauss-Verteilung. Eine Erhöhung des Sigma-Wertes führt zu einer Steigerung der maximalen Intensität und einer Glättung der Randpeaks. Betrachtet man die Fouriertransformation einer Gauss-Verteilung \eqref{fftgauss}(Berechnung nach \cite{GaussFFT}), dann ist zu erkennen, dass die Abweichung $\sigma$ im Zähler des Exponenten steht. Daraus kann ein reziprokes Verhalten der Abweichung in der Fouriertransformation geschlussfolgert werden. Für das Detektorbild bedeutet dies mit Hinblick auf das Fourier-Faltungs-Theorem, dass mit steigendem Sigma-Wert die Intensitäten im Zentrum erhöht werden und Peaks am Rand geglättet werden (siehe Abbildung \ref{fftgauss}). 
+Diese Eigenschaft spiegelt sich auch bei der Erhöhung des Pitch-Wertes wieder (siehe Abbildung \ref{img:pitch_fsize_ratio}. Durch die Erhöhung des Pitch-Wertes kommt es zu einer Verringerung der maximalen Intensität und die Abstände zwischen den Peaks verringern sich. Der letzte Bestandteil der Faltung ist die Faltung mit der Gauss-Verteilung. Eine Erhöhung des Sigma-Wertes führt zu einer Steigerung der maximalen Intensität und einer Glättung der Randpeaks. Betrachtet man die Fouriertransformation einer Gauss-Verteilung \eqref{fftgauss}, dann ist zu erkennen, dass die Abweichung $\sigma$ im Zähler des Exponenten steht. Daraus kann ein reziprokes Verhalten der Abweichung in der Fouriertransformation geschlussfolgert werden. Für das Detektorbild bedeutet dies mit Hinblick auf das Fourier-Faltungs-Theorem, dass mit steigendem Sigma-Wert die Intensitäten im Zentrum erhöht werden und Peaks am Rand geglättet werden (siehe Abbildung \ref{fftgauss}). 
 
 \begin{equation}\label{fftgauss}
 G ( \omega ) = e ^ { - \frac { \omega ^ { 2 } \sigma ^ { 2 } } { 2 } }
