@@ -449,7 +449,6 @@ Regression-Layer & Layer12          & -                                  & -    
 \caption{\label{tab:cnn} Architektur des Convolutional Neural Networks}
 \end{table}
 
-\newpage
 \section{Fully-Connected Neural Network}
 Das Fully-Connected Neural Network besteht ausschließlich aus Dense-Layern. Die Aufgabe des Fully-Connected Neural Networks ist die Schätzung des Sigma- und Feature-Size-Wertes. Der erste Layer bekommt die Konkatenation des Detektorbildes und der Impulsverteilung, welche aus dem vom CNN geschätzten Pitch-Wert erstellt wurde, als Input. Die Architektur des  Fully-Connected Neural Networks wurde aus Zeitgründen nicht mit der Bayes'schen Optimierung optimiert, sondern aus Erkenntnissen mehrerer Experimenten gebildet. In Tabelle \ref{tab:fcnn} ist die Architektur des Fully-Connected Neural Networks dargestellt.
 
@@ -560,12 +559,9 @@ Der Trainingsverlauf des CNNs wurde mit Hilfe der Tensorboard-Bibliothek überwac
 	\label{img:train_cnn}
 	\end{figure}
 
-In Abbildung \ref{img:train_cnn} ist bis zur tausendsten Epoche ein starker Abfall des Fehlers zu erkennen. Ab der tausendsten Epoche ist ein schwächeres Konvergenzverhalten zu beobachten. Der Verlauf des Trainings- und des Validierungsfehlers ist sehr ähnlich. Somit können nicht trainierte Samples mit nahezu gleicher Qualität wie trainierte Samples geschätzt werden. Während des Trainings konnte ein minimaler Trainingsfehler von 20910.45 und ein minimaler Validierungsfehler 23247.19 von erreicht werden.
+In Abbildung \ref{img:train_cnn} ist bis zur tausendsten Epoche ein starker Abfall des Fehlers zu erkennen. Ab der tausendsten Epoche ist ein schwächeres Konvergenzverhalten zu beobachten. Der Verlauf des Trainings- und des Validierungsfehlers ist sehr ähnlich. Somit können nicht trainierte Samples mit nahezu gleicher Qualität wie trainierte Samples geschätzt werden. Dies spiegelt sich auch im ähnlichen minimalen Trainings- und Validierungsfehler wieder. Während des Trainings konnte ein minimaler Trainingsfehler von 20910.45 und ein minimaler Validierungsfehler 23247.19 von erreicht werden.
 \subsection{Fully-Connected Neural Network}
-In Kapitel \ref{Ansatz} wurde beschrieben, dass das Fully-Connected Neural Network auf zwei verschiedene Weisen trainiert wurde. Im ersten Experiment wurde das Fully-Connected Neural Network mit der Impulsverteilung ,welche aus dem Pitch-Wert des CNNs generiert wurde, trainiert. Im zweiten Experiment wurde die Impulsverteilung aus dem Pitch-Label generiert. In beiden Experimenten wurde das Network 500 Epochen trainiert. Die kleinere Epochenanzahl resultiert aus dem schnelleren Konvergenzverhalten des Fully-Connected Neural Networks. Für das Fully-Connected Neural Network wurde ebenfalls Mean Squared Error als Qualitätsmaß verwendet. 
-
-\subsubsection{ CNN-Input}
-In Abbildung \ref{img:train_fc1} ist die Lernkurve des ersten Experimentes dargestellt. Während des Trainings konnte ein minimaler Trainingfehler von 75.80 und ein minimaler Validierungssfehler von 163.74 erreicht werden. Der Verlauf des Training- und des Validierungsfehlers zeigt ähnliches Konvergenzverhalten, das für Generalisierung spricht. Dennoch gibt es im minimal erreichten Trainings und Validierungsfehlers einen Unterschied von einem Faktor zwei. Somit ist die Qualität des Fully-Connected Neural Networks auf den Trainingsdaten deutlich höher als die der Validierungsdaten. 
+In Kapitel \ref{Ansatz} wurde beschrieben, dass das Fully-Connected Neural Network auf zwei verschiedene Weisen trainiert wurde. Im ersten Experiment wurde das Fully-Connected Neural Network mit der Impulsverteilung ,welche aus dem Pitch-Wert des CNNs generiert wurde, trainiert. Im zweiten Experiment wurde die Impulsverteilung aus dem Pitch-Label generiert. In beiden Experimenten wurde das Network 500 Epochen trainiert. Die kleinere Epochenanzahl resultiert aus dem schnelleren Konvergenzverhalten des Fully-Connected Neural Networks. Bei einer Epochenzahl von 1000  konnten keine besseren Ergebnisse erzielt werden. Für das Fully-Connected Neural Network wurde ebenfalls Mean Squared Error als Qualitätsmaß verwendet. In Abbildung \ref{img:train_fc1} ist die Lernkurve des ersten Experimentes dargestellt. Während des Trainings konnte ein minimaler Trainingfehler von 75.80 und ein minimaler Validierungssfehler von 163.74 erreicht werden. Der Verlauf des Training- und des Validierungsfehlers zeigt ähnliches Konvergenzverhalten, das für Generalisierung spricht. Dennoch gibt es im minimal erreichten Trainings und Validierungsfehlers einen Unterschied von einem Faktor zwei. Somit ist die Qualität des Fully-Connected Neural Networks auf den Trainingsdaten deutlich höher als die der Validierungsdaten. 
 
 	\begin{figure}[hh]
 	\centering
@@ -573,20 +569,21 @@ In Abbildung \ref{img:train_fc1} ist die Lernkurve des ersten Experimentes darge
 	\caption{Verlauf des Trainings- und Validierungsfehlers in Anhängigkeit der Epoche im ersten Experiment}
 	\label{img:train_fc1}
 	\end{figure}
-\subsubsection{ Label-Input}
-Das zweite Experiment (Abbildung \ref{img:train_fc2}) zeigt ähnliches Konvergenzverhalten wie beim ersten Experiment. Jedoch kommt es bei einer höheren  Epochenzahl zu weniger oszillation des Fehlers. Der minimale Trainingsfehler liegt bei 100.98 und der minimale Validierungsfehler liegt bei 190.72. Somit konnte eine ähnliche Qualität auf den Trainings- und Validierungsdaten erreicht werden wie beim ersten Experiment. 
+
+Das zweite Experiment (Abbildung \ref{img:train_fc2}) zeigt ähnliches Konvergenzverhalten wie beim ersten Experiment. Jedoch kommt es bei einer höheren Epochenzahl zu weniger oszillation des Fehlers. Der minimale Trainingsfehler liegt bei 100.98 und der minimale Validierungsfehler liegt bei 190.72. Somit konnte eine ähnliche Qualität auf den Trainings- und Validierungsdaten erreicht werden wie beim ersten Experiment. 
 	\begin{figure}[hh]
 	\centering
 	\includegraphics[width=.75\textwidth]{images/learn_curve_fc2.png} 
 	\caption{Verlauf des Trainings- und Validierungsfehlers in Anhängigkeit der Epoche im zweiten Experiment}
 	\label{img:train_fc2}
 	\end{figure}
+	\FloatBarrier
 	\section{Evaluierung}
 	
 	\subsection{Convolutional Neural Network}
 Um die Qualität des CNNs zu evaluieren, wurden die nicht trainierten Samples des Testdatensatzes zur Qualitätsbestimmung genutzt. Es konnte eine durchschnittliche absolute Abweichung von 109.73 und eine durchschnittliche relative Abweichung von 37\% erreicht werden. Aus der durchschnittlichen relativen und absoluten Abweichung kann eine schlechte Qualität des CNNs geschlussfolgert werden.
 	
- Eine wichtige Beobachtung der Analyse des CNNs ist, dass mit steigendem Pitch-Label die Qualität der Pitch-Schätzung sich verringert (siehe Abbildung \ref{img:experiment1}).Im Kapitel \ref{Simulation} wurde bereits analysiert, dass mit steigendem Pitch-Wert die Abstände der Peaks kleiner werden und somit ein dichteres Detektorbild entsteht. Zusätzlich ist  in Abbildung \ref{img:experiment1} zu erkennen, dass bei höheren Feature-Size-Werten Pitch besser geschätzt werden kann.  
+ Eine wichtige Beobachtung der Analyse des CNNs ist, dass mit steigendem Pitch-Label die Qualität der Pitch-Schätzung sich verringert (siehe Abbildung \ref{img:experiment1}). Im Kapitel \ref{Simulation} wurde bereits analysiert, dass mit steigendem Pitch-Wert die Abstände der Peaks kleiner werden und somit ein dichteres Detektorbild entsteht.  Daraus kann geschlussfolgert werden, dass bei höherer Peakdichte Pitch schlechter geschätzt werden kann. Zusätzlich ist in Abbildung \ref{img:experiment1} zu erkennen, dass bei höheren Feature-Size-Werten Pitch besser geschätzt werden kann.  
 
 	\begin{figure}[hh!]
 	\centering
@@ -610,7 +607,7 @@ Eine wichtige Eigenschaft von CNNs bzw der Convolutional-Layer ist, dass sie Lok
 	\caption{Detektorbilder zu guten Pitch-Schätzungen}
 	\label{img:good_experiment1}
 	\end{figure}
-Eine weitere Begründung für die schlechte Qualität des CNNs könnte das Sampling der Fouriertransformation in der Simulation sein. In der Simulation wurde das 2048 Pixel große Grating mit einer Fouriertransformation mit 2048 Stützstellen (Sampling) implementiert. Das hat zur Folge, dass Peaks im Detektorbild nur durch einen Wert dargestellt werden und Zwischenwerte komplett verloren gehen. In Abbildung \ref{img:oversampling} ist ein Vergleich der Simulation mit höherer Sampling-Rate(links) und einem Sampling von 1:1. Die Abbildung zeigt außerdem, dass zwischen den höheren Peaks im Zentrum noch kleinere Peaks sind, welche durch die niedrigere Sampling-Rate nicht gemessen werden können. Diese Peaks können laut Fraunhofer-Diffraction, welche eine theoretische Anlehnung an die Streuung ist, dazu genutzt werden die Anzahl der Features  und im Umkehrschluss Pitch zu bestimmen \cite{Multiple_Slits}. Denn die Anzahl der Minima zwischen dem Intensitäsmaximum und dem nächsten höheren Peak entspricht der Anzahl der Features plus eins \cite{Multiple_Slits}. Somit können nur Parameter des Detektorbildes wie Intensitäten, Peakabstände und Anzahl der Peaks benutzt werden, um Pitch zu schätzen. Jedoch werden die genannten Parameter des Detektorbildes, wie bereits in Kapitel \ref{Simulation} beschrieben, durch die anderen beiden Startparameter Sigma und Feature-Size beeinflusst.
+Ein höheres Sampling der Fouriertransformation könnte die Qualität der Pitchschätzung steigern. In der Simulation wurde das 2048 Pixel große Grating mit einer Fouriertransformation mit 2048 Stützstellen (Sampling) implementiert, dies hat zur Folge, dass Peaks im Detektorbild nur durch einen Wert dargestellt werden und Zwischenwerte komplett verloren gehen. In Abbildung \ref{img:oversampling} ist ein Vergleich der Simulation mit höherer Sampling-Rate(links) und einem Sampling von 1:1. Die Abbildung zeigt außerdem, dass zwischen den höheren Peaks im Zentrum noch kleinere Peaks sind, welche durch die niedrigere Sampling-Rate nicht gemessen werden können. Diese Peaks können laut Fraunhofer-Diffraction dazu genutzt werden die Anzahl der Features und im Umkehrschluss Pitch zu bestimmen \cite{Multiple_Slits}. Denn die Anzahl der Minima zwischen dem Intensitäsmaximum und dem nächsten höheren Peak entspricht der Anzahl der Features plus eins \cite{Multiple_Slits}. Somit können nur Parameter des Detektorbildes wie Intensitäten, Peakabstände und Anzahl der Peaks benutzt werden, um Pitch zu schätzen. .
 	\begin{figure}[]
 	\centering
 	\includegraphics[width=0.75\textwidth]{images/oversampling.png} 
