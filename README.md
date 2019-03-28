@@ -6,7 +6,8 @@
     - Scipy (>= 0.17.0)
     - Tensorflow (>= 1.11.0)
     - Tensorflow-gpu (>= 1.11.0)
-
+    - Matplotlib (>= 3.0.2)
+    - mpi4py
 ## Generate the Dataset
 
 
