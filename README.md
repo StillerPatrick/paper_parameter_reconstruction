@@ -13,8 +13,8 @@
 
 ## Before you start
 ```
-    $git clone https://github.com/StillerPatrick/paper_parameter_reconstuction.git
-    $cd paper_parameter_reconstruction
+$git clone https://github.com/StillerPatrick/paper_parameter_reconstuction.git
+$cd paper_parameter_reconstruction
 ```
 
 ## Generate the Dataset
