@@ -199,6 +199,7 @@ class PITCH_CNN:
         for idx in range(num_test_batches):
             test_x, test_y = dataset.get_batch(idx, data_set=DataSets.TEST)
             labels.extend(test_y)
+            self.saver.restore(sess,savedir+'/model.ckpt')
             loss,prediction = sess.run([self.loss,self.predict_op],feed_dict={self.x : test_x,self.y:test_y[:,0],self.train: False})
             prediction = np.reshape(prediction,(batch_size))
             predictions.extend(prediction)
