@@ -12,7 +12,11 @@
     - h5py (>= 2.7.1)
     - gcc (>= 5.3.0)
 ## Generate the Dataset
-
+The generator is embedded in the [fowgas enviorment](https://github.com/ComputationalRadiationPhysics/fowgas) from malte zacharias. For generating the database use following commands: 
+```
+cd src
+source start_generator.sh
+```
 
 
 ## Train the model 
