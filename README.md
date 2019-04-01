@@ -30,6 +30,7 @@ $PROCESSES = 64 #Number of parallel Processes
 
 Its important that you create the folder for the images before. 
 
+```
 $ cd src
 $ mkdir path/to/the/images
 $ source start_generator.sh
