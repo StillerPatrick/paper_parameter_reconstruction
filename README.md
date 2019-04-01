@@ -7,7 +7,10 @@
     - Tensorflow (>= 1.11.0)
     - Tensorflow-gpu (>= 1.11.0)
     - Matplotlib (>= 3.0.2)
-    - mpi4py
+    - openMPI (>= 2.0.2)
+    - mpi4py (>= 2.0.1)
+    - h5py (>= 2.7.1)
+    - gcc (>= 5.3.0)
 ## Generate the Dataset
 
 
