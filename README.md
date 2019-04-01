@@ -12,9 +12,9 @@
 - h5py (>= 2.7.1)
 - gcc (>= 5.3.0)
 
-##Before you start
+## Before you start
 ```
-    git clone https://github.com/StillerPatrick/paper_parameter_reconstruction.git
+    git clone https://github.com/StillerPatrick/paper_parameter_reconstuction.git
     cd paper_parameter_reconstruction
 ```
 
