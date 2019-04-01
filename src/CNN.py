@@ -54,7 +54,6 @@ class PITCH_CNN:
               filter_size,
               num_filters,
               residual_distance,
-              num_dense_units,
               learning_rate):
         """
         :param num_conv_layer: defines the number of convolutional layers added to the graph
@@ -200,7 +199,6 @@ class PITCH_CNN:
         for idx in range(num_test_batches):
             test_x, test_y = dataset.get_batch(idx, data_set=DataSets.TEST)
             labels.extend(test_y)
-            self.saver.restore(sess,"./models/shift=0,normalize=0,learning_rate=1e-08,num_dense=40,batch_size=32,num_epochs=3000,residual_distance=2,num_filters=32,filter_size=16,num_layers=10,time=2019_01_28_09_28/model.ckpt")
             loss,prediction = sess.run([self.loss,self.predict_op],feed_dict={self.x : test_x,self.y:test_y[:,0],self.train: False})
             prediction = np.reshape(prediction,(batch_size))
             predictions.extend(prediction)
