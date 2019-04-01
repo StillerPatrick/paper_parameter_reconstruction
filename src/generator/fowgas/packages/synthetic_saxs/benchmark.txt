@@ -1,0 +1,3 @@
+Time for a single: 1.8529099999999996  Seconds
+Time for 100: 187.613246  Seconds
+Time for 1000: 1870.095077  Seconds
