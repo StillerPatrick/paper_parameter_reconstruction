@@ -23,9 +23,9 @@ The generator is embedded in the [fowgas enviorment](https://github.com/Computat
 Before you start the generation of the database you have to edit the start_generation.sh shell script. The script offers you three variables to configure your generator:
 
 ```
-$TARGET = '/path/for/the/images'
-$NUMIMAGES = 100000 #Number of images
-$PROCESSES = 64 #Number of parallel Processes 
+TARGET = '/path/for/the/images'
+NUMIMAGES = 100000 #Number of images
+PROCESSES = 64 #Number of parallel Processes 
 ```
 
 Its important that you create the folder for the images before. 
