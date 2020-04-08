@@ -11,4 +11,4 @@ cd deeplearning-phaseretrieval/conv_net
 source load_env.sh
 cd fowgas/packages/synthetic_saxs
 
-mpirun -n $PROCESSES python mpi_image_generator.py $NUMIMAGES $TARGET
+mpirun -n PROCESSES python mpi_image_generator.py NUMIMAGES TARGET
